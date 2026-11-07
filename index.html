@@ -747,7 +747,7 @@
       const ent = computeEntropy(clean);
 
       const sqli = (clean.match(/(union\s+all\s+select|union\s+select|select\s+.*\s+from|insert\s+into|drop\s+table|information_schema|sleep\s*\(|benchmark\s*\(|waitfor\s+delay|'\s*or\s+|"\s*or\s+|'\s*and\s+|--\s*$|\/\*.*\*\/|having\s+\d+=\d+)/g) || []).length;
-      const xss = (clean.match(/(<script|javascript:|onerror\s*=|onload\s*=|ontoggle\s*=|onfocus\s*=|alert\s*\(|prompt\s*\(|confirm\s*\(|document\.cookie|document\.domain|<img\s|<svg|<iframe|fromcharcode)/g) || []).length;
+      const xss = (clean.match(/(\x3cscript|javascript:|onerror\s*=|onload\s*=|ontoggle\s*=|onfocus\s*=|alert\s*\(|prompt\s*\(|confirm\s*\(|document\.cookie|document\.domain|\x3cimg\s|\x3csvg|\x3ciframe|fromcharcode)/g) || []).length;
       const path = (clean.match(/(\.\.\/|\.\.\\|\/etc\/passwd|\/etc\/shadow|\/etc\/hosts|c:\\windows|win\.ini|boot\.ini|\/proc\/self)/g) || []).length;
       const cmd = (clean.match(/(;\s*(cat|ls|id|whoami|uname|ping|nc|bash|sh)\b|\|\s*(cat|ls|id|whoami|uname)\b|&&\s*(cat|ls|id|whoami)\b|\$\([^\)]+\)|`[^`]+`)/g) || []).length;
 
