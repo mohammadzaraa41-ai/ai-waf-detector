@@ -1,0 +1,11 @@
+timestamp,client_ip,method,payload,normalized_payload,prediction,confidence,action,latency_ms,entropy,special_chars
+2026-11-07 14:44:34,testclient,GET,/search?q=select+best+laptop+and+update+windows&page=1,/search?q=select best laptop and update windows&page=1,Normal,99.87,ALLOWED,10.31,4.283,4
+2026-11-07 14:44:34,testclient,GET,/products?id=405&cat=electronics,/products?id=405&cat=electronics,Normal,97.44,ALLOWED,3.19,4.1639,4
+2026-11-07 14:44:34,testclient,GET,/download?file=graduation_thesis_plan.pdf,/download?file=graduation_thesis_plan.pdf,Normal,89.29,ALLOWED,2.82,4.2107,2
+2026-11-07 14:44:34,testclient,GET,"/products?id=10'%20UNION%20SELECT%20username,password%20FROM%20users--","/products?id=10' union select username,password from users--",SQLi,99.81,BLOCKED,3.18,4.3404,5
+2026-11-07 14:44:34,testclient,GET,/search?q=test'%20AND%20SLEEP(5)--,/search?q=test' and sleep(5)--,SQLi,99.64,BLOCKED,5.45,4.2151,7
+2026-11-07 14:44:34,testclient,GET,/search?q=%3Cscript%3Ealert(document.cookie)%3C/script%3E,/search?q=<script>alert(document.cookie)</script>,XSS,99.97,BLOCKED,9.36,4.3928,9
+2026-11-07 14:44:34,testclient,GET,/search?q=%3Csvg%2Fonload%3Dalert%281%29%3E,/search?q=<svg/onload=alert(1)>,XSS,99.81,BLOCKED,7.08,4.3492,8
+2026-11-07 14:44:34,testclient,GET,/download?file=../../../../etc/passwd,/download?file=../../../../etc/passwd,Path_Cmd_Attack,99.96,BLOCKED,3.08,3.6888,7
+2026-11-07 14:44:34,testclient,GET,/ping?host=127.0.0.1;cat%20/etc/shadow,/ping?host=127.0.0.1;cat /etc/shadow,Path_Cmd_Attack,99.93,BLOCKED,2.91,4.3848,5
+2026-11-07 15:05:07,URL-Scanner,GET,/search?q=python+course,/search?q=python course,Normal,96.08,ALLOWED,33.05,4.0018,2
