@@ -1,8 +1,5 @@
 {
-  "version": 2,
-  "rewrites": [
-    { "source": "/api/scan", "destination": "/api/scan.py" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": "."
 }
-
