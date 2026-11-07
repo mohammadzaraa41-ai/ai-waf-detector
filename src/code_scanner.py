@@ -191,3 +191,4 @@ class AISourceCodeScanner:
             "findings": findings,
             "scan_duration_ms": round((time.perf_counter() - start) * 1000, 2),
         }
+
