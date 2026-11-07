@@ -649,7 +649,7 @@
       "/search?q=select+best+laptop+and+update+windows&page=1",
       "/products?id=10' UNION SELECT username,password FROM users--",
       "/search?q=test' AND SLEEP(5)--",
-      "/search?q=<script>alert(document.cookie)</script>",
+      "/search?q=\x3cscript\x3ealert(document.cookie)\x3c/script\x3e",
       "/comments/post?msg=%3Csvg%2Fonload%3Dalert%281%29%3E",
       "/download?file=../../../../etc/passwd",
       "/ping?host=127.0.0.1;cat /etc/shadow"
@@ -661,7 +661,7 @@
       { time: "14:44:15", ip: "10.0.0.51", method: "GET", uri: "/download?file=graduation_thesis_plan.pdf", cls: "Normal", conf: "100.0%", action: "ALLOW", lat: "2.82ms" },
       { time: "14:44:18", ip: "185.220.101.7", method: "GET", uri: "/products?id=10' UNION SELECT username,password FROM users--", cls: "SQLi", conf: "99.81%", action: "DROP", lat: "3.18ms" },
       { time: "14:44:21", ip: "185.220.101.7", method: "GET", uri: "/search?q=test' AND SLEEP(5)--", cls: "SQLi", conf: "99.64%", action: "DROP", lat: "5.45ms" },
-      { time: "14:44:25", ip: "45.155.205.9", method: "GET", uri: "/search?q=<script>alert(document.cookie)</script>", cls: "XSS", conf: "99.97%", action: "DROP", lat: "9.36ms" },
+      { time: "14:44:25", ip: "45.155.205.9", method: "GET", uri: "/search?q=\x3cscript\x3ealert(document.cookie)\x3c/script\x3e", cls: "XSS", conf: "99.97%", action: "DROP", lat: "9.36ms" },
       { time: "14:44:29", ip: "45.155.205.9", method: "POST", uri: "/search?q=%3Csvg%2Fonload%3Dalert%281%29%3E", cls: "XSS", conf: "99.81%", action: "DROP", lat: "7.08ms" },
       { time: "14:44:33", ip: "91.240.118.22", method: "GET", uri: "/download?file=../../../../etc/passwd", cls: "Path_Cmd_Attack", conf: "99.96%", action: "DROP", lat: "3.08ms" },
       { time: "14:44:36", ip: "91.240.118.22", method: "GET", uri: "/ping?host=127.0.0.1;cat /etc/shadow", cls: "Path_Cmd_Attack", conf: "99.93%", action: "DROP", lat: "2.91ms" }
@@ -1006,7 +1006,7 @@ X-Sentinel-WAF-Mode: BLOCK`;
       const batch = [
         { ip: "172.16.0.9", method: "GET", uri: "/api/v1/courses?category=security&page=1" },
         { ip: "103.41.12.8", method: "POST", uri: "/login?username=admin' OR '1'='1--&password=x" },
-        { ip: "89.160.20.112", method: "GET", uri: "/profile?bio=<iframe src=\"javascript:alert(1)\"></iframe>" },
+        { ip: "89.160.20.112", method: "GET", uri: "/profile?bio=\x3ciframe src=\"javascript:alert(1)\"\x3e\x3c/iframe\x3e" },
         { ip: "198.51.100.44", method: "GET", uri: "/export?template=../../../../etc/shadow" }
       ];
       const now = new Date().toTimeString().split(" ")[0];
