@@ -268,7 +268,10 @@ def generate_all_word_files():
 
     master_path = os.path.join(docs_dir, "Graduation_Project_Complete_4Weeks_AR_EN.docx")
     master_doc.save(master_path)
-    shutil.copy2(master_path, os.path.join(desktop_dir, "Graduation_Project_Complete_4Weeks_AR_EN.docx"))
+    try:
+        shutil.copy2(master_path, os.path.join(desktop_dir, "Graduation_Project_Complete_4Weeks_AR_EN.docx"))
+    except PermissionError:
+        shutil.copy2(master_path, os.path.join(desktop_dir, "Graduation_Project_Complete_4Weeks_AR_EN_v3.0.docx"))
     print(f"[+] تم تحديث ملف الوورد الشامل ونسخه إلى سطح المكتب: {master_path}")
 
     weekly_builders = [
@@ -286,7 +289,10 @@ def generate_all_word_files():
         builder_fn(w_doc)
         w_path = os.path.join(docs_dir, filename)
         w_doc.save(w_path)
-        shutil.copy2(w_path, os.path.join(desktop_dir, filename))
+        try:
+            shutil.copy2(w_path, os.path.join(desktop_dir, filename))
+        except PermissionError:
+            shutil.copy2(w_path, os.path.join(desktop_dir, filename.replace(".docx", "_v3.0.docx")))
         print(f"[+] تم تحديث ملف الأسبوع المستقل ونسخه إلى سطح المكتب: {w_path}")
 
 

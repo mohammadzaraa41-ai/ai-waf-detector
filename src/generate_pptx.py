@@ -382,7 +382,11 @@ def create_presentation():
     desktop_dir = r"C:\Users\lenovo\Desktop\AI_Web_Vulnerability_Graduation_Project"
     os.makedirs(desktop_dir, exist_ok=True)
     desktop_path = os.path.join(desktop_dir, "Graduation_Project_Presentation_AR_EN.pptx")
-    shutil.copy2(docs_path, desktop_path)
+    try:
+        shutil.copy2(docs_path, desktop_path)
+    except PermissionError:
+        desktop_path = os.path.join(desktop_dir, "Graduation_Project_Presentation_AR_EN_v3.0.pptx")
+        shutil.copy2(docs_path, desktop_path)
     print(f"[+] تم نسخ العرض التقديمي المحدث إلى سطح المكتب: {desktop_path}")
 
 
