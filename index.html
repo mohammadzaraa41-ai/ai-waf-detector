@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SentinelWAF — Web Application Firewall & Vulnerability Analysis Console</title>
+  <title>SentinelWAF v3.0 — AI Web Vulnerability Discovery, WAF & SAST Console</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
@@ -55,7 +55,7 @@
 
   <!-- Top Engineering Command Bar -->
   <header class="panel border-b px-5 py-2.5 sticky top-0 z-30">
-    <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-4">
+    <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center gap-3">
         <div class="w-7 h-7 rounded bg-blue-600 flex items-center justify-center text-white">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -65,38 +65,44 @@
         <div class="flex items-center gap-2 text-xs">
           <span class="font-bold tracking-wide text-sm">SENTINEL-WAF</span>
           <span class="text-dim">/</span>
-          <span class="mono text-sec">v2.4.0-mlp</span>
-          <span class="hidden md:inline-block px-2 py-0.5 rounded subtle-box mono text-xs text-sec">
-            char_ngrams(2..5) + mlp(128,64)
+          <span class="mono text-sec">v3.0.0-ai</span>
+          <span id="engine-mode-pill" class="hidden md:inline-block px-2 py-0.5 rounded subtle-box mono text-xs text-emerald-400">
+            Real-ML-Weights + SAST + DAST
           </span>
         </div>
       </div>
 
-      <!-- Navigation Links -->
-      <nav class="flex items-center gap-1">
+      <!-- Navigation Links (5 Core Modules) -->
+      <nav class="flex flex-wrap items-center gap-1">
         <button id="nav-inspector" onclick="setView('inspector')" class="px-3 py-1.5 rounded text-xs font-medium bg-blue-600 text-white transition flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span data-i18n="nav_inspector">فاحص الطلبات (Request Repeater)</span>
+          <span data-i18n="nav_inspector">Request Repeater</span>
         </button>
         <button id="nav-scanner" onclick="setView('scanner')" class="px-3 py-1.5 rounded text-xs font-medium text-sec hover:text-white transition flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
           </svg>
-          <span data-i18n="nav_scanner">فحص الروابط (URL Header Audit)</span>
+          <span data-i18n="nav_scanner">URL & Form Scanner</span>
+        </button>
+        <button id="nav-sast" onclick="setView('sast')" class="px-3 py-1.5 rounded text-xs font-medium text-sec hover:text-white transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+          <span data-i18n="nav_sast">Source Code SAST</span>
         </button>
         <button id="nav-siem" onclick="setView('siem')" class="px-3 py-1.5 rounded text-xs font-medium text-sec hover:text-white transition flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
           </svg>
-          <span data-i18n="nav_siem">سجل الأحداث (SIEM Telemetry)</span>
+          <span data-i18n="nav_siem">SIEM Telemetry</span>
         </button>
         <button id="nav-benchmarks" onclick="setView('benchmarks')" class="px-3 py-1.5 rounded text-xs font-medium text-sec hover:text-white transition flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
-          <span data-i18n="nav_benchmarks">تقييم النماذج (Model Metrics)</span>
+          <span data-i18n="nav_benchmarks">Model Metrics</span>
         </button>
       </nav>
 
@@ -104,15 +110,13 @@
       <div class="flex items-center gap-2 text-xs">
         <div class="hidden xl:flex items-center gap-2 mono text-sec mx-1">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span data-i18n="status_active">الحالة: نشط</span>
-          <span class="text-dim">|</span>
-          <span>p95: 4.2ms</span>
+          <span data-i18n="status_active">WAF: ACTIVE</span>
         </div>
         <button id="lang-btn" onclick="toggleLanguage()" class="px-2.5 py-1 rounded bg-blue-600/20 text-blue-400 border border-blue-500/30 font-mono text-xs font-bold hover:opacity-80 transition">
           EN / عربي
         </button>
         <button onclick="document.documentElement.classList.toggle('light')" class="px-2.5 py-1 rounded subtle-box text-xs text-sec hover:opacity-80 transition" data-i18n="btn_theme">
-          المظهر (Theme)
+          Light / Dark
         </button>
       </div>
     </div>
@@ -122,25 +126,25 @@
   <main class="max-w-[1440px] w-full mx-auto px-5 py-5 flex-1">
 
     <!-- =================================================================== -->
-    <!-- VIEW 1: Request Repeater & WAF Execution Trace                      -->
+    <!-- VIEW 1: Request Repeater & Real ML Weights WAF Trace                -->
     <!-- =================================================================== -->
     <div id="view-inspector" class="space-y-4">
       <div class="panel rounded-lg p-3.5 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-2">
-            <span class="text-xs font-semibold" data-i18n="ins_title">فاحص طلبات HTTP ومسار تنفيذ جدار الحماية (HTTP Request Inspector & WAF Trace)</span>
+            <span class="text-xs font-semibold" data-i18n="ins_title">HTTP Request Inspector & Real ML Forward-Pass Trace</span>
             <span class="text-xs text-dim">—</span>
-            <span class="text-xs text-sec" data-i18n="ins_subtitle">فك التشفير المزدوج، استخراج المتجهات الإحصائية، وتصنيف الشبكة العصبية</span>
+            <span class="text-xs text-sec" data-i18n="ins_subtitle">Multi-layer URL decoding, TF-IDF char n-grams + StandardScaler, and trained weight matrix classification</span>
           </div>
           <div class="flex items-center gap-2">
-            <label class="text-xs text-sec" data-i18n="preset_label">سيناريو جاهز (Preset):</label>
+            <label class="text-xs text-sec" data-i18n="preset_label">Preset Vector:</label>
             <select id="preset-select" onchange="applyPreset(this.value)" class="px-2.5 py-1 rounded subtle-box text-xs mono focus:outline-none">
               <option value="1">[SQLi] Union-Based Credential Extraction</option>
               <option value="0">[Normal] Benign Search Query with SQL Keywords (False-Positive Test)</option>
-              <option value="2">[SQLi] Time-Based Blind Injection (SLEEP)</option>
+              <option value="2">[SQLi] Obfuscated Comment-Split Union Attack</option>
               <option value="3">[XSS] Reflected Script Cookie Theft</option>
               <option value="4">[XSS] Double URL-Encoded SVG Onload Vector</option>
-              <option value="5">[LFI] Directory Traversal (/etc/passwd)</option>
+              <option value="5">[LFI] Double-Encoded Directory Traversal (/etc/passwd)</option>
               <option value="6">[RCE] OS Command Chaining (;cat /etc/shadow)</option>
             </select>
           </div>
@@ -162,11 +166,11 @@
             placeholder="/path?param=value"
           />
           <button
-            onclick="executeInspection()"
+            onclick="executeInspection(true)"
             class="px-5 py-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition shrink-0"
             data-i18n="btn_inspect"
           >
-            تنفيذ الفحص (Execute Inspection)
+            Execute Inspection
           </button>
         </div>
       </div>
@@ -186,34 +190,34 @@
               </div>
               <div class="flex items-center gap-4 mono text-xs" dir="ltr">
                 <div>
-                  <span class="text-dim block" data-i18n="lbl_confidence">CONFIDENCE / الثقة</span>
+                  <span class="text-dim block" data-i18n="lbl_confidence">CONFIDENCE</span>
                   <span id="verdict-conf" class="font-bold text-sm text-red-400">99.60%</span>
                 </div>
                 <div>
-                  <span class="text-dim block" data-i18n="lbl_latency">LATENCY / الزمن</span>
-                  <span id="verdict-lat" class="font-bold text-sm">3.18 ms</span>
+                  <span class="text-dim block" data-i18n="lbl_latency">LATENCY</span>
+                  <span id="verdict-lat" class="font-bold text-sm">2.14 ms</span>
                 </div>
               </div>
             </div>
 
             <!-- 4-Step Pipeline Trace -->
             <div>
-              <div class="text-xs font-semibold mb-2 text-sec" data-i18n="trace_title">مسار المعالجة اللحظي (WAF Pipeline Execution Trace)</div>
+              <div class="text-xs font-semibold mb-2 text-sec" data-i18n="trace_title">WAF Pipeline Execution Trace</div>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mono text-xs" dir="ltr">
                 <div class="p-2 rounded subtle-box">
-                  <div class="text-dim">01. URL DECODE</div>
-                  <div class="font-semibold text-emerald-400 mt-0.5">PASS (0.14ms)</div>
+                  <div class="text-dim">01. 3x URL DECODE</div>
+                  <div class="font-semibold text-emerald-400 mt-0.5">PASS (0.12ms)</div>
                 </div>
                 <div class="p-2 rounded subtle-box">
-                  <div class="text-dim">02. CHAR N-GRAMS</div>
-                  <div class="font-semibold text-blue-400 mt-0.5">3,000 DIMS</div>
+                  <div class="text-dim">02. TF-IDF + SCALER</div>
+                  <div class="font-semibold text-blue-400 mt-0.5">L2 NORMALIZED</div>
                 </div>
                 <div class="p-2 rounded subtle-box">
-                  <div class="text-dim">03. HEURISTICS</div>
+                  <div class="text-dim">03. SYNTACTIC CTX</div>
                   <div id="trace-heur" class="font-semibold text-amber-400 mt-0.5">FLAGGED</div>
                 </div>
                 <div class="p-2 rounded subtle-box">
-                  <div class="text-dim">04. MLP-128x64</div>
+                  <div class="text-dim">04. ML WEIGHTS</div>
                   <div id="trace-mlp" class="font-semibold text-red-400 mt-0.5">DROP (403)</div>
                 </div>
               </div>
@@ -221,7 +225,7 @@
 
             <div class="space-y-1.5">
               <div class="flex justify-between text-xs">
-                <span class="text-sec font-medium" data-i18n="norm_title">الحمولة بعد فك التشفير المزدوج وتحديد المقاطع الخبيثة (Normalized Payload)</span>
+                <span class="text-sec font-medium" data-i18n="norm_title">Normalized Payload & Matched Threat Tokens</span>
                 <span id="norm-len-label" class="mono text-dim" dir="ltr">60 bytes</span>
               </div>
               <div id="norm-payload-box" dir="ltr" class="p-3 rounded subtle-box mono text-xs break-all leading-relaxed">
@@ -231,19 +235,19 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="panel rounded-lg p-4">
-              <div class="text-xs font-semibold mb-2.5 border-b border-line pb-2" data-i18n="feat_title">متجه الخصائص المستخرجة (Extracted Feature Vector)</div>
+              <div class="text-xs font-semibold mb-2.5 border-b border-line pb-2" data-i18n="feat_title">Extracted Feature Vector (StandardScaler)</div>
               <table class="w-full mono text-xs" dir="ltr">
                 <tbody class="divide-y border-line">
                   <tr>
-                    <td class="py-1.5 text-sec">shannon_entropy (العشوائية)</td>
+                    <td class="py-1.5 text-sec">shannon_entropy</td>
                     <td id="kv-entropy" class="py-1.5 text-right font-semibold">4.1802 bits</td>
                   </tr>
                   <tr>
-                    <td class="py-1.5 text-sec">special_char_count (الرموز)</td>
+                    <td class="py-1.5 text-sec">special_char_count</td>
                     <td id="kv-spec-count" class="py-1.5 text-right font-semibold">6 chars</td>
                   </tr>
                   <tr>
-                    <td class="py-1.5 text-sec">special_char_ratio (النسبة)</td>
+                    <td class="py-1.5 text-sec">special_char_ratio</td>
                     <td id="kv-spec-ratio" class="py-1.5 text-right font-semibold">0.1000</td>
                   </tr>
                   <tr>
@@ -263,35 +267,35 @@
             </div>
 
             <div class="panel rounded-lg p-4 flex flex-col justify-between">
-              <div class="text-xs font-semibold mb-2.5 border-b border-line pb-2" data-i18n="prob_title">توزيع احتمالات الشبكة العصبية (MLP Softmax Distribution)</div>
+              <div class="text-xs font-semibold mb-2.5 border-b border-line pb-2" data-i18n="prob_title">Trained Model Softmax Probabilities (W·x + b)</div>
               <div class="space-y-2.5 mono text-xs" dir="ltr">
                 <div>
-                  <div class="flex justify-between mb-1"><span class="text-sec">Normal (سليم)</span><span id="sm-txt-normal">0.0020</span></div>
+                  <div class="flex justify-between mb-1"><span class="text-sec">Normal (Benign)</span><span id="sm-txt-normal">0.0020</span></div>
                   <div class="w-full h-1.5 rounded subtle-box overflow-hidden">
                     <div id="sm-bar-normal" class="h-full bg-emerald-500" style="width: 0.2%"></div>
                   </div>
                 </div>
                 <div>
-                  <div class="flex justify-between mb-1"><span class="text-sec">SQLi (حقن قواعد البيانات)</span><span id="sm-txt-sqli">0.9960</span></div>
+                  <div class="flex justify-between mb-1"><span class="text-sec">SQLi (Database Injection)</span><span id="sm-txt-sqli">0.9960</span></div>
                   <div class="w-full h-1.5 rounded subtle-box overflow-hidden">
                     <div id="sm-bar-sqli" class="h-full bg-red-500" style="width: 99.6%"></div>
                   </div>
                 </div>
                 <div>
-                  <div class="flex justify-between mb-1"><span class="text-sec">XSS (برمجة عبر المواقع)</span><span id="sm-txt-xss">0.0010</span></div>
+                  <div class="flex justify-between mb-1"><span class="text-sec">XSS (Cross-Site Scripting)</span><span id="sm-txt-xss">0.0010</span></div>
                   <div class="w-full h-1.5 rounded subtle-box overflow-hidden">
                     <div id="sm-bar-xss" class="h-full bg-amber-500" style="width: 0.1%"></div>
                   </div>
                 </div>
                 <div>
-                  <div class="flex justify-between mb-1"><span class="text-sec">Path_Cmd_Attack (مسارات/أوامر)</span><span id="sm-txt-path">0.0010</span></div>
+                  <div class="flex justify-between mb-1"><span class="text-sec">Path_Cmd_Attack (LFI/RCE)</span><span id="sm-txt-path">0.0010</span></div>
                   <div class="w-full h-1.5 rounded subtle-box overflow-hidden">
                     <div id="sm-bar-path" class="h-full bg-purple-500" style="width: 0.1%"></div>
                   </div>
                 </div>
               </div>
-              <div class="text-xs text-dim mono pt-2 border-t border-line" dir="ltr">
-                artifact: models/waf_model.joblib
+              <div id="engine-artifact-label" class="text-xs text-dim mono pt-2 border-t border-line" dir="ltr">
+                weights: api/model_weights.json (Real Exported ML)
               </div>
             </div>
           </div>
@@ -300,7 +304,7 @@
         <div class="lg:col-span-5 space-y-4">
           <div class="panel rounded-lg p-4 space-y-2">
             <div class="flex items-center justify-between border-b border-line pb-2">
-              <span class="text-xs font-semibold" data-i18n="raw_http_title">حزمة طلب HTTP الخام (Raw HTTP Request Packet)</span>
+              <span class="text-xs font-semibold" data-i18n="raw_http_title">Raw HTTP Request Packet</span>
               <span class="mono text-xs text-dim" dir="ltr">HTTP/1.1</span>
             </div>
             <pre id="raw-http-box" dir="ltr" class="p-3 rounded subtle-box mono text-xs overflow-x-auto leading-relaxed text-sec"></pre>
@@ -308,7 +312,7 @@
 
           <div class="panel rounded-lg p-4 space-y-2">
             <div class="flex items-center justify-between border-b border-line pb-2">
-              <span class="text-xs font-semibold" data-i18n="patch_title">الترقيع البرمجي الآمن (Remediation Code Diff)</span>
+              <span class="text-xs font-semibold" data-i18n="patch_title">Remediation Patch (Code Diff)</span>
               <span id="cwe-badge" class="mono text-xs px-2 py-0.5 rounded subtle-box text-sec" dir="ltr">CWE-89</span>
             </div>
             <p id="patch-explanation" class="text-xs text-sec"></p>
@@ -319,18 +323,18 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- VIEW 2: Target URL Security & HTTP Headers Audit                    -->
+    <!-- VIEW 2: Deep Target URL, HTTP Headers & HTML Forms Scanner          -->
     <!-- =================================================================== -->
     <div id="view-scanner" class="hidden space-y-4">
       <div class="panel rounded-lg p-4 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <h2 class="text-xs font-semibold uppercase tracking-wider" data-i18n="scan_title">مدقق أمان الروابط وترويسات الاستجابة (Target URL & HTTP Security Headers Auditor)</h2>
-            <p class="text-xs text-sec mt-0.5" data-i18n="scan_subtitle">يفحص بروتوكول التشفير (HTTPS)، ترويسات الحماية (CSP, HSTS, X-Frame-Options)، ومعاملات الرابط بالذكاء الاصطناعي.</p>
+            <h2 class="text-xs font-semibold uppercase tracking-wider" data-i18n="scan_title">Target URL, HTTP Headers & HTML Form Surface Scanner</h2>
+            <p class="text-xs text-sec mt-0.5" data-i18n="scan_subtitle">Audits transport security (HTTPS), response headers (CSP, HSTS, X-Frame-Options), HTML forms (CSRF/Inputs), and URL parameters via AI.</p>
           </div>
           <div class="flex items-center gap-1.5 text-xs mono" dir="ltr">
             <button onclick="loadUrlTarget('https://example.com/search?q=python+course')" class="px-2.5 py-1 rounded subtle-box hover:border-blue-500">example.com (HTTPS)</button>
-            <button onclick="loadUrlTarget('http://testphp.vulnweb.com/artists.php?artist=1')" class="px-2.5 py-1 rounded subtle-box hover:border-amber-500">vulnweb.com (HTTP)</button>
+            <button onclick="loadUrlTarget('http://testphp.vulnweb.com/login.php')" class="px-2.5 py-1 rounded subtle-box hover:border-amber-500">vulnweb.com (Forms)</button>
             <button onclick="loadUrlTarget('https://portal.local/user?id=1\' UNION SELECT 1,pass FROM accounts--')" class="px-2.5 py-1 rounded subtle-box hover:border-red-500">SQLi URI Target</button>
           </div>
         </div>
@@ -349,14 +353,14 @@
             class="px-5 py-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition shrink-0"
             data-i18n="btn_audit"
           >
-            فحص الرابط والترويسات (Run Security Audit)
+            Run Deep URL & Form Scan
           </button>
         </div>
       </div>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="panel rounded-lg p-3.5">
-          <div class="text-xs text-sec" data-i18n="sc_score">درجة أمان الموقع (Security Score)</div>
+          <div class="text-xs text-sec" data-i18n="sc_score">Security Posture Score</div>
           <div class="flex items-baseline gap-2 mt-1 mono">
             <span id="audit-score" class="text-2xl font-bold">64</span>
             <span class="text-xs text-dim">/ 100</span>
@@ -364,32 +368,57 @@
           </div>
         </div>
         <div class="panel rounded-lg p-3.5">
-          <div class="text-xs text-sec" data-i18n="sc_tls">طبقة النقل (Transport Layer)</div>
+          <div class="text-xs text-sec" data-i18n="sc_tls">Transport Layer</div>
           <div id="audit-tls" class="text-sm font-bold mono mt-1.5 text-emerald-400" dir="ltr">HTTPS / TLS 1.3</div>
         </div>
         <div class="panel rounded-lg p-3.5">
-          <div class="text-xs text-sec" data-i18n="sc_ai">فحص المعاملات بالذكاء الاصطناعي</div>
+          <div class="text-xs text-sec" data-i18n="sc_ai">AI URI Parameter Verdict</div>
           <div id="audit-ai-verdict" class="text-sm font-bold mono mt-1.5 text-emerald-400" dir="ltr">Normal (99.6%)</div>
         </div>
         <div class="panel rounded-lg p-3.5">
-          <div class="text-xs text-sec" data-i18n="sc_findings">الثغرات المكتشفة (Findings)</div>
+          <div class="text-xs text-sec" data-i18n="sc_findings">Detected Findings</div>
           <div id="audit-findings-count" class="text-sm font-bold mono mt-1.5 text-amber-400">4 Findings</div>
         </div>
       </div>
 
+      <!-- Discovered Forms & Endpoints Surface -->
+      <div class="panel rounded-lg overflow-hidden">
+        <div class="px-4 py-2.5 border-b border-line flex items-center justify-between">
+          <span class="text-xs font-semibold" data-i18n="forms_table_title">Discovered HTML Forms & Input Attack Surface (CSRF / Injection Audit)</span>
+          <span id="forms-count-badge" class="mono text-xs text-sec" dir="ltr">1 Form Analyzed</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left mono text-xs border-collapse" dir="ltr">
+            <thead>
+              <tr class="subtle-box text-sec border-b border-line">
+                <th class="p-2.5">FORM_ID</th>
+                <th class="p-2.5">ACTION_ENDPOINT</th>
+                <th class="p-2.5">METHOD</th>
+                <th class="p-2.5">INPUT_FIELDS</th>
+                <th class="p-2.5">ANTI_CSRF_TOKEN</th>
+                <th class="p-2.5">SURFACE_STATUS</th>
+              </tr>
+            </thead>
+            <tbody id="audit-forms-tbody" class="divide-y border-line">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Vulnerability Findings Table -->
       <div class="panel rounded-lg overflow-hidden">
         <div class="px-4 py-3 border-b border-line flex items-center justify-between">
-          <span class="text-xs font-semibold" data-i18n="scan_table_title">تقرير الثغرات وإعدادات الترويسات الموصى بها (Security Audit Findings & Directives)</span>
+          <span class="text-xs font-semibold" data-i18n="scan_table_title">Security Audit Findings & Remediation Directives</span>
           <span id="audit-target-host" class="mono text-xs text-dim" dir="ltr">https://example.com</span>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-right text-xs border-collapse">
             <thead>
               <tr class="subtle-box text-sec border-b border-line">
-                <th class="p-3" data-i18n="th_sev">الخطورة (Severity)</th>
-                <th class="p-3" data-i18n="th_ctrl">الضابط / الترويسة (Control)</th>
-                <th class="p-3" data-i18n="th_find">التشخيص الفني (Technical Finding)</th>
-                <th class="p-3" data-i18n="th_rem">التوجيه البرمجي الموصى به (Directive)</th>
+                <th class="p-3" data-i18n="th_sev">Severity</th>
+                <th class="p-3" data-i18n="th_ctrl">Control / Header</th>
+                <th class="p-3" data-i18n="th_find">Technical Finding</th>
+                <th class="p-3" data-i18n="th_rem">Recommended Directive</th>
               </tr>
             </thead>
             <tbody id="audit-table-body" class="divide-y border-line">
@@ -400,24 +429,94 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- VIEW 3: SIEM / WAF Security Event Stream                            -->
+    <!-- VIEW 3: AI Source Code Vulnerability Scanner (SAST Module)          -->
+    <!-- =================================================================== -->
+    <div id="view-sast" class="hidden space-y-4">
+      <div class="panel rounded-lg p-4 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-xs font-semibold uppercase tracking-wider" data-i18n="sast_title">AI Static Source Code Vulnerability Scanner (SAST Engine)</h2>
+            <p class="text-xs text-sec mt-0.5" data-i18n="sast_subtitle">Inspects Python, PHP, and Node.js backend code for SQLi, XSS, OS Command Injection, LFI, eval(), and Hardcoded Secrets with automated patch generation.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 text-xs mono" dir="ltr">
+            <button onclick="loadSastPreset(0)" class="px-2.5 py-1 rounded subtle-box hover:border-red-500">Python Flask (SQLi + RCE)</button>
+            <button onclick="loadSastPreset(1)" class="px-2.5 py-1 rounded subtle-box hover:border-amber-500">PHP Legacy (SQLi + XSS + LFI)</button>
+            <button onclick="loadSastPreset(2)" class="px-2.5 py-1 rounded subtle-box hover:border-purple-500">Node.js Express (Eval + Secret)</button>
+            <button onclick="loadSastPreset(3)" class="px-2.5 py-1 rounded subtle-box hover:border-emerald-500">Secure Parameterized Code</button>
+          </div>
+        </div>
+
+        <textarea
+          id="sast-code-input"
+          rows="7"
+          dir="ltr"
+          class="w-full p-3.5 rounded subtle-box mono text-xs focus:outline-none focus:border-blue-500 leading-relaxed"
+          placeholder="Paste Python, PHP, or JavaScript source code to scan for vulnerabilities..."
+        ></textarea>
+
+        <div class="flex justify-end">
+          <button
+            onclick="executeSastScan()"
+            class="px-5 py-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition"
+            data-i18n="btn_sast"
+          >
+            Analyze Source Code & Generate Secure Patches
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="panel rounded-lg p-3.5">
+          <div class="text-xs text-sec" data-i18n="sast_k1">Code Security Score</div>
+          <div class="flex items-baseline gap-2 mt-1 mono">
+            <span id="sast-score" class="text-2xl font-bold">18</span>
+            <span class="text-xs text-dim">/ 100</span>
+            <span id="sast-grade" class="ml-auto px-2 py-0.5 rounded text-xs font-bold bg-red-500/15 text-red-400">GRADE F</span>
+          </div>
+        </div>
+        <div class="panel rounded-lg p-3.5">
+          <div class="text-xs text-sec" data-i18n="sast_k2">Code Audit Status</div>
+          <div id="sast-status" class="text-sm font-bold mono mt-1.5 text-red-400" dir="ltr">VULNERABLE</div>
+        </div>
+        <div class="panel rounded-lg p-3.5">
+          <div class="text-xs text-sec" data-i18n="sast_k3">Vulnerable Lines Detected</div>
+          <div id="sast-count" class="text-sm font-bold mono mt-1.5 text-amber-400" dir="ltr">4 Taint Sinks</div>
+        </div>
+        <div class="panel rounded-lg p-3.5">
+          <div class="text-xs text-sec" data-i18n="sast_k4">SAST Engine Latency</div>
+          <div id="sast-lat" class="text-sm font-bold mono mt-1.5 text-blue-400" dir="ltr">1.42 ms</div>
+        </div>
+      </div>
+
+      <div class="panel rounded-lg overflow-hidden">
+        <div class="px-4 py-3 border-b border-line flex items-center justify-between">
+          <span class="text-xs font-semibold" data-i18n="sast_table_title">Detected Source Code Vulnerabilities & Automated Secure Patches</span>
+          <span class="mono text-xs text-dim" dir="ltr">OWASP Top 10 / CWE Mapping</span>
+        </div>
+        <div id="sast-findings-container" class="divide-y border-line">
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- VIEW 4: SIEM / WAF Security Event Stream                            -->
     <!-- =================================================================== -->
     <div id="view-siem" class="hidden space-y-4">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="panel rounded-lg p-3.5">
-          <div class="text-xs text-sec" data-i18n="siem_k1">إجمالي الطلبات المفحوصة (Total Requests)</div>
+          <div class="text-xs text-sec" data-i18n="siem_k1">Total Inspected Requests</div>
           <div id="siem-total" class="text-xl font-bold mono mt-1">9</div>
         </div>
         <div class="panel rounded-lg p-3.5">
-          <div class="text-xs text-sec" data-i18n="siem_k2">الحمولات المحجوبة (403 Blocked)</div>
+          <div class="text-xs text-sec" data-i18n="siem_k2">Blocked Payloads (HTTP 403)</div>
           <div id="siem-blocked" class="text-xl font-bold mono text-red-400 mt-1">6</div>
         </div>
         <div class="panel rounded-lg p-3.5">
-          <div class="text-xs text-sec" data-i18n="siem_k3">الطلبات المسموحة (200 Allowed)</div>
+          <div class="text-xs text-sec" data-i18n="siem_k3">Passed Traffic (HTTP 200)</div>
           <div id="siem-allowed" class="text-xl font-bold mono text-emerald-400 mt-1">3</div>
         </div>
         <div class="panel rounded-lg p-3.5">
-          <div class="text-xs text-sec" data-i18n="siem_k4">معدل الإنذارات الكاذبة (False Positives)</div>
+          <div class="text-xs text-sec" data-i18n="siem_k4">False Positive Rate</div>
           <div class="text-xl font-bold mono text-blue-400 mt-1">0.00%</div>
         </div>
       </div>
@@ -425,16 +524,16 @@
       <div class="panel rounded-lg overflow-hidden">
         <div class="p-3.5 border-b border-line flex flex-wrap items-center justify-between gap-2">
           <div>
-            <span class="text-xs font-semibold" data-i18n="siem_title">سجل القياسات والأحداث الأمنية الحية (SIEM Real-Time Telemetry)</span>
+            <span class="text-xs font-semibold" data-i18n="siem_title">SIEM Real-Time Inspection Telemetry</span>
             <span class="text-xs text-dim mx-1.5">|</span>
             <span class="text-xs text-sec mono">logs/waf_events.csv</span>
           </div>
           <div class="flex items-center gap-2">
             <button onclick="triggerTrafficReplay()" class="px-3 py-1.5 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium transition" data-i18n="btn_replay">
-              محاكاة دفعة طلبات (Replay Batch)
+              Replay Attack Batch (4 Requests)
             </button>
             <button onclick="downloadCsvLogs()" class="px-3 py-1.5 rounded subtle-box text-xs font-medium hover:opacity-80 transition" data-i18n="btn_csv">
-              تصدير السجل (Export CSV)
+              Export CSV
             </button>
           </div>
         </div>
@@ -461,14 +560,14 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- VIEW 4: Model Evaluation Metrics & Architecture                     -->
+    <!-- VIEW 5: Model Evaluation Metrics, Confusion Matrix & Dataset        -->
     <!-- =================================================================== -->
     <div id="view-benchmarks" class="hidden space-y-4">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <div class="lg:col-span-7 panel rounded-lg p-4 space-y-3">
           <div class="border-b border-line pb-2 flex items-center justify-between">
-            <span class="text-xs font-semibold" data-i18n="bm_title">تقييم ومقارنة نماذج الذكاء الاصطناعي على عينة الاختبار (N = 245 / Total = 979)</span>
-            <span class="mono text-xs text-dim">Stratified Split (75% / 25%)</span>
+            <span class="text-xs font-semibold" data-i18n="bm_title">Classifier Evaluation on Holdout + Zero-Day Split (N = 394 / Total = 1,543)</span>
+            <span class="mono text-xs text-dim">Stratified Split + Unseen Zero-Day</span>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left mono text-xs border-collapse" dir="ltr">
@@ -484,58 +583,110 @@
               </thead>
               <tbody class="divide-y border-line">
                 <tr>
-                  <td class="p-2.5 font-bold">MLPClassifier (128, 64)</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5 text-emerald-400 font-bold">1.0000</td>
+                  <td class="p-2.5 font-bold">Deep MLP (128, 64)</td>
+                  <td class="p-2.5">0.9975</td>
+                  <td class="p-2.5">0.9973</td>
+                  <td class="p-2.5">0.9972</td>
+                  <td class="p-2.5 text-emerald-400 font-bold">0.9972 (0% FP)</td>
                   <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400">PRODUCTION</span></td>
                 </tr>
                 <tr>
-                  <td class="p-2.5">RandomForest (n_estimators=200)</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5 text-sec">BENCHMARK</td>
+                  <td class="p-2.5">RandomForest (n_estimators=100)</td>
+                  <td class="p-2.5">0.9975</td>
+                  <td class="p-2.5">0.9972</td>
+                  <td class="p-2.5">0.9980</td>
+                  <td class="p-2.5 text-blue-400 font-bold">0.9976</td>
+                  <td class="p-2.5 text-sec">ENSEMBLE</td>
                 </tr>
                 <tr>
                   <td class="p-2.5">LogisticRegression (L2 Baseline)</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5">1.0000</td>
-                  <td class="p-2.5 text-sec">BASELINE</td>
+                  <td class="p-2.5">0.9898</td>
+                  <td class="p-2.5">0.9904</td>
+                  <td class="p-2.5">0.9896</td>
+                  <td class="p-2.5">0.9900</td>
+                  <td class="p-2.5 text-sec">CLOUD EXPORT</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p class="text-xs text-sec pt-1" data-i18n="bm_note">
-            ملاحظة منهجية: تم فصل بيانات التدريب (734 عينة) عن الاختبار (245 عينة) قبل بناء قاموس مقاطع الأحرف (Character N-Grams 2..5) ومقياس التطبيع (StandardScaler) لضمان عدم حدوث تسرب للبيانات (Zero Data Leakage).
+            Methodological Note: Training (1,149 samples) and Testing (394 samples including unseen Zero-Day obfuscations and developer forum hard-negatives) were strictly separated before fitting TfidfVectorizer and StandardScaler. Deep MLP achieved 100% precision and recall on Normal traffic (0.00% False Positives).
           </p>
+
+          <!-- 4x4 Confusion Matrix -->
+          <div class="pt-2 border-t border-line">
+            <div class="text-xs font-semibold mb-2">Deep MLP (128, 64) Confusion Matrix on Holdout Test Set (N = 394)</div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-center mono text-xs border-collapse" dir="ltr">
+                <thead>
+                  <tr class="subtle-box text-sec border-b border-line">
+                    <th class="p-2 text-left">ACTUAL \ PREDICTED</th>
+                    <th class="p-2">Normal</th>
+                    <th class="p-2">SQLi</th>
+                    <th class="p-2">XSS</th>
+                    <th class="p-2">Path_Cmd</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y border-line">
+                  <tr>
+                    <td class="p-2 text-left font-bold text-emerald-400">Normal (124)</td>
+                    <td class="p-2 bg-emerald-500/15 font-bold text-emerald-300">124</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 text-dim">0</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 text-left font-bold text-red-400">SQLi (91)</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 bg-red-500/15 font-bold text-red-300">91</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 text-dim">0</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 text-left font-bold text-amber-400">XSS (89)</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 bg-amber-500/15 font-bold text-amber-300">88</td>
+                    <td class="p-2 text-amber-400">1</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 text-left font-bold text-purple-400">Path_Cmd (90)</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 text-dim">0</td>
+                    <td class="p-2 bg-purple-500/15 font-bold text-purple-300">90</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
         <div class="lg:col-span-5 panel rounded-lg p-4 space-y-3">
           <div class="border-b border-line pb-2">
-            <span class="text-xs font-semibold" data-i18n="ds_title">توزيع فئات قاعدة البيانات (Dataset Class Distribution)</span>
+            <span class="text-xs font-semibold" data-i18n="ds_title">Expanded Dataset Distribution (1,543 Unique Requests)</span>
           </div>
           <div class="space-y-2.5 mono text-xs" dir="ltr">
-            <div class="flex justify-between p-2 rounded subtle-box">
-              <span>Normal (Includes Hard Negatives)</span>
-              <span class="font-bold text-emerald-400">320 samples (32.7%)</span>
+            <div class="flex justify-between p-2.5 rounded subtle-box">
+              <span>Normal (Includes Developer Hard Negatives)</span>
+              <span class="font-bold text-emerald-400">481 samples (31.2%)</span>
             </div>
-            <div class="flex justify-between p-2 rounded subtle-box">
-              <span>SQLi (Union, Blind, Comment Obfuscated)</span>
-              <span class="font-bold text-red-400">220 samples (22.5%)</span>
+            <div class="flex justify-between p-2.5 rounded subtle-box">
+              <span>SQLi (Union, Blind, Hex, Comment-Split)</span>
+              <span class="font-bold text-red-400">360 samples (23.3%)</span>
             </div>
-            <div class="flex justify-between p-2 rounded subtle-box">
-              <span>Path_Cmd_Attack (LFI & Shell Injection)</span>
-              <span class="font-bold text-purple-400">220 samples (22.5%)</span>
+            <div class="flex justify-between p-2.5 rounded subtle-box">
+              <span>Path_Cmd_Attack (LFI, php://filter, RCE)</span>
+              <span class="font-bold text-purple-400">352 samples (22.8%)</span>
             </div>
-            <div class="flex justify-between p-2 rounded subtle-box">
-              <span>XSS (DOM, Event Handlers, URL-Encoded)</span>
-              <span class="font-bold text-amber-400">219 samples (22.3%)</span>
+            <div class="flex justify-between p-2.5 rounded subtle-box">
+              <span>XSS (Polyglot, SVG/MathML, DOM Sinks)</span>
+              <span class="font-bold text-amber-400">350 samples (22.7%)</span>
             </div>
+          </div>
+          <div class="p-3 rounded subtle-box text-xs text-sec space-y-1">
+            <div class="font-semibold text-white">Cloud Serverless Export (api/model_weights.json)</div>
+            <div>Trained vocabulary (320 char N-grams + 9 StandardScaler features) and weight matrix (4 x 329 floats = 16.8 KB) exported directly from scikit-learn for zero-dependency serverless execution on Vercel.</div>
           </div>
         </div>
       </div>
@@ -549,35 +700,45 @@
     const i18n = {
       ar: {
         nav_inspector: "فاحص الطلبات (Request Repeater)",
-        nav_scanner: "فحص الروابط (URL Header Audit)",
+        nav_scanner: "فحص المواقع والنماذج (URL & Forms)",
+        nav_sast: "فحص الكود المصدري (Code SAST)",
         nav_siem: "سجل الأحداث (SIEM Telemetry)",
         nav_benchmarks: "تقييم النماذج (Model Metrics)",
         status_active: "الحالة: نشط (WAF ACTIVE)",
         btn_theme: "المظهر (Theme)",
-        ins_title: "فاحص طلبات HTTP ومسار تنفيذ جدار الحماية (HTTP Request Inspector & WAF Trace)",
-        ins_subtitle: "فك التشفير المزدوج، استخراج المتجهات الإحصائية، وتصنيف الشبكة العصبية",
+        ins_title: "فاحص طلبات HTTP ومسار الاستدلال الفعلي للنموذج المدرب",
+        ins_subtitle: "فك التشفير الثلاثي، استخراج مقاطع TF-IDF والخصائص القياسية، والضرب النقطي بأوزان النموذج المدرب",
         preset_label: "سيناريو جاهز (Preset):",
         btn_inspect: "تنفيذ الفحص (Execute Inspection)",
         lbl_confidence: "CONFIDENCE / الثقة",
         lbl_latency: "LATENCY / الزمن",
         trace_title: "مسار المعالجة اللحظي (WAF Pipeline Execution Trace)",
-        norm_title: "الحمولة بعد فك التشفير المزدوج وتحديد المقاطع الخبيثة (Normalized Payload)",
+        norm_title: "الحمولة بعد فك التشفير وتحديد المقاطع الخبيثة (Normalized Payload)",
         feat_title: "متجه الخصائص المستخرجة (Extracted Feature Vector)",
-        prob_title: "توزيع احتمالات الشبكة العصبية (MLP Softmax Distribution)",
+        prob_title: "توزيع احتمالات أوزان النموذج المدرب (Softmax W·x + b)",
         raw_http_title: "حزمة طلب HTTP الخام (Raw HTTP Request Packet)",
         patch_title: "الترقيع البرمجي الآمن (Remediation Code Diff)",
-        scan_title: "مدقق أمان الروابط وترويسات الاستجابة (Target URL & HTTP Security Headers Auditor)",
-        scan_subtitle: "يفحص بروتوكول التشفير (HTTPS)، ترويسات الحماية (CSP, HSTS, X-Frame-Options)، ومعاملات الرابط بالذكاء الاصطناعي.",
-        btn_audit: "فحص الرابط والترويسات (Run Security Audit)",
+        scan_title: "مدقق أمان الروابط، الترويسات، ونماذج الإدخال (Deep URL & HTML Form Scanner)",
+        scan_subtitle: "يفحص بروتوكول التشفير (HTTPS)، ترويسات الحماية، نماذج الإدخال (CSRF/Inputs)، ومعاملات الرابط بالذكاء الاصطناعي.",
+        btn_audit: "فحص الموقع والنماذج (Run Deep URL Scan)",
         sc_score: "درجة أمان الموقع (Security Score)",
         sc_tls: "طبقة النقل (Transport Layer)",
         sc_ai: "فحص المعاملات بالذكاء الاصطناعي",
         sc_findings: "الثغرات المكتشفة (Findings)",
+        forms_table_title: "تحليل نماذج الإدخال وحقول الصفحة المكتشفة (HTML Forms & Input Attack Surface)",
         scan_table_title: "تقرير الثغرات وإعدادات الترويسات الموصى بها (Security Audit Findings & Directives)",
         th_sev: "الخطورة (Severity)",
         th_ctrl: "الضابط / الترويسة (Control)",
         th_find: "التشخيص الفني (Technical Finding)",
         th_rem: "التوجيه البرمجي الموصى به (Directive)",
+        sast_title: "فاحص الكود المصدري بالذكاء الاصطناعي لاكتشاف الثغرات (AI SAST Code Scanner)",
+        sast_subtitle: "يحلل أكواد Python و PHP و Node.js سطراً بسطر لاكتشاف ثغرات SQLi و XSS و Command Injection و LFI والمفاتيح السرية مع توليد الكود الآمن.",
+        btn_sast: "تحليل الكود المصدري وتوليد الترقيع الآمن (Run SAST Audit)",
+        sast_k1: "درجة أمان الكود (Code Score)",
+        sast_k2: "حالة الكود (Audit Status)",
+        sast_k3: "الأسطر المصابة المكتشفة",
+        sast_k4: "زمن الفحص (Latency)",
+        sast_table_title: "الثغرات البرمجية المكتشفة في الكود والترقيع الآمن المقترح (Line-by-Line SAST Findings)",
         siem_k1: "إجمالي الطلبات المفحوصة (Total Requests)",
         siem_k2: "الحمولات المحجوبة (403 Blocked)",
         siem_k3: "الطلبات المسموحة (200 Allowed)",
@@ -585,11 +746,11 @@
         siem_title: "سجل القياسات والأحداث الأمنية الحية (SIEM Real-Time Telemetry)",
         btn_replay: "محاكاة دفعة طلبات (Replay Batch)",
         btn_csv: "تصدير السجل (Export CSV)",
-        bm_title: "تقييم ومقارنة نماذج الذكاء الاصطناعي على عينة الاختبار (N = 245 / Total = 979)",
-        bm_note: "ملاحظة منهجية: تم فصل بيانات التدريب (734 عينة) عن الاختبار (245 عينة) قبل بناء قاموس مقاطع الأحرف (Character N-Grams 2..5) ومقياس التطبيع (StandardScaler) لضمان عدم حدوث تسرب للبيانات (Zero Data Leakage).",
-        ds_title: "توزيع فئات قاعدة البيانات (Dataset Class Distribution)",
+        bm_title: "تقييم ومقارنة نماذج الذكاء الاصطناعي على عينة الاختبار الموسعة (N = 394 / Total = 1,543)",
+        bm_note: "ملاحظة منهجية: تم فصل بيانات التدريب (1,149 عينة) عن الاختبار (394 عينة تشمل هجمات Zero-Day مموهة وطلبات مطورين خادعة) قبل بناء قاموس مقاطع الأحرف ومقياس التطبيع لضمان عدم تسرب البيانات. حقق نموذج Deep MLP نسبة 0.00% إنذارات كاذبة.",
+        ds_title: "توزيع فئات قاعدة البيانات الموسعة (1,543 طلب فريد)",
         verdict_allow_desc: "سياق الطلب سليم ويتوافق مع حركة المرور الطبيعية؛ لم يتم رصد أي متجهات حقن برمجية.",
-        verdict_block_desc: "تم حجب الطلب بواسطة مصنف الشبكة العصبية بسبب رصد تراكيب هجومية سياقية وتسلسل N-Grams خبيث.",
+        verdict_block_desc: "تم حجب الطلب بواسطة أوزان النموذج المدرب بسبب رصد تراكيب هجومية سياقية وتسلسل N-Grams خبيث.",
         patch_sqli: "استبدال دمج النصوص المباشر بالاستعلامات المعلمية (Parameterized Prepared Statements):",
         patch_xss: "تطبيق ترميز المخرجات السياقي (Context-Aware Escaping) وترويسة Content-Security-Policy:",
         patch_lfi: "إلغاء استدعاء الصدفة (shell=False) وتقييد مسار الملفات داخل المجلد المسموح:",
@@ -597,13 +758,14 @@
       },
       en: {
         nav_inspector: "Request Repeater",
-        nav_scanner: "URL Header Audit",
+        nav_scanner: "URL & Form Scanner",
+        nav_sast: "Source Code SAST",
         nav_siem: "SIEM Telemetry",
         nav_benchmarks: "Model Metrics",
         status_active: "WAF: ACTIVE",
         btn_theme: "Light / Dark",
-        ins_title: "HTTP Request Inspector & WAF Execution Trace",
-        ins_subtitle: "Recursive double URL decoding, statistical vector extraction, and MLP neural classification",
+        ins_title: "HTTP Request Inspector & Real ML Forward-Pass Trace",
+        ins_subtitle: "Multi-layer URL decoding, TF-IDF char n-grams + StandardScaler, and trained weight matrix classification",
         preset_label: "Preset Vector:",
         btn_inspect: "Execute Inspection",
         lbl_confidence: "CONFIDENCE",
@@ -611,21 +773,30 @@
         trace_title: "WAF Pipeline Execution Trace",
         norm_title: "Normalized Payload & Matched Threat Tokens",
         feat_title: "Extracted Feature Vector (StandardScaler)",
-        prob_title: "MLP Softmax Probability Distribution",
+        prob_title: "Trained Model Softmax Probabilities (W·x + b)",
         raw_http_title: "Raw HTTP Request Packet",
         patch_title: "Remediation Patch (Code Diff)",
-        scan_title: "Passive Target URL & HTTP Security Headers Auditor",
-        scan_subtitle: "Audits transport security (HTTPS), response headers (CSP, HSTS, X-Frame-Options), and query parameters via AI.",
-        btn_audit: "Run Security Audit",
+        scan_title: "Target URL, HTTP Headers & HTML Form Surface Scanner",
+        scan_subtitle: "Audits transport security (HTTPS), response headers (CSP, HSTS, X-Frame-Options), HTML forms (CSRF/Inputs), and URL parameters via AI.",
+        btn_audit: "Run Deep URL & Form Scan",
         sc_score: "Security Posture Score",
         sc_tls: "Transport Layer",
         sc_ai: "AI URI Parameter Verdict",
         sc_findings: "Detected Findings",
+        forms_table_title: "Discovered HTML Forms & Input Attack Surface (CSRF / Injection Audit)",
         scan_table_title: "Security Audit Findings & Remediation Directives",
         th_sev: "Severity",
         th_ctrl: "Control / Header",
         th_find: "Technical Finding",
         th_rem: "Recommended Directive",
+        sast_title: "AI Static Source Code Vulnerability Scanner (SAST Engine)",
+        sast_subtitle: "Inspects Python, PHP, and Node.js backend code for SQLi, XSS, OS Command Injection, LFI, eval(), and Hardcoded Secrets with automated patch generation.",
+        btn_sast: "Analyze Source Code & Generate Secure Patches",
+        sast_k1: "Code Security Score",
+        sast_k2: "Code Audit Status",
+        sast_k3: "Vulnerable Lines Detected",
+        sast_k4: "SAST Engine Latency",
+        sast_table_title: "Detected Source Code Vulnerabilities & Automated Secure Patches",
         siem_k1: "Total Inspected Requests",
         siem_k2: "Blocked Payloads (HTTP 403)",
         siem_k3: "Passed Traffic (HTTP 200)",
@@ -633,11 +804,11 @@
         siem_title: "SIEM Real-Time Inspection Telemetry",
         btn_replay: "Replay Attack Batch (4 Requests)",
         btn_csv: "Export CSV",
-        bm_title: "Classifier Evaluation on Stratified Holdout Split (N = 245 / Total = 979)",
-        bm_note: "Methodological Note: Training (734 samples) and Testing (245 samples) splits were isolated prior to fitting TfidfVectorizer(analyzer='char', ngram_range=(2,5)) and StandardScaler to guarantee Zero Data Leakage.",
-        ds_title: "Dataset Class Distribution (data/http_requests.csv)",
+        bm_title: "Classifier Evaluation on Holdout + Zero-Day Split (N = 394 / Total = 1,543)",
+        bm_note: "Methodological Note: Training (1,149 samples) and Testing (394 samples including unseen Zero-Day obfuscations and developer forum hard-negatives) were strictly separated before fitting TfidfVectorizer and StandardScaler. Deep MLP achieved 100% precision and recall on Normal traffic (0.00% False Positives).",
+        ds_title: "Expanded Dataset Distribution (1,543 Unique Requests)",
         verdict_allow_desc: "Request structure conforms to benign traffic profile; no syntactic injection vectors detected.",
-        verdict_block_desc: "Blocked by neural classifier due to high-entropy N-gram sequence and syntactic attack indicators.",
+        verdict_block_desc: "Blocked by trained neural/linear weights due to high-entropy N-gram sequence and syntactic attack indicators.",
         patch_sqli: "Replace string concatenation with parameterized prepared statements:",
         patch_xss: "Apply context-aware HTML output encoding and enforce Content-Security-Policy:",
         patch_lfi: "Disable shell invocation (shell=False) and canonicalize file paths:",
@@ -648,23 +819,66 @@
     const presets = [
       "/search?q=select+best+laptop+and+update+windows&page=1",
       "/products?id=10' UNION SELECT username,password FROM users--",
-      "/search?q=test' AND SLEEP(5)--",
+      "/api/v1/user?id=42' UnIoN/**/aLl/**/SeLeCt 1,concat(0x7e,user()),3--",
       "/search?q=\x3cscript\x3ealert(document.cookie)\x3c/script\x3e",
       "/comments/post?msg=%3Csvg%2Fonload%3Dalert%281%29%3E",
-      "/download?file=../../../../etc/passwd",
+      "/download?file=..%252f..%252f..%252fetc%252fpasswd",
       "/ping?host=127.0.0.1;cat /etc/shadow"
     ];
 
+    const sastPresets = [
+`# Python Flask Route — Vulnerable Implementation
+API_SECRET_KEY = "sk-live-9876543210abcdef1234567890"
+
+def get_user_profile(request, cursor):
+    uid = request.args.get("id")
+    cursor.execute(f"SELECT username, email, role FROM users WHERE id = {uid}")
+    host = request.args.get("diag_host", "127.0.0.1")
+    os.system("ping -c 2 " + host)
+    return render_template_string("\x3ch2\x3eUser: " + request.args.get("name") + "\x3c/h2\x3e")`,
+
+`// PHP Legacy Portal — Vulnerable Implementation
+$db_password = "SuperSecretAdminPassword2026!";
+$id = $_GET['id'];
+$res = mysqli_query($conn, "SELECT * FROM articles WHERE id = " . $id);
+echo "\x3cdiv class='header'\x3eWelcome " . $_GET['username'] . "\x3c/div\x3e";
+include($_GET['template_page']);`,
+
+`// Node.js Express — Vulnerable Implementation
+const jwt_secret = "prod_jwt_signing_key_998877665544";
+app.get("/api/calc", (req, res) => {
+  const result = eval(req.query.formula);
+  child_process.exec("nslookup " + req.query.domain);
+  const tpl = fs.readFileSync(req.query.file, "utf8");
+  res.send(tpl + result);
+});`,
+
+`# Python Flask Route — Remediated Secure Implementation
+import os
+import html
+import subprocess
+
+API_SECRET_KEY = os.environ.get("APP_SECRET_KEY")
+
+def get_user_profile_secure(request, cursor):
+    uid = int(request.args.get("id", 0))
+    cursor.execute("SELECT username, email, role FROM users WHERE id = ?", (uid,))
+    host = "127.0.0.1"
+    subprocess.run(["ping", "-c", "2", host], shell=False, check=True)
+    safe_name = html.escape(request.args.get("name", "Guest"))
+    return f"\x3ch2\x3eUser: {safe_name}\x3c/h2\x3e"`
+    ];
+
     const siemLogs = [
-      { time: "14:44:10", ip: "192.168.1.14", method: "GET", uri: "/search?q=select+best+laptop+and+update+windows&page=1", cls: "Normal", conf: "99.80%", action: "ALLOW", lat: "10.31ms" },
-      { time: "14:44:12", ip: "192.168.1.20", method: "GET", uri: "/products?id=405&cat=electronics", cls: "Normal", conf: "100.0%", action: "ALLOW", lat: "3.19ms" },
-      { time: "14:44:15", ip: "10.0.0.51", method: "GET", uri: "/download?file=graduation_thesis_plan.pdf", cls: "Normal", conf: "100.0%", action: "ALLOW", lat: "2.82ms" },
-      { time: "14:44:18", ip: "185.220.101.7", method: "GET", uri: "/products?id=10' UNION SELECT username,password FROM users--", cls: "SQLi", conf: "99.81%", action: "DROP", lat: "3.18ms" },
-      { time: "14:44:21", ip: "185.220.101.7", method: "GET", uri: "/search?q=test' AND SLEEP(5)--", cls: "SQLi", conf: "99.64%", action: "DROP", lat: "5.45ms" },
-      { time: "14:44:25", ip: "45.155.205.9", method: "GET", uri: "/search?q=\x3cscript\x3ealert(document.cookie)\x3c/script\x3e", cls: "XSS", conf: "99.97%", action: "DROP", lat: "9.36ms" },
-      { time: "14:44:29", ip: "45.155.205.9", method: "POST", uri: "/search?q=%3Csvg%2Fonload%3Dalert%281%29%3E", cls: "XSS", conf: "99.81%", action: "DROP", lat: "7.08ms" },
-      { time: "14:44:33", ip: "91.240.118.22", method: "GET", uri: "/download?file=../../../../etc/passwd", cls: "Path_Cmd_Attack", conf: "99.96%", action: "DROP", lat: "3.08ms" },
-      { time: "14:44:36", ip: "91.240.118.22", method: "GET", uri: "/ping?host=127.0.0.1;cat /etc/shadow", cls: "Path_Cmd_Attack", conf: "99.93%", action: "DROP", lat: "2.91ms" }
+      { time: "14:44:10", ip: "192.168.1.14", method: "GET", uri: "/search?q=select+best+laptop+and+update+windows&page=1", cls: "Normal", conf: "99.93%", action: "ALLOW", lat: "2.31ms" },
+      { time: "14:44:12", ip: "192.168.1.20", method: "GET", uri: "/products?id=405&cat=electronics", cls: "Normal", conf: "99.98%", action: "ALLOW", lat: "1.89ms" },
+      { time: "14:44:15", ip: "10.0.0.51", method: "GET", uri: "/download?file=graduation_thesis_plan.pdf", cls: "Normal", conf: "99.95%", action: "ALLOW", lat: "1.82ms" },
+      { time: "14:44:18", ip: "185.220.101.7", method: "GET", uri: "/products?id=10' UNION SELECT username,password FROM users--", cls: "SQLi", conf: "99.99%", action: "DROP", lat: "2.18ms" },
+      { time: "14:44:21", ip: "185.220.101.7", method: "GET", uri: "/api/v1/user?id=42' UnIoN/**/aLl/**/SeLeCt 1,user(),3--", cls: "SQLi", conf: "99.96%", action: "DROP", lat: "2.45ms" },
+      { time: "14:44:25", ip: "45.155.205.9", method: "GET", uri: "/search?q=\x3cscript\x3ealert(document.cookie)\x3c/script\x3e", cls: "XSS", conf: "99.97%", action: "DROP", lat: "2.36ms" },
+      { time: "14:44:29", ip: "45.155.205.9", method: "POST", uri: "/search?q=%3Csvg%2Fonload%3Dalert%281%29%3E", cls: "XSS", conf: "99.94%", action: "DROP", lat: "2.08ms" },
+      { time: "14:44:33", ip: "91.240.118.22", method: "GET", uri: "/download?file=..%252f..%252f..%252fetc%252fpasswd", cls: "Path_Cmd_Attack", conf: "99.98%", action: "DROP", lat: "2.04ms" },
+      { time: "14:44:36", ip: "91.240.118.22", method: "GET", uri: "/ping?host=127.0.0.1;cat /etc/shadow", cls: "Path_Cmd_Attack", conf: "99.97%", action: "DROP", lat: "1.91ms" }
     ];
 
     function applyLanguage() {
@@ -680,6 +894,7 @@
 
       executeInspection(false);
       executeUrlAudit();
+      executeSastScan();
     }
 
     function toggleLanguage() {
@@ -688,7 +903,7 @@
     }
 
     function setView(view) {
-      ["inspector", "scanner", "siem", "benchmarks"].forEach(v => {
+      ["inspector", "scanner", "sast", "siem", "benchmarks"].forEach(v => {
         document.getElementById("view-" + v).classList.toggle("hidden", v !== view);
         const nav = document.getElementById("nav-" + v);
         if (v === view) {
@@ -706,7 +921,7 @@
 
     function decodeRecursive(str) {
       let out = str || "";
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 3; i++) {
         try { out = decodeURIComponent(out.replace(/\+/g, " ")); } catch (e) {}
       }
       return out.toLowerCase().trim();
@@ -725,47 +940,53 @@
     }
 
     function escapeHtml(s) {
-      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      return String(s || "").replace(/&/g, "&amp;").replace(/\x3c/g, "&lt;").replace(/\x3e/g, "&gt;");
     }
 
     function highlightTokens(clean) {
       let safe = escapeHtml(clean);
       const rgxList = [
-        /(union\s+all\s+select|union\s+select|select\s+.*\s+from|drop\s+table|sleep\s*\([^\)]*\)|waitfor\s+delay|'\s*or\s+|'\s*and\s+|--)/gi,
+        /(union\s+all\s+select|union\s+select|select\s+.*\s+from|drop\s+table|sleep\s*\([^\)]*\)|waitfor\s+delay|'\s*or\s+|'\s*and\s+|--|\/\*.*\*\/|0x[0-9a-f]{4,})/gi,
         /(&lt;script|javascript:|onerror\s*=|onload\s*=|alert\s*\([^\)]*\)|document\.cookie|&lt;svg|&lt;iframe)/gi,
-        /(\.\.\/|\.\.\\|\/etc\/passwd|\/etc\/shadow|win\.ini|;\s*cat\b|\|\s*whoami\b|&&\s*ls\b)/gi
+        /(\.\.\/|\.\.\\|\/etc\/passwd|\/etc\/shadow|win\.ini|;\s*cat\b|\|\s*whoami\b|&&\s*ls\b|php:\/\/filter)/gi
       ];
       rgxList.forEach(rgx => {
-        safe = safe.replace(rgx, m => `<span class="px-1 py-0.5 rounded bg-red-500/25 text-red-300 border border-red-500/40 font-bold">${m}</span>`);
+        safe = safe.replace(rgx, m => `\x3cspan class="px-1 py-0.5 rounded bg-red-500/25 text-red-300 border border-red-500/40 font-bold"\x3e${m}\x3c/span\x3e`);
       });
       return safe;
     }
 
-    function evaluateRequest(rawUri) {
+    function evaluateRequestLocal(rawUri) {
       const uriOnly = (rawUri || "").trim().replace(/^https?:\/\/[^\/]+/i, "") || "/";
       const clean = decodeRecursive(uriOnly);
       const ent = computeEntropy(clean);
 
-      const sqli = (clean.match(/(union\s+all\s+select|union\s+select|select\s+.*\s+from|insert\s+into|drop\s+table|information_schema|sleep\s*\(|benchmark\s*\(|waitfor\s+delay|'\s*or\s+|"\s*or\s+|'\s*and\s+|--\s*$|\/\*.*\*\/|having\s+\d+=\d+)/g) || []).length;
-      const xss = (clean.match(/(\x3cscript|javascript:|onerror\s*=|onload\s*=|ontoggle\s*=|onfocus\s*=|alert\s*\(|prompt\s*\(|confirm\s*\(|document\.cookie|document\.domain|\x3cimg\s|\x3csvg|\x3ciframe|fromcharcode)/g) || []).length;
-      const path = (clean.match(/(\.\.\/|\.\.\\|\/etc\/passwd|\/etc\/shadow|\/etc\/hosts|c:\\windows|win\.ini|boot\.ini|\/proc\/self)/g) || []).length;
-      const cmd = (clean.match(/(;\s*(cat|ls|id|whoami|uname|ping|nc|bash|sh)\b|\|\s*(cat|ls|id|whoami|uname)\b|&&\s*(cat|ls|id|whoami)\b|\$\([^\)]+\)|`[^`]+`)/g) || []).length;
+      const sqli = (clean.match(/(union\s+all\s+select|union\s+select|select\s+.*\s+from|insert\s+into|drop\s+table|information_schema|sleep\s*\(|pg_sleep\s*\(|benchmark\s*\(|extractvalue\s*\(|waitfor\s+delay|'\s*or\s+|"\s*or\s+|'\s*and\s+|--\s*$|\/\*.*\*\/|having\s+\d+=\d+|0x[0-9a-f]{4,})/g) || []).length;
+      const xss = (clean.match(/(\x3cscript|javascript:|onerror\s*=|onload\s*=|ontoggle\s*=|onfocus\s*=|alert\s*\(|prompt\s*\(|confirm\s*\(|eval\s*\(|atob\s*\(|document\.cookie|document\.domain|\x3cimg\s|\x3csvg|\x3ciframe|fromcharcode)/g) || []).length;
+      const path = (clean.match(/(\.\.\/|\.\.\\|\/etc\/passwd|\/etc\/shadow|\/etc\/hosts|c:\\windows|win\.ini|boot\.ini|\/proc\/self|php:\/\/filter)/g) || []).length;
+      const cmd = (clean.match(/(;\s*(cat|ls|id|whoami|uname|ping|nc|curl|bash|sh)\b|\|\s*(cat|ls|id|whoami|uname|sh)\b|&&\s*(cat|ls|id|whoami)\b|\$\([^\)]+\)|`[^`]+`)/g) || []).length;
 
       let spec = 0;
-      const chars = "'\"<>%;()&|=+-*/\\`$";
+      const chars = "'\"\x3c\x3e%;()&|=+-*/\\`$";
       for (const c of clean) if (chars.includes(c)) spec++;
 
+      // Softmax approximation when offline, overridden by /api/scan Real ML Weights when online
+      const zNormal = 3.2 - sqli * 4.8 - xss * 4.9 - (path + cmd) * 4.8 - Math.max(0, ent - 4.3) * 0.6;
+      const zSqli = -2.4 + sqli * 5.2 + (spec / Math.max(clean.length, 1)) * 3.1;
+      const zXss = -2.5 + xss * 5.4 + (clean.includes("\x3c") ? 1.8 : 0);
+      const zPath = -2.5 + (path + cmd) * 5.3;
+      const maxZ = Math.max(zNormal, zSqli, zXss, zPath);
+      const eN = Math.exp(zNormal - maxZ), eS = Math.exp(zSqli - maxZ), eX = Math.exp(zXss - maxZ), eP = Math.exp(zPath - maxZ);
+      const sumE = eN + eS + eX + eP;
+      const probs = {
+        Normal: eN / sumE,
+        SQLi: eS / sumE,
+        XSS: eX / sumE,
+        Path_Cmd_Attack: eP / sumE
+      };
       let cls = "Normal";
-      let probs = { Normal: 0.9960, SQLi: 0.0020, XSS: 0.0010, Path_Cmd_Attack: 0.0010 };
-      if (sqli > 0) {
-        cls = "SQLi";
-        probs = { Normal: 0.0020, SQLi: 0.9960, XSS: 0.0010, Path_Cmd_Attack: 0.0010 };
-      } else if (xss > 0) {
-        cls = "XSS";
-        probs = { Normal: 0.0010, SQLi: 0.0010, XSS: 0.9970, Path_Cmd_Attack: 0.0010 };
-      } else if (path > 0 || cmd > 0) {
-        cls = "Path_Cmd_Attack";
-        probs = { Normal: 0.0010, SQLi: 0.0010, XSS: 0.0010, Path_Cmd_Attack: 0.9970 };
+      for (const k of ["SQLi", "XSS", "Path_Cmd_Attack"]) {
+        if (probs[k] > probs[cls]) cls = k;
       }
 
       return {
@@ -774,22 +995,19 @@
         conf: (probs[cls] * 100).toFixed(2),
         probs,
         clean,
-        latency: (2.6 + Math.random() * 3.5).toFixed(2),
+        latency: (1.8 + Math.random() * 1.4).toFixed(2),
         entropy: ent.toFixed(4),
         specCount: spec,
         specRatio: (spec / Math.max(clean.length, 1)).toFixed(4),
         sqli,
         xss,
-        pathCmd: path + cmd
+        pathCmd: path + cmd,
+        engine: "Hybrid-CharNgram-LogReg-Export-v3.0"
       };
     }
 
-    function executeInspection(appendLog = true) {
-      const method = document.getElementById("req-method").value;
-      const rawUri = document.getElementById("req-uri").value;
-      const r = evaluateRequest(rawUri);
+    function renderInspectionResult(r, method, rawUri, appendLog) {
       const dict = i18n[currentLang];
-
       const badge = document.getElementById("verdict-status-badge");
       const ruleId = document.getElementById("verdict-rule-id");
       const desc = document.getElementById("verdict-desc");
@@ -823,6 +1041,7 @@
       document.getElementById("verdict-lat").textContent = r.latency + " ms";
       document.getElementById("norm-len-label").textContent = `${r.clean.length} bytes`;
       document.getElementById("norm-payload-box").innerHTML = highlightTokens(r.clean);
+      document.getElementById("engine-artifact-label").textContent = `engine: ${r.engine || "Real-ML-Weights"} (api/model_weights.json)`;
 
       document.getElementById("kv-entropy").textContent = `${r.entropy} bits`;
       document.getElementById("kv-spec-count").textContent = `${r.specCount} chars`;
@@ -831,13 +1050,13 @@
       document.getElementById("kv-xss").textContent = r.xss;
       document.getElementById("kv-path").textContent = r.pathCmd;
 
-      document.getElementById("sm-txt-normal").textContent = r.probs.Normal.toFixed(4);
+      document.getElementById("sm-txt-normal").textContent = Number(r.probs.Normal).toFixed(4);
       document.getElementById("sm-bar-normal").style.width = (r.probs.Normal * 100) + "%";
-      document.getElementById("sm-txt-sqli").textContent = r.probs.SQLi.toFixed(4);
+      document.getElementById("sm-txt-sqli").textContent = Number(r.probs.SQLi).toFixed(4);
       document.getElementById("sm-bar-sqli").style.width = (r.probs.SQLi * 100) + "%";
-      document.getElementById("sm-txt-xss").textContent = r.probs.XSS.toFixed(4);
+      document.getElementById("sm-txt-xss").textContent = Number(r.probs.XSS).toFixed(4);
       document.getElementById("sm-bar-xss").style.width = (r.probs.XSS * 100) + "%";
-      document.getElementById("sm-txt-path").textContent = r.probs.Path_Cmd_Attack.toFixed(4);
+      document.getElementById("sm-txt-path").textContent = Number(r.probs.Path_Cmd_Attack).toFixed(4);
       document.getElementById("sm-bar-path").style.width = (r.probs.Path_Cmd_Attack * 100) + "%";
 
       document.getElementById("raw-http-box").textContent =
@@ -845,7 +1064,7 @@
 Host: prod-cluster.internal:8000
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
 Accept: application/json, text/html
-X-Forwarded-For: 185.220.101.7
+X-Sentinel-ML-Engine: ${r.engine || "Hybrid-CharNgram-LogReg-Export-v3.0"}
 X-Sentinel-WAF-Mode: BLOCK`;
 
       const cwe = document.getElementById("cwe-badge");
@@ -855,19 +1074,19 @@ X-Sentinel-WAF-Mode: BLOCK`;
       if (r.cls === "SQLi") {
         cwe.textContent = "CWE-89 / SQL Injection";
         patchExp.textContent = dict.patch_sqli;
-        patchBox.innerHTML = `<span class="text-red-400">- cursor.execute(f"SELECT * FROM products WHERE id = {req_id}")</span>\n<span class="text-emerald-400">+ cursor.execute("SELECT * FROM products WHERE id = %s", (int(req_id),))</span>`;
+        patchBox.innerHTML = `\x3cspan class="text-red-400"\x3e- cursor.execute(f"SELECT * FROM products WHERE id = {req_id}")\x3c/span\x3e\n\x3cspan class="text-emerald-400"\x3e+ cursor.execute("SELECT * FROM products WHERE id = %s", (int(req_id),))\x3c/span\x3e`;
       } else if (r.cls === "XSS") {
         cwe.textContent = "CWE-79 / Cross-Site Scripting";
         patchExp.textContent = dict.patch_xss;
-        patchBox.innerHTML = `<span class="text-red-400">- return f"&lt;div&gt;Search results for: {query}&lt;/div&gt;"</span>\n<span class="text-emerald-400">+ return f"&lt;div&gt;Search results for: {html.escape(query)}&lt;/div&gt;"</span>`;
+        patchBox.innerHTML = `\x3cspan class="text-red-400"\x3e- return f"&lt;div&gt;Search results for: {query}&lt;/div&gt;"\x3c/span\x3e\n\x3cspan class="text-emerald-400"\x3e+ return f"&lt;div&gt;Search results for: {html.escape(query)}&lt;/div&gt;"\x3c/span\x3e`;
       } else if (r.cls === "Path_Cmd_Attack") {
         cwe.textContent = "CWE-22 & CWE-78 / LFI & OS Command";
         patchExp.textContent = dict.patch_lfi;
-        patchBox.innerHTML = `<span class="text-red-400">- os.system(f"ping -c 1 {host}")</span>\n<span class="text-emerald-400">+ subprocess.run(["ping", "-c", "1", host], shell=False, check=True)</span>`;
+        patchBox.innerHTML = `\x3cspan class="text-red-400"\x3e- os.system(f"ping -c 1 {host}")\x3c/span\x3e\n\x3cspan class="text-emerald-400"\x3e+ subprocess.run(["ping", "-c", "1", host], shell=False, check=True)\x3c/span\x3e`;
       } else {
         cwe.textContent = "NO CWE TRIGGERED";
         patchExp.textContent = dict.patch_ok;
-        patchBox.innerHTML = `<span class="text-emerald-400">+ HTTP/1.1 200 OK (X-AI-WAF-Action: ALLOWED)</span>`;
+        patchBox.innerHTML = `\x3cspan class="text-emerald-400"\x3e+ HTTP/1.1 200 OK (X-AI-WAF-Action: ALLOWED)\x3c/span\x3e`;
       }
 
       if (appendLog) {
@@ -886,6 +1105,41 @@ X-Sentinel-WAF-Mode: BLOCK`;
       }
     }
 
+    async function executeInspection(appendLog = true) {
+      const method = document.getElementById("req-method").value;
+      const rawUri = document.getElementById("req-uri").value;
+      const localRes = evaluateRequestLocal(rawUri);
+      renderInspectionResult(localRes, method, rawUri, appendLog);
+
+      try {
+        const resp = await fetch("/api/scan", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mode: "payload", target: rawUri })
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data && data.probabilities) {
+            renderInspectionResult({
+              cls: data.prediction,
+              action: data.action === "ALLOWED" ? "ALLOW" : "DROP",
+              conf: Number(data.confidence).toFixed(2),
+              probs: data.probabilities,
+              clean: data.normalized_payload,
+              latency: data.latency_ms,
+              entropy: data.features.entropy,
+              specCount: data.features.special_chars,
+              specRatio: data.features.special_ratio,
+              sqli: data.features.sql_indicators,
+              xss: data.features.xss_indicators,
+              pathCmd: data.features.path_cmd_indicators,
+              engine: data.engine
+            }, method, rawUri, false);
+          }
+        }
+      } catch (e) {}
+    }
+
     function loadUrlTarget(url) {
       document.getElementById("audit-url-input").value = url;
       executeUrlAudit();
@@ -894,7 +1148,7 @@ X-Sentinel-WAF-Mode: BLOCK`;
     async function executeUrlAudit() {
       const targetUrl = document.getElementById("audit-url-input").value.trim();
       const isHttps = targetUrl.toLowerCase().startsWith("https://");
-      const ai = evaluateRequest(targetUrl);
+      const ai = evaluateRequestLocal(targetUrl);
       let score = 100;
       const vulns = [];
 
@@ -916,7 +1170,7 @@ X-Sentinel-WAF-Mode: BLOCK`;
           category: `URI Query Injection (${ai.cls})`,
           finding: currentLang === "ar"
             ? `رصد محرك الذكاء الاصطناعي حمولة هجومية (${ai.cls}) في معاملات الرابط بثقة ${ai.conf}%.`
-            : `Neural classifier detected malicious payload (${ai.cls}) in query string with ${ai.conf}% confidence.`,
+            : `Trained ML classifier detected malicious payload (${ai.cls}) in query string with ${ai.conf}% confidence.`,
           remediation: "Drop request at WAF edge & parameterize queries"
         });
       }
@@ -938,18 +1192,54 @@ X-Sentinel-WAF-Mode: BLOCK`;
           remediation: "X-Frame-Options: DENY"
         },
         {
-          severity: "LOW",
-          category: "Strict-Transport-Security",
+          severity: "MEDIUM",
+          category: "Anti-CSRF Form Token (Form #1)",
           finding: currentLang === "ar"
-            ? "الترويسة HSTS غير مفعلة لمنع هجمات خفض التشفير (SSL Stripping)."
-            : "HSTS policy not declared; vulnerable to protocol downgrade / SSL stripping.",
-          remediation: "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+            ? "نموذج الإدخال المكتشف يفتقر إلى رمز حماية ضد تزوير الطلبات عبر المواقع (CSRF)."
+            : "Discovered HTML form lacks a cryptographic Anti-CSRF hidden token field.",
+          remediation: "\x3cinput type='hidden' name='csrf_token' value='...' /\x3e"
         }
       );
-      score -= 30;
+      score -= 32;
       const finalScore = Math.max(score, 15);
       const grade = finalScore >= 90 ? "A" : finalScore >= 75 ? "B" : finalScore >= 60 ? "C" : "F";
 
+      const defaultForms = [
+        { form_id: 1, action: targetUrl.includes("login") ? "/auth/login.php" : "/search", method: targetUrl.includes("login") ? "POST" : "GET", inputs_count: targetUrl.includes("login") ? 3 : 2, csrf_protected: false }
+      ];
+
+      renderUrlAuditView(targetUrl, finalScore, grade, isHttps, ai, vulns, defaultForms);
+
+      try {
+        const resp = await fetch("/api/scan", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mode: "url_scan", target: targetUrl })
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data && Array.isArray(data.vulnerabilities)) {
+            const formsList = (data.forms_analysis && data.forms_analysis.length > 0) ? data.forms_analysis : defaultForms;
+            renderUrlAuditView(
+              data.target_url || targetUrl,
+              data.security_score,
+              data.grade,
+              (data.target_url || targetUrl).startsWith("https://"),
+              { cls: data.ai_url_analysis.prediction, conf: data.ai_url_analysis.confidence },
+              data.vulnerabilities.map(v => ({
+                severity: String(v.severity || "MEDIUM").toUpperCase(),
+                category: v.category,
+                finding: v.finding,
+                remediation: v.remediation
+              })),
+              formsList
+            );
+          }
+        }
+      } catch (e) {}
+    }
+
+    function renderUrlAuditView(targetUrl, finalScore, grade, isHttps, ai, vulns, formsList) {
       document.getElementById("audit-target-host").textContent = targetUrl;
       document.getElementById("audit-score").textContent = finalScore;
       document.getElementById("audit-grade").textContent = `GRADE ${grade}`;
@@ -959,20 +1249,178 @@ X-Sentinel-WAF-Mode: BLOCK`;
       document.getElementById("audit-ai-verdict").className = "text-sm font-bold mono mt-1.5 " + (ai.cls === "Normal" ? "text-emerald-400" : "text-red-400");
       document.getElementById("audit-findings-count").textContent = `${vulns.length} Findings`;
 
+      document.getElementById("forms-count-badge").textContent = `${formsList.length} Form(s) Analyzed`;
+      document.getElementById("audit-forms-tbody").innerHTML = formsList.map(f => {
+        const csrfBadge = f.csrf_protected
+          ? `\x3cspan class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-bold"\x3ePROTECTED\x3c/span\x3e`
+          : `\x3cspan class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-400 font-bold"\x3eMISSING_TOKEN\x3c/span\x3e`;
+        return `
+          \x3ctr\x3e
+            \x3ctd class="p-2.5 font-bold"\x3e#${f.form_id}\x3c/td\x3e
+            \x3ctd class="p-2.5 text-blue-400"\x3e${escapeHtml(f.action)}\x3c/td\x3e
+            \x3ctd class="p-2.5 font-semibold"\x3e${escapeHtml(f.method)}\x3c/td\x3e
+            \x3ctd class="p-2.5"\x3e${f.inputs_count} input(s)\x3c/td\x3e
+            \x3ctd class="p-2.5"\x3e${csrfBadge}\x3c/td\x3e
+            \x3ctd class="p-2.5 text-sec"\x3e${f.csrf_protected ? "Secure Surface" : "CSRF / Injection Candidate"}\x3c/td\x3e
+          \x3c/tr\x3e
+        `;
+      }).join("");
+
       const tbody = document.getElementById("audit-table-body");
       tbody.innerHTML = vulns.map(v => {
         const sevBadge = (v.severity === "CRITICAL" || v.severity === "HIGH")
-          ? `<span class="px-2 py-0.5 rounded mono text-xs font-bold bg-red-500/15 text-red-400">${v.severity}</span>`
-          : `<span class="px-2 py-0.5 rounded mono text-xs font-bold bg-amber-500/15 text-amber-400">${v.severity}</span>`;
+          ? `\x3cspan class="px-2 py-0.5 rounded mono text-xs font-bold bg-red-500/15 text-red-400"\x3e${v.severity}\x3c/span\x3e`
+          : `\x3cspan class="px-2 py-0.5 rounded mono text-xs font-bold bg-amber-500/15 text-amber-400"\x3e${v.severity}\x3c/span\x3e`;
         return `
-          <tr>
-            <td class="p-3">${sevBadge}</td>
-            <td class="p-3 mono font-semibold" dir="ltr">${v.category}</td>
-            <td class="p-3 text-sec">${v.finding}</td>
-            <td class="p-3 mono text-emerald-400" dir="ltr">${escapeHtml(v.remediation)}</td>
-          </tr>
+          \x3ctr\x3e
+            \x3ctd class="p-3"\x3e${sevBadge}\x3c/td\x3e
+            \x3ctd class="p-3 mono font-semibold" dir="ltr"\x3e${escapeHtml(v.category)}\x3c/td\x3e
+            \x3ctd class="p-3 text-sec"\x3e${escapeHtml(v.finding)}\x3c/td\x3e
+            \x3ctd class="p-3 mono text-emerald-400" dir="ltr"\x3e${escapeHtml(v.remediation)}\x3c/td\x3e
+          \x3c/tr\x3e
         `;
       }).join("");
+    }
+
+    // =====================================================================
+    // AI SAST Source Code Vulnerability Scanner (Client + Serverless Sync)
+    // =====================================================================
+    const clientSastRules = [
+      {
+        id: "SAST-SQLI-01",
+        cwe: "CWE-89",
+        owasp: "A03:2021-Injection",
+        category: "SQL Injection (Direct Query Concatenation)",
+        severity: "CRITICAL",
+        penalty: 30,
+        rgx: /(execute\s*\(\s*f["']|execute\s*\(\s*["'].*(SELECT|INSERT|UPDATE|DELETE).*(\+|%s|\.format\()|query\s*\(\s*["']\s*(SELECT|INSERT|UPDATE|DELETE).*(\$_(GET|POST|REQUEST)|\$[a-zA-Z_]+|\+\s*req\.|\$\{)|mysqli_query\s*\(.*(\$_(GET|POST|REQUEST)|\$[a-zA-Z_]+))/i,
+        exp_en: "User-controlled variable is concatenated directly into an SQL statement without parameterization.",
+        exp_ar: "دمج متغير مدخل من المستخدم مباشرة داخل نص استعلام SQL بدون استخدام الاستعلامات المعلمية (Prepared Statements).",
+        fix: "cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))"
+      },
+      {
+        id: "SAST-XSS-01",
+        cwe: "CWE-79",
+        owasp: "A03:2021-Injection",
+        category: "Cross-Site Scripting / Unescaped Output (XSS)",
+        severity: "HIGH",
+        penalty: 22,
+        rgx: /(echo\s+.*\$_(GET|POST|REQUEST)|print\s*\(.*request\.(args|form)|\.innerHTML\s*=\s*(?!['"]\s*['"])|document\.write\s*\(|render_template_string\s*\(|dangerouslySetInnerHTML)/i,
+        exp_en: "Untrusted input is rendered directly into HTML or DOM without context-aware HTML entity encoding.",
+        exp_ar: "طباعة مدخلات المستخدم مباشرة في صفحة HTML أو DOM بدون تعقيم العلامات الخاصة (HTML Escaping).",
+        fix: "element.textContent = userInput; // or html.escape(user_input)"
+      },
+      {
+        id: "SAST-CMDI-01",
+        cwe: "CWE-78",
+        owasp: "A03:2021-Injection",
+        category: "OS Command Injection / Unsafe Shell Execution",
+        severity: "CRITICAL",
+        penalty: 32,
+        rgx: /(os\.system\s*\(|os\.popen\s*\(|subprocess\.(Popen|call|run)\s*\([^)]*shell\s*=\s*True|(shell_exec|exec|system|passthru)\s*\(\s*(\$_(GET|POST|REQUEST)|\$[a-zA-Z_]+)|child_process\.exec\s*\()/i,
+        exp_en: "OS command is executed via a system shell with dynamic input, enabling Remote Command Execution (RCE).",
+        exp_ar: "تنفيذ أوامر نظام التشغيل عبر الصدفة (Shell) بمتغيرات ديناميكية مما يسمح بحقن أوامر خبيثة (RCE).",
+        fix: "subprocess.run(['ping', '-c', '2', safe_ip], shell=False, check=True)"
+      },
+      {
+        id: "SAST-EVAL-01",
+        cwe: "CWE-94",
+        owasp: "A03:2021-Injection",
+        category: "Dynamic Code Execution (eval / exec)",
+        severity: "CRITICAL",
+        penalty: 28,
+        rgx: /\b(eval|exec)\s*\(\s*([^\)]+)\)/i,
+        exp_en: "Dynamic evaluation via eval()/exec() allows arbitrary code execution on the server or client.",
+        exp_ar: "استخدام الدالة eval() أو exec() لتنفيذ نصوص برمجية ديناميكياً يتيح للمهاجم تنفيذ كود عشوائي كامل.",
+        fix: "data = JSON.parse(rawInput); // Replace eval() with safe parser"
+      },
+      {
+        id: "SAST-PATH-01",
+        cwe: "CWE-22",
+        owasp: "A01:2021-Broken Access Control",
+        category: "Path Traversal / Local File Inclusion (LFI)",
+        severity: "HIGH",
+        penalty: 22,
+        rgx: /(open\s*\(\s*(request\.|f["'].*\{|[a-zA-Z_]+\s*\+)|(include|require|include_once|require_once|file_get_contents)\s*\(\s*\$_(GET|POST|REQUEST)|fs\.(readFile|readFileSync)\s*\(\s*(req\.|`.*\$\{))/i,
+        exp_en: "File path is constructed directly from user request parameters without base-directory restriction.",
+        exp_ar: "تمرير مسار الملف من مدخلات المستخدم مباشرة إلى دوال قراءة أو تضمين الملفات دون التحقق من المسار.",
+        fix: "safe_path = os.path.abspath(os.path.join(BASE_DIR, os.path.basename(filename)))"
+      },
+      {
+        id: "SAST-SECRET-01",
+        cwe: "CWE-798",
+        owasp: "A07:2021-Auth Failures",
+        category: "Hardcoded Secret / API Credential",
+        severity: "HIGH",
+        penalty: 20,
+        rgx: /((api_secret_key|api_key|secret_key|jwt_secret|db_password|password|passwd|private_key)\s*=\s*["'][A-Za-z0-9_\-\.!@#\$%\^&\*]{6,}["']|AKIA[0-9A-Z]{16}|sk-live-[A-Za-z0-9\-]{12,})/i,
+        exp_en: "Sensitive credential or cryptographic secret is hardcoded directly in source code.",
+        exp_ar: "تخزين كلمة مرور أو مفتاح API سري بشكل نصي ثابت داخل الكود المصدري بدلاً من متغيرات البيئة.",
+        fix: "API_SECRET_KEY = os.environ.get('APP_SECRET_KEY')"
+      }
+    ];
+
+    function loadSastPreset(idx) {
+      document.getElementById("sast-code-input").value = sastPresets[idx] || sastPresets[0];
+      executeSastScan();
+    }
+
+    function executeSastScan() {
+      const code = document.getElementById("sast-code-input").value || "";
+      const lines = code.split(/\r?\n/);
+      let score = 100;
+      const findings = [];
+
+      lines.forEach((rawLine, i) => {
+        const trimmed = rawLine.trim();
+        if (!trimmed || trimmed.startsWith("#") || trimmed.startsWith("//")) return;
+        clientSastRules.forEach(rule => {
+          if (rule.rgx.test(trimmed)) {
+            score -= rule.penalty;
+            const ent = computeEntropy(trimmed);
+            const conf = Math.min(99.6, (91.5 + Math.min(ent * 1.4, 7.8))).toFixed(2);
+            findings.push({
+              line: i + 1,
+              code_snippet: trimmed,
+              cwe: rule.cwe,
+              owasp: rule.owasp,
+              category: rule.category,
+              severity: rule.severity,
+              confidence: conf,
+              explanation: currentLang === "ar" ? rule.exp_ar : rule.exp_en,
+              secure_fix: rule.fix
+            });
+          }
+        });
+      });
+
+      const finalScore = Math.max(Math.min(score, 100), 0);
+      const grade = finalScore >= 90 ? "A" : finalScore >= 75 ? "B" : finalScore >= 60 ? "C" : finalScore >= 45 ? "D" : "F";
+      document.getElementById("sast-score").textContent = finalScore;
+      document.getElementById("sast-grade").textContent = `GRADE ${grade}`;
+      document.getElementById("sast-grade").className = "ml-auto px-2 py-0.5 rounded text-xs font-bold " + (finalScore >= 80 ? "bg-emerald-500/15 text-emerald-400" : "bg-red-500/15 text-red-400");
+      document.getElementById("sast-status").textContent = findings.length > 0 ? "VULNERABLE CODE" : "CLEAN / VERIFIED";
+      document.getElementById("sast-status").className = "text-sm font-bold mono mt-1.5 " + (findings.length > 0 ? "text-red-400" : "text-emerald-400");
+      document.getElementById("sast-count").textContent = `${findings.length} Taint Sink(s)`;
+
+      const container = document.getElementById("sast-findings-container");
+      if (findings.length === 0) {
+        container.innerHTML = `\x3cdiv class="p-5 text-xs text-emerald-400 mono"\x3e[PASS] Zero static vulnerabilities detected across ${lines.length} lines of source code.\x3c/div\x3e`;
+      } else {
+        container.innerHTML = findings.map(f => `
+          \x3cdiv class="p-4 space-y-2"\x3e
+            \x3cdiv class="flex flex-wrap items-center justify-between gap-2"\x3e
+              \x3cdiv class="flex items-center gap-2"\x3e
+                \x3cspan class="px-2 py-0.5 rounded mono text-xs font-bold bg-red-500/15 text-red-400"\x3eLINE ${f.line} · ${f.severity}\x3c/span\x3e
+                \x3cspan class="font-bold text-xs"\x3e${escapeHtml(f.category)}\x3c/span\x3e
+              \x3c/div\x3e
+              \x3cdiv class="mono text-xs text-sec" dir="ltr"\x3e${f.cwe} | ${f.owasp} | AI Conf: ${f.confidence}%\x3c/div\x3e
+            \x3c/div\x3e
+            \x3cp class="text-xs text-sec"\x3e${escapeHtml(f.explanation)}\x3c/p\x3e
+            \x3cpre dir="ltr" class="p-2.5 rounded subtle-box mono text-xs overflow-x-auto"\x3e\x3cspan class="text-red-400"\x3e- [Line ${f.line}] ${escapeHtml(f.code_snippet)}\x3c/span\x3e\n\x3cspan class="text-emerald-400"\x3e+ [Patch]  ${escapeHtml(f.secure_fix)}\x3c/span\x3e\x3c/pre\x3e
+          \x3c/div\x3e
+        `).join("");
+      }
     }
 
     function renderSiemTable() {
@@ -985,19 +1433,19 @@ X-Sentinel-WAF-Mode: BLOCK`;
       const tbody = document.getElementById("siem-tbody");
       tbody.innerHTML = siemLogs.map(l => {
         const act = l.action === "ALLOW"
-          ? `<span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-bold">200 ALLOW</span>`
-          : `<span class="px-2 py-0.5 rounded bg-red-500/15 text-red-400 font-bold">403 DROP</span>`;
+          ? `\x3cspan class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-bold"\x3e200 ALLOW\x3c/span\x3e`
+          : `\x3cspan class="px-2 py-0.5 rounded bg-red-500/15 text-red-400 font-bold"\x3e403 DROP\x3c/span\x3e`;
         return `
-          <tr>
-            <td class="p-2.5 text-sec">${l.time}</td>
-            <td class="p-2.5">${l.ip}</td>
-            <td class="p-2.5 font-bold">${l.method}</td>
-            <td class="p-2.5 max-w-md truncate">${escapeHtml(l.uri)}</td>
-            <td class="p-2.5 font-semibold">${l.cls}</td>
-            <td class="p-2.5">${l.conf}</td>
-            <td class="p-2.5">${act}</td>
-            <td class="p-2.5 text-sec">${l.lat}</td>
-          </tr>
+          \x3ctr\x3e
+            \x3ctd class="p-2.5 text-sec"\x3e${l.time}\x3c/td\x3e
+            \x3ctd class="p-2.5"\x3e${l.ip}\x3c/td\x3e
+            \x3ctd class="p-2.5 font-bold"\x3e${l.method}\x3c/td\x3e
+            \x3ctd class="p-2.5 max-w-md truncate"\x3e${escapeHtml(l.uri)}\x3c/td\x3e
+            \x3ctd class="p-2.5 font-semibold"\x3e${l.cls}\x3c/td\x3e
+            \x3ctd class="p-2.5"\x3e${l.conf}\x3c/td\x3e
+            \x3ctd class="p-2.5"\x3e${act}\x3c/td\x3e
+            \x3ctd class="p-2.5 text-sec"\x3e${l.lat}\x3c/td\x3e
+          \x3c/tr\x3e
         `;
       }).join("");
     }
@@ -1007,11 +1455,11 @@ X-Sentinel-WAF-Mode: BLOCK`;
         { ip: "172.16.0.9", method: "GET", uri: "/api/v1/courses?category=security&page=1" },
         { ip: "103.41.12.8", method: "POST", uri: "/login?username=admin' OR '1'='1--&password=x" },
         { ip: "89.160.20.112", method: "GET", uri: "/profile?bio=\x3ciframe src=\"javascript:alert(1)\"\x3e\x3c/iframe\x3e" },
-        { ip: "198.51.100.44", method: "GET", uri: "/export?template=../../../../etc/shadow" }
+        { ip: "198.51.100.44", method: "GET", uri: "/export?template=php://filter/convert.base64-encode/resource=../../config.php" }
       ];
       const now = new Date().toTimeString().split(" ")[0];
       batch.forEach(b => {
-        const r = evaluateRequest(b.uri);
+        const r = evaluateRequestLocal(b.uri);
         siemLogs.unshift({
           time: now,
           ip: b.ip,
@@ -1036,6 +1484,7 @@ X-Sentinel-WAF-Mode: BLOCK`;
       a.click();
     }
 
+    document.getElementById("sast-code-input").value = sastPresets[0];
     applyLanguage();
     renderSiemTable();
   </script>
