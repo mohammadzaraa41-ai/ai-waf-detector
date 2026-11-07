@@ -15,7 +15,7 @@ DARK_TEXT = RGBColor(30, 41, 59)
 MUTED_TEXT = RGBColor(100, 116, 139)
 
 
-def add_header_banner(slide, prs, title_en, title_ar, slide_num):
+def add_header_banner(slide, prs, title_en, title_ar, slide_num, en_only=False):
     banner = slide.shapes.add_shape(
         MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), prs.slide_width, Inches(1.25)
     )
@@ -23,24 +23,33 @@ def add_header_banner(slide, prs, title_en, title_ar, slide_num):
     banner.fill.fore_color.rgb = NAVY
     banner.line.fill.background()
 
-    tb = slide.shapes.add_textbox(Inches(0.5), Inches(0.12), Inches(12.3), Inches(1.0))
+    tb = slide.shapes.add_textbox(Inches(0.5), Inches(0.15), Inches(12.3), Inches(0.95))
     tf = tb.text_frame
     tf.word_wrap = True
 
-    p1 = tf.paragraphs[0]
-    p1.text = title_ar
-    p1.font.size = Pt(22)
-    p1.font.bold = True
-    p1.font.color.rgb = WHITE
-    p1.font.name = "Arial"
-    p1.alignment = PP_ALIGN.RIGHT
+    if en_only:
+        p1 = tf.paragraphs[0]
+        p1.text = title_en
+        p1.font.size = Pt(24)
+        p1.font.bold = True
+        p1.font.color.rgb = WHITE
+        p1.font.name = "Arial"
+        p1.alignment = PP_ALIGN.LEFT
+    else:
+        p1 = tf.paragraphs[0]
+        p1.text = title_ar
+        p1.font.size = Pt(22)
+        p1.font.bold = True
+        p1.font.color.rgb = WHITE
+        p1.font.name = "Arial"
+        p1.alignment = PP_ALIGN.RIGHT
 
-    p2 = tf.add_paragraph()
-    p2.text = title_en
-    p2.font.size = Pt(14)
-    p2.font.color.rgb = RGBColor(147, 197, 253)
-    p2.font.name = "Arial"
-    p2.alignment = PP_ALIGN.LEFT
+        p2 = tf.add_paragraph()
+        p2.text = title_en
+        p2.font.size = Pt(14)
+        p2.font.color.rgb = RGBColor(147, 197, 253)
+        p2.font.name = "Arial"
+        p2.alignment = PP_ALIGN.LEFT
 
     footer = slide.shapes.add_textbox(Inches(0.5), Inches(7.0), Inches(12.3), Inches(0.4))
     ftf = footer.text_frame
@@ -51,7 +60,35 @@ def add_header_banner(slide, prs, title_en, title_ar, slide_num):
     fp.font.name = "Arial"
 
 
-def add_two_column_cards(slide, en_title, en_bullets, ar_title, ar_bullets):
+def add_two_column_cards(slide, en_title, en_bullets, ar_title, ar_bullets, en_only=False):
+    if en_only:
+        card_en = slide.shapes.add_shape(
+            MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.5), Inches(1.55), Inches(12.3), Inches(5.2)
+        )
+        card_en.fill.solid()
+        card_en.fill.fore_color.rgb = LIGHT_BG
+        card_en.line.color.rgb = RGBColor(203, 213, 225)
+
+        tb_en = slide.shapes.add_textbox(Inches(0.8), Inches(1.75), Inches(11.7), Inches(4.8))
+        tf_en = tb_en.text_frame
+        tf_en.word_wrap = True
+        p_hdr_en = tf_en.paragraphs[0]
+        p_hdr_en.text = en_title
+        p_hdr_en.font.size = Pt(20)
+        p_hdr_en.font.bold = True
+        p_hdr_en.font.color.rgb = BLUE_ACCENT
+        p_hdr_en.font.name = "Arial"
+
+        for b in en_bullets:
+            p = tf_en.add_paragraph()
+            p.text = f"• {b}"
+            p.font.size = Pt(16)
+            p.font.color.rgb = DARK_TEXT
+            p.font.name = "Arial"
+            p.space_before = Pt(10)
+        return
+
+    # Left Card (100% Pure English)
     card_en = slide.shapes.add_shape(
         MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.5), Inches(1.55), Inches(5.95), Inches(5.2)
     )
@@ -77,6 +114,7 @@ def add_two_column_cards(slide, en_title, en_bullets, ar_title, ar_bullets):
         p.font.name = "Arial"
         p.space_before = Pt(8)
 
+    # Right Card (Arabic)
     card_ar = slide.shapes.add_shape(
         MSO_SHAPE.ROUNDED_RECTANGLE, Inches(6.85), Inches(1.55), Inches(5.95), Inches(5.2)
     )
@@ -134,7 +172,7 @@ def add_slide_table(slide, headers, rows, top_in=1.7, height_in=4.8):
                 p.font.name = "Arial"
 
 
-def create_presentation():
+def build_deck(en_only=False) -> Presentation:
     prs = Presentation()
     prs.slide_width = Inches(13.333)
     prs.slide_height = Inches(7.5)
@@ -147,47 +185,48 @@ def create_presentation():
     bg1.fill.fore_color.rgb = NAVY
     bg1.line.fill.background()
 
-    tb1 = s1.shapes.add_textbox(Inches(1.0), Inches(1.5), Inches(11.333), Inches(4.8))
+    tb1 = s1.shapes.add_textbox(Inches(1.0), Inches(1.6), Inches(11.333), Inches(4.6))
     tf1 = tb1.text_frame
     tf1.word_wrap = True
 
     p = tf1.paragraphs[0]
-    p.text = "مشروع التخرج (Graduation Project — SentinelWAF v3.0)"
+    p.text = "Graduation Project — SentinelWAF v3.0" if en_only else "مشروع التخرج (Graduation Project — SentinelWAF v3.0)"
     p.font.size = Pt(20)
     p.font.color.rgb = RGBColor(147, 197, 253)
     p.font.bold = True
     p.font.name = "Arial"
     p.alignment = PP_ALIGN.CENTER
 
-    p2 = tf1.add_paragraph()
-    p2.text = "اكتشاف ثغرات وهجمات الويب باستخدام الذكاء الاصطناعي"
-    p2.font.size = Pt(34)
-    p2.font.bold = True
-    p2.font.color.rgb = WHITE
-    p2.font.name = "Arial"
-    p2.alignment = PP_ALIGN.CENTER
-    p2.space_before = Pt(16)
+    if not en_only:
+        p2 = tf1.add_paragraph()
+        p2.text = "اكتشاف ثغرات وهجمات الويب باستخدام الذكاء الاصطناعي"
+        p2.font.size = Pt(34)
+        p2.font.bold = True
+        p2.font.color.rgb = WHITE
+        p2.font.name = "Arial"
+        p2.alignment = PP_ALIGN.CENTER
+        p2.space_before = Pt(16)
 
     p3 = tf1.add_paragraph()
     p3.text = "AI-Powered Web Vulnerability Discovery, Smart WAF & SAST Platform"
-    p3.font.size = Pt(22)
+    p3.font.size = Pt(28 if en_only else 22)
     p3.font.bold = True
-    p3.font.color.rgb = RGBColor(96, 165, 250)
+    p3.font.color.rgb = WHITE if en_only else RGBColor(96, 165, 250)
     p3.font.name = "Arial"
     p3.alignment = PP_ALIGN.CENTER
-    p3.space_before = Pt(12)
+    p3.space_before = Pt(20 if en_only else 12)
 
     p4 = tf1.add_paragraph()
     p4.text = "1. Real-ML HTTP WAF  |  2. Deep URL & HTML Form Scanner (DAST)  |  3. AI Source Code Scanner (SAST)"
-    p4.font.size = Pt(14)
+    p4.font.size = Pt(15)
     p4.font.color.rgb = RGBColor(203, 213, 225)
     p4.font.name = "Arial"
     p4.alignment = PP_ALIGN.CENTER
     p4.space_before = Pt(28)
 
-    # Slide 2: Problem Statement & Motivation
+    # Slide 2
     s2 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s2, prs, "1. Problem Statement & 3-Pillar Objective", "1. مشكلة البحث وأهداف المنصة الثلاثية", 2)
+    add_header_banner(s2, prs, "1. Problem Statement & 3-Pillar Objective", "1. مشكلة البحث وأهداف المنصة الثلاثية", 2, en_only)
     add_two_column_cards(
         s2,
         "Why Traditional Rule-Based WAFs Fail",
@@ -205,41 +244,42 @@ def create_presentation():
             "سهولة تجاوز القواعد الثابتة عبر التشفير المزدوج/الثلاثي والتعليقات المموهة.",
             "الحل المبتكر (SentinelWAF v3.0): دمج 3 محركات ذكية في منصة واحدة:",
             "(1) جدار حماية بالذكاء الاصطناعي (WAF) + (2) فاحص نماذج وترويسات المواقع + (3) فاحص الكود المصدري (SAST)."
-        ]
+        ],
+        en_only
     )
 
-    # Slide 3: 4-Week Execution Roadmap
+    # Slide 3: Pure English Table
     s3 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s3, prs, "2. Project 4-Week Execution Plan", "2. الخطة الزمنية لتنفيذ المشروع (4 أسابيع)", 3)
+    add_header_banner(s3, prs, "2. Project 4-Week Execution Plan", "2. الخطة الزمنية لتنفيذ المشروع (4 أسابيع)", 3, en_only)
     add_slide_table(
         s3,
-        ["Week / الأسبوع", "Phase / المرحلة", "Key Tasks / المهام المنفذة", "Deliverables / المخرجات"],
+        ["Week", "Phase", "Key Engineering Tasks", "Deliverables"],
         [
-            ["Week 1\nالأسبوع الأول", "Problem & Architecture\nالمشكلة والمعمارية", "Analyze OWASP Top 10 & Rule-Based WAF flaws; design 3-pillar AI architecture.", "Week 1 Report + System Architecture"],
-            ["Week 2\nالأسبوع الثاني", "Expanded Dataset (1,543)\nالبيانات واستخراج الخصائص", "Build 1,543 unique requests (with Hard Negatives & Zero-Day); 3x URL Decoding, Entropy, Char N-Grams.", "http_requests.csv + preprocess.py"],
-            ["Week 3\nالأسبوع الثالث", "AI Training & Cloud Weights\nالتدريب وتصدير الأوزان", "Train & compare LogReg, RF, Deep MLP (99.75% acc, 0% FP); export 16.8KB real weights to cloud.", "train.py + model_weights.json"],
-            ["Week 4\nالأسبوع الرابع", "WAF + Form Audit + SAST\nجدار الحماية وفاحص الكود", "FastAPI WAF, Deep HTML Form Scanner, AI Source Code SAST Scanner, and Vercel Cloud Console.", "url_scanner.py + code_scanner.py + index.html"],
+            ["Week 1", "Problem & Architecture", "Analyze OWASP Top 10 & Rule-Based WAF flaws; design 3-pillar AI architecture.", "Week 1 Report + System Architecture"],
+            ["Week 2", "Expanded Dataset (1,543)", "Build 1,543 unique requests (with Hard Negatives & Zero-Day); 3x URL Decoding, Entropy, Char N-Grams.", "http_requests.csv + preprocess.py"],
+            ["Week 3", "AI Training & Cloud Weights", "Train & compare LogReg, RF, Deep MLP (99.75% acc, 0% FP); export 16.8KB real weights to cloud.", "train.py + model_weights.json"],
+            ["Week 4", "WAF + Form Audit + SAST", "FastAPI WAF, Deep HTML Form Scanner, AI Source Code SAST Scanner, and Vercel Cloud Console.", "url_scanner.py + code_scanner.py + index.html"],
         ]
     )
 
-    # Slide 4: Literature Review Comparison
+    # Slide 4: Pure English Table
     s4 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s4, prs, "3. Comparison with Existing Solutions", "3. مقارنة النظام المقترح بالدراسات والأنظمة السابقة", 4)
+    add_header_banner(s4, prs, "3. Comparison with Existing Solutions", "3. مقارنة النظام المقترح بالدراسات والأنظمة السابقة", 4, en_only)
     add_slide_table(
         s4,
-        ["Criterion / المعيار", "Rule-Based WAF (ModSecurity)", "Word-Level ML (Classic TF-IDF)", "SentinelWAF v3.0 (مشروعنا المطور)"],
+        ["Evaluation Criterion", "Rule-Based WAF (ModSecurity)", "Word-Level ML (Classic TF-IDF)", "Proposed SentinelWAF v3.0"],
         [
-            ["Inspection Granularity\nمستوى الفحص", "Static Regular Expressions (Regex)", "Space-separated words", "Char N-Grams (2-5) + 9 Contextual Features + Deep MLP"],
-            ["Obfuscation Resistance\nمقاومة التشفير والتمويه", "Low (ضعيفة أمام التشفير المتعدد)", "Medium (متوسطة)", "Very High (فك تشفير ثلاثي + عشوائية شانون)"],
-            ["False Positive Rate\nمعدل الإنذارات الكاذبة", "High (مرتفع مع الكلمات التقنية)", "Moderate (متوسط)", "0.00% on Holdout Benign Traffic (124/124)"],
-            ["Deep HTML Form Audit\nفحص نماذج الإدخال", "Not Supported (غير مدعوم)", "Not Supported (غير مدعوم)", "Extracts <form>/<input>, CSRF tokens & DOM XSS sinks"],
-            ["Source Code SAST\nفحص الكود المصدري", "Not Supported (غير مدعوم)", "Not Supported (غير مدعوم)", "Line-by-Line Python/PHP/JS SAST + Automated Patch"],
+            ["Inspection Granularity", "Static Regular Expressions (Regex)", "Space-separated words", "Char N-Grams (2-5) + 9 Contextual Features + Deep MLP"],
+            ["Obfuscation Resistance", "Low (Bypassed by Double Encoding)", "Medium", "Very High (3x Recursive URL Decode + Shannon Entropy)"],
+            ["False Positive Rate", "High on Technical Queries", "Moderate", "0.00% on Holdout Benign Traffic (124/124)"],
+            ["Deep HTML Form Audit", "Not Supported", "Not Supported", "Extracts <form>/<input>, CSRF tokens & DOM XSS sinks"],
+            ["Source Code SAST", "Not Supported", "Not Supported", "Line-by-Line Python/PHP/JS SAST + Automated Patch"],
         ]
     )
 
-    # Slide 5: Hybrid Architecture & Feature Engineering
+    # Slide 5
     s5 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s5, prs, "4. Hybrid AI Architecture & Real Cloud Weights", "4. المعمارية الهجينة وتصدير الأوزان الرياضية للسحابة", 5)
+    add_header_banner(s5, prs, "4. Hybrid AI Architecture & Real Cloud Weights", "4. المعمارية الهجينة وتصدير الأوزان الرياضية للسحابة", 5, en_only)
     add_two_column_cards(
         s5,
         "Hybrid Processing & Serverless ML (preprocess.py & scan.py)",
@@ -257,12 +297,13 @@ def create_presentation():
             "3. حساب عشوائية النص (Shannon Entropy) والمؤشرات السياقية الذكية.",
             "4. تصدير أوزان النموذج الفعلية إلى ملف سحابي خفيف (api/model_weights.json بحجم 16.8 KB).",
             "5. تنفيذ الضرب المصفوفي ودالة Softmax الحقيقية على سحابة Vercel في أقل من 2.5 ملي ثانية."
-        ]
+        ],
+        en_only
     )
 
-    # Slide 6: Expanded Dataset Construction (1,543 Unique Samples)
+    # Slide 6
     s6 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s6, prs, "5. Expanded Dataset (1,543 Samples) & Zero-Day Holdout", "5. قاعدة البيانات الموسعة (1,543 عينة) واختبار Zero-Day", 6)
+    add_header_banner(s6, prs, "5. Expanded Dataset (1,543 Samples) & Zero-Day Holdout", "5. قاعدة البيانات الموسعة (1,543 عينة) واختبار Zero-Day", 6, en_only)
     add_two_column_cards(
         s6,
         "1,543 Unique Requests + Unseen Zero-Day Split",
@@ -278,15 +319,16 @@ def create_presentation():
             "حقن قواعد البيانات SQLi (360 عينة - 23.3%): هجمات مباشرة، عمياء زمنية، ومموهة بالتعليقات والترميز الست عشري.",
             "اختراق المسارات والأوامر Path & Cmd (352 عينة - 22.8%): قفز المسارات المزدوج ومرشحات PHP وحقن الأوامر.",
             "البرمجة عبر المواقع XSS (350 عينة - 22.7%): أنماط Polyglot ووسوم SVG ومعالجات الأحداث."
-        ]
+        ],
+        en_only
     )
 
-    # Slide 7: AI Models Training & Evaluation
+    # Slide 7
     s7 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s7, prs, "6. AI Models Evaluation on Holdout + Zero-Day Split (N = 394)", "6. تقييم ومقارنة نماذج الذكاء الاصطناعي ومصفوفة الالتباس", 7)
+    add_header_banner(s7, prs, "6. AI Models Evaluation on Holdout + Zero-Day Split (N = 394)", "6. تقييم ومقارنة نماذج الذكاء الاصطناعي ومصفوفة الالتباس", 7, en_only)
     add_slide_table(
         s7,
-        ["AI Model / النموذج", "Architecture / البنية", "Accuracy", "Macro Precision", "Macro Recall", "Macro F1", "Normal FP Rate"],
+        ["AI Model", "Architecture", "Accuracy", "Macro Precision", "Macro Recall", "Macro F1", "Normal FP Rate"],
         [
             ["Deep MLP (Primary Model)", "Neural Network (128 × 64)", "0.9975", "0.9973", "0.9972", "0.9972", "0.00% (0/124)"],
             ["Random Forest", "Ensemble (100 Trees)", "0.9975", "0.9972", "0.9980", "0.9976", "0.81% (1/124)"],
@@ -299,25 +341,25 @@ def create_presentation():
     tf7 = tb7.text_frame
     tf7.word_wrap = True
     p7 = tf7.paragraphs[0]
-    p7.text = "تحليل مصفوفة الالتباس (Confusion Matrix) على عينة الاختبار (394 عينة):"
+    p7.text = "Confusion Matrix Analysis on Holdout Test Set (N = 394):"
     p7.font.size = Pt(16)
     p7.font.bold = True
     p7.font.color.rgb = NAVY
-    p7.alignment = PP_ALIGN.RIGHT
+    p7.alignment = PP_ALIGN.LEFT
 
     p7_b = tf7.add_paragraph()
-    p7_b.text = "• صنف نموذج Deep MLP جميع الطلبات الطبيعية (124 من 124) بشكل صحيح تماماً (0.00% إنذارات كاذبة)، وجميع هجمات SQLi (91/91) و Path/Cmd (90/90) بدقة 100%.\n• تفوقت الشبكة العصبية والغابات العشوائية (99.75%) على نموذج الانحدار اللوجستي الخطي (98.98%) في كشف هجمات Zero-Day المموهة."
+    p7_b.text = "• Deep MLP classified 100% of Normal requests (124/124) accurately with 0.00% False Positives, as well as 100% of SQLi (91/91) and Path/Cmd (90/90).\n• Neural Network and Random Forest (99.75%) outperformed the linear Logistic Regression baseline (98.98%) on unseen Zero-Day obfuscations."
     p7_b.font.size = Pt(14)
     p7_b.font.color.rgb = DARK_TEXT
-    p7_b.alignment = PP_ALIGN.RIGHT
+    p7_b.alignment = PP_ALIGN.LEFT
     p7_b.space_before = Pt(6)
 
-    # Slide 8: Live WAF Middleware Benchmarks
+    # Slide 8
     s8 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s8, prs, "7. Live FastAPI WAF & Cloud Weights Benchmark", "7. نتائج الاختبار الحي لجدار الحماية والأوزان السحابية", 8)
+    add_header_banner(s8, prs, "7. Live FastAPI WAF & Cloud Weights Benchmark", "7. نتائج الاختبار الحي لجدار الحماية والأوزان السحابية", 8, en_only)
     add_slide_table(
         s8,
-        ["Scenario / السيناريو", "Tested URI / الرابط المختبر", "HTTP Status", "WAF Action", "Confidence", "Latency"],
+        ["Test Scenario", "Tested URI", "HTTP Status", "WAF Action", "Confidence", "Latency"],
         [
             ["Normal Search (Trap)", "/search?q=select+best+laptop+and+update+windows&page=1", "200 OK", "ALLOWED", "99.93%", "2.31 ms"],
             ["Normal Product View", "/products?id=405&cat=electronics", "200 OK", "ALLOWED", "99.98%", "1.89 ms"],
@@ -330,9 +372,9 @@ def create_presentation():
         ]
     )
 
-    # Slide 9: Deep URL Form Scanner & AI SAST Code Scanner
+    # Slide 9
     s9 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s9, prs, "8. Deep URL Form Scanner & AI Source Code SAST", "8. فاحص نماذج المواقع وفاحص الكود المصدري بالذكاء الاصطناعي (SAST)", 9)
+    add_header_banner(s9, prs, "8. Deep URL Form Scanner & AI Source Code SAST", "8. فاحص نماذج المواقع وفاحص الكود المصدري بالذكاء الاصطناعي (SAST)", 9, en_only)
     add_two_column_cards(
         s9,
         "Deep URL & Form Scanner + AI SAST Engine",
@@ -350,12 +392,13 @@ def create_presentation():
             "   • يستخرج جميع نماذج <form> وحقول <input> لكشف غياب رموز Anti-CSRF وثغرات DOM XSS.",
             "2. فاحص الكود المصدري بالذكاء الاصطناعي (code_scanner.py - SAST):",
             "   • يحلل أكواد Python و PHP و Node.js سطراً بسطر، ويحدد رقم السطر المصاب وتصنيف CWE/OWASP ويولد الكود الآمن البديل (Secure Patch) فوراً."
-        ]
+        ],
+        en_only
     )
 
-    # Slide 10: Conclusion & Future Work
+    # Slide 10
     s10 = prs.slides.add_slide(blank_layout)
-    add_header_banner(s10, prs, "9. Conclusion & Future Work", "9. الخاتمة والتوصيات المستقبلية", 10)
+    add_header_banner(s10, prs, "9. Conclusion & Future Work", "9. الخاتمة والتوصيات المستقبلية", 10, en_only)
     add_two_column_cards(
         s10,
         "Conclusion & Key Achievements",
@@ -371,23 +414,32 @@ def create_presentation():
             "تحقيق دقة 99.75% وصفر بالمئة (0.00%) إنذارات كاذبة على قاعدة بيانات موسعة تضم 1,543 طلباً واختبارات Zero-Day.",
             "تصدير أوزان الذكاء الاصطناعي الحقيقية للعمل على سحابة Vercel بزمن استجابة أقل من 2.5 ملي ثانية.",
             "مستقبلاً: دمج نماذج CodeBERT لتحليل شجرة الكود (AST) عبر الملفات المتعددة."
-        ]
+        ],
+        en_only
     )
+    return prs
 
+
+def create_presentation():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    docs_path = os.path.join(base_dir, "docs", "Graduation_Project_Presentation_AR_EN.pptx")
-    prs.save(docs_path)
-    print(f"[+] تم تحديث العرض التقديمي في المشروع: {docs_path}")
-
+    docs_dir = os.path.join(base_dir, "docs")
+    os.makedirs(docs_dir, exist_ok=True)
     desktop_dir = r"C:\Users\lenovo\Desktop\AI_Web_Vulnerability_Graduation_Project"
     os.makedirs(desktop_dir, exist_ok=True)
-    desktop_path = os.path.join(desktop_dir, "Graduation_Project_Presentation_AR_EN.pptx")
-    try:
-        shutil.copy2(docs_path, desktop_path)
-    except PermissionError:
-        desktop_path = os.path.join(desktop_dir, "Graduation_Project_Presentation_AR_EN_v3.0.pptx")
-        shutil.copy2(docs_path, desktop_path)
-    print(f"[+] تم نسخ العرض التقديمي المحدث إلى سطح المكتب: {desktop_path}")
+
+    # 1. Pure English-Only Presentation (Zero Arabic Characters)
+    prs_en = build_deck(en_only=True)
+    en_path = os.path.join(docs_dir, "Graduation_Project_Presentation_EN_Only.pptx")
+    prs_en.save(en_path)
+    shutil.copy2(en_path, os.path.join(desktop_dir, "Graduation_Project_Presentation_EN_Only.pptx"))
+    print(f"[+] Created 100% Pure English Presentation: {en_path}")
+
+    # 2. Bilingual Presentation (with pure English tables)
+    prs_bi = build_deck(en_only=False)
+    bi_path = os.path.join(docs_dir, "Graduation_Project_Presentation_AR_EN.pptx")
+    prs_bi.save(bi_path)
+    shutil.copy2(bi_path, os.path.join(desktop_dir, "Graduation_Project_Presentation_AR_EN.pptx"))
+    print(f"[+] Updated Bilingual Presentation: {bi_path}")
 
 
 if __name__ == "__main__":

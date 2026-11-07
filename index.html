@@ -112,8 +112,8 @@
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
           <span data-i18n="status_active">WAF: ACTIVE</span>
         </div>
-        <button id="lang-btn" onclick="toggleLanguage()" class="px-2.5 py-1 rounded bg-blue-600/20 text-blue-400 border border-blue-500/30 font-mono text-xs font-bold hover:opacity-80 transition">
-          EN / عربي
+        <button id="lang-btn" onclick="toggleLanguage()" class="px-2.5 py-1 rounded bg-blue-600/20 text-blue-400 border border-blue-500/30 font-mono text-xs font-bold hover:opacity-80 transition" data-i18n="btn_lang">
+          LANG: EN (Switch to AR)
         </button>
         <button onclick="document.documentElement.classList.toggle('light')" class="px-2.5 py-1 rounded subtle-box text-xs text-sec hover:opacity-80 transition" data-i18n="btn_theme">
           Light / Dark
@@ -412,7 +412,7 @@
           <span id="audit-target-host" class="mono text-xs text-dim" dir="ltr">https://example.com</span>
         </div>
         <div class="overflow-x-auto">
-          <table class="w-full text-right text-xs border-collapse">
+          <table class="w-full text-left text-xs border-collapse">
             <thead>
               <tr class="subtle-box text-sec border-b border-line">
                 <th class="p-3" data-i18n="th_sev">Severity</th>
@@ -705,6 +705,7 @@
         nav_siem: "سجل الأحداث (SIEM Telemetry)",
         nav_benchmarks: "تقييم النماذج (Model Metrics)",
         status_active: "الحالة: نشط (WAF ACTIVE)",
+        btn_lang: "اللغة: العربية (Switch to EN)",
         btn_theme: "المظهر (Theme)",
         ins_title: "فاحص طلبات HTTP ومسار الاستدلال الفعلي للنموذج المدرب",
         ins_subtitle: "فك التشفير الثلاثي، استخراج مقاطع TF-IDF والخصائص القياسية، والضرب النقطي بأوزان النموذج المدرب",
@@ -763,6 +764,7 @@
         nav_siem: "SIEM Telemetry",
         nav_benchmarks: "Model Metrics",
         status_active: "WAF: ACTIVE",
+        btn_lang: "LANG: EN (Switch to AR)",
         btn_theme: "Light / Dark",
         ins_title: "HTTP Request Inspector & Real ML Forward-Pass Trace",
         ins_subtitle: "Multi-layer URL decoding, TF-IDF char n-grams + StandardScaler, and trained weight matrix classification",
@@ -1214,7 +1216,7 @@ X-Sentinel-WAF-Mode: BLOCK`;
         const resp = await fetch("/api/scan", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ mode: "url_scan", target: targetUrl })
+          body: JSON.stringify({ mode: "url_scan", target: targetUrl, lang: currentLang })
         });
         if (resp.ok) {
           const data = await resp.json();

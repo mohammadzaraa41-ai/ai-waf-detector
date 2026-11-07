@@ -10,7 +10,7 @@ import urllib.request
 from collections import Counter
 
 
-# تحميل أوزان النموذج المدرب الفعلي (Real Exported ML Weights from scikit-learn)
+# Load Real Exported ML Weights from scikit-learn
 _WEIGHTS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model_weights.json")
 _MODEL_DATA = None
 if os.path.exists(_WEIGHTS_PATH):
@@ -58,7 +58,7 @@ def extract_raw_features(raw_payload: str) -> tuple[str, list[float], dict]:
     ))
 
     special_chars = sum(1 for c in clean if c in "'\"<>%;()&|=+-*/\\`$")
-    digits_count = sum(1 for c in clean if c.isdigit())
+    digits_count = sum(1 for c in decoded_digits(clean))
     length = len(clean)
     spec_ratio = round(special_chars / max(length, 1), 4)
     dig_ratio = round(digits_count / max(length, 1), 4)
@@ -86,9 +86,13 @@ def extract_raw_features(raw_payload: str) -> tuple[str, list[float], dict]:
     return clean, vec, meta
 
 
+def decoded_digits(text: str):
+    return [c for c in text if c.isdigit()]
+
+
 def ai_classify_payload(raw_payload: str) -> dict:
     """
-    تصنيف الطلب عبر الأوزان الفعلية للنموذج المدرب (Real Exported ML Matrix Forward Pass: W·x + b -> Softmax).
+    Classify HTTP payload using Real Exported ML Matrix Forward Pass (W·x + b -> Softmax).
     """
     start = time.perf_counter()
     clean, raw_hand, meta = extract_raw_features(raw_payload)
@@ -99,7 +103,6 @@ def ai_classify_payload(raw_payload: str) -> dict:
         n_vocab = len(idf)
         min_n, max_n = _MODEL_DATA["ngram_range"]
 
-        # 1. استخراج Char N-Grams وحساب TF-IDF مع L2 Normalization مطابق لـ scikit-learn
         counts = Counter()
         text_len = len(clean)
         for n in range(min_n, max_n + 1):
@@ -119,7 +122,6 @@ def ai_classify_payload(raw_payload: str) -> dict:
         for idx in tfidf_vec:
             tfidf_vec[idx] /= norm
 
-        # 2. توحيد الخصائص الإحصائية عبر StandardScaler المدرب
         means = _MODEL_DATA["scaler_mean"]
         scales = _MODEL_DATA["scaler_scale"]
         scaled_hand = [
@@ -127,7 +129,6 @@ def ai_classify_payload(raw_payload: str) -> dict:
             for j in range(len(raw_hand))
         ]
 
-        # 3. الضرب النقطي بالمصفوفة (Linear / Neural Layer Forward Pass: z_c = w_c · x + b_c)
         classes = _MODEL_DATA["classes"]
         coefs = _MODEL_DATA["coef"]
         intercepts = _MODEL_DATA["intercept"]
@@ -141,7 +142,6 @@ def ai_classify_payload(raw_payload: str) -> dict:
                 z += w_row[n_vocab + j] * val
             logits.append(z)
 
-        # 4. دالة Softmax لحساب التوزيع الاحتمالي الحقيقي
         max_z = max(logits)
         exps = [math.exp(z - max_z) for z in logits]
         sum_exps = sum(exps)
@@ -149,7 +149,6 @@ def ai_classify_payload(raw_payload: str) -> dict:
         pred = max(probs, key=probs.get)
         engine_type = _MODEL_DATA.get("model_type", "Real-ML-Weights")
     else:
-        # Fallback في حال عدم وجود ملف الأوزان
         if meta["sql_indicators"] > 0:
             pred = "SQLi"
             probs = {"Normal": 0.002, "SQLi": 0.996, "XSS": 0.001, "Path_Cmd_Attack": 0.001}
@@ -177,8 +176,9 @@ def ai_classify_payload(raw_payload: str) -> dict:
     }
 
 
-def scan_live_url(target_url: str) -> dict:
+def scan_live_url(target_url: str, lang: str = "en") -> dict:
     start = time.perf_counter()
+    is_ar = (lang == "ar")
     if not target_url.startswith(("http://", "https://")):
         target_url = "https://" + target_url.strip()
 
@@ -196,22 +196,38 @@ def scan_live_url(target_url: str) -> dict:
         vulnerabilities.append({
             "severity": "High",
             "category": "Insecure Transport (HTTP)",
-            "finding": "الموقع يستخدم بروتوكول HTTP غير المشفر مما يعرض البيانات للتنصت (MITM).",
-            "remediation": "تفعيل شهادة SSL/TLS وإجبار التحويل التلقائي إلى HTTPS (301 Redirect)."
+            "finding": (
+                "الموقع يستخدم بروتوكول HTTP غير المشفر مما يعرض البيانات للتنصت (MITM)."
+                if is_ar else
+                "Target uses unencrypted HTTP transport, exposing session traffic to Man-in-the-Middle (MITM) interception."
+            ),
+            "remediation": "Enforce HTTPS via 301 Redirect & TLS 1.3"
         })
     else:
-        passed_checks.append("بروتوكول الاتصال مشفر عبر HTTPS/TLS.")
+        passed_checks.append(
+            "بروتوكول الاتصال مشفر عبر HTTPS/TLS."
+            if is_ar else
+            "Transport layer encrypted via HTTPS/TLS."
+        )
 
     if ai_check["prediction"] != "Normal":
         score -= 35
         vulnerabilities.append({
             "severity": "Critical",
             "category": f"Malicious URL Payload ({ai_check['prediction']})",
-            "finding": f"اكتشف الذكاء الاصطناعي حمولة هجومية ({ai_check['prediction']}) في معاملات الرابط بثقة {ai_check['confidence']}%.",
-            "remediation": "حجب الطلب عبر جدار الحماية AI WAF وتطبيق التحقق الصارم من المدخلات."
+            "finding": (
+                f"اكتشف الذكاء الاصطناعي حمولة هجومية ({ai_check['prediction']}) في معاملات الرابط بثقة {ai_check['confidence']}%."
+                if is_ar else
+                f"Trained ML classifier detected a malicious payload ({ai_check['prediction']}) in the URL query string with {ai_check['confidence']}% confidence."
+            ),
+            "remediation": "Block request at WAF edge & enforce parameterized queries"
         })
     else:
-        passed_checks.append("معاملات الرابط مفحوصة بالذكاء الاصطناعي وخالية من أنماط الحقن.")
+        passed_checks.append(
+            "معاملات الرابط مفحوصة بالذكاء الاصطناعي وخالية من أنماط الحقن."
+            if is_ar else
+            "URL parameters inspected by AI classifier and verified clean."
+        )
 
     headers_dict = {}
     html_body = ""
@@ -234,22 +250,52 @@ def scan_live_url(target_url: str) -> dict:
 
     if reachable:
         header_rules = [
-            ("content-security-policy", "Medium", 12, "غياب ترويسة Content-Security-Policy (CSP) للحماية من XSS.", "Content-Security-Policy: default-src 'self'; script-src 'self'"),
-            ("x-frame-options", "Medium", 10, "غياب ترويسة X-Frame-Options للحماية من هجمات Clickjacking.", "X-Frame-Options: SAMEORIGIN"),
-            ("strict-transport-security", "Low", 8, "غياب ترويسة HSTS لحماية الاتصال المشفر.", "Strict-Transport-Security: max-age=31536000; includeSubDomains"),
-            ("x-content-type-options", "Low", 6, "غياب ترويسة X-Content-Type-Options لمنع MIME-Sniffing.", "X-Content-Type-Options: nosniff"),
+            (
+                "content-security-policy",
+                "Medium",
+                12,
+                "Missing Content-Security-Policy (CSP) header; page permits unrestricted inline script execution (XSS risk).",
+                "غياب ترويسة Content-Security-Policy (CSP) للحماية من XSS.",
+                "Content-Security-Policy: default-src 'self'; script-src 'self'"
+            ),
+            (
+                "x-frame-options",
+                "Medium",
+                10,
+                "Missing X-Frame-Options header; page can be framed by external origins (Clickjacking risk).",
+                "غياب ترويسة X-Frame-Options للحماية من هجمات Clickjacking.",
+                "X-Frame-Options: SAMEORIGIN"
+            ),
+            (
+                "strict-transport-security",
+                "Low",
+                8,
+                "Missing HSTS (Strict-Transport-Security) header; susceptible to SSL stripping attacks.",
+                "غياب ترويسة HSTS لحماية الاتصال المشفر.",
+                "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+            ),
+            (
+                "x-content-type-options",
+                "Low",
+                6,
+                "Missing X-Content-Type-Options header; browser may perform MIME-type sniffing.",
+                "غياب ترويسة X-Content-Type-Options لمنع MIME-Sniffing.",
+                "X-Content-Type-Options: nosniff"
+            ),
         ]
-        for h_key, sev, pen, msg, rem in header_rules:
+        for h_key, sev, pen, msg_en, msg_ar, rem in header_rules:
             if h_key not in headers_dict:
                 score -= pen
                 vulnerabilities.append({
                     "severity": sev,
                     "category": f"Missing Header ({h_key})",
-                    "finding": msg,
+                    "finding": msg_ar if is_ar else msg_en,
                     "remediation": rem,
                 })
             else:
-                passed_checks.append(f"ترويسة الأمان {h_key} مفعلة.")
+                passed_checks.append(
+                    f"ترويسة الأمان {h_key} مفعلة." if is_ar else f"Security header '{h_key}' is present."
+                )
 
         set_cookie = headers_dict.get("set-cookie", "")
         if set_cookie and "httponly" not in set_cookie.lower():
@@ -257,11 +303,14 @@ def scan_live_url(target_url: str) -> dict:
             vulnerabilities.append({
                 "severity": "High",
                 "category": "Insecure Session Cookie",
-                "finding": "ملف الارتباط (Set-Cookie) يفتقر إلى خاصية HttpOnly مما يسهل سرقة الجلسة عبر XSS.",
+                "finding": (
+                    "ملف الارتباط (Set-Cookie) يفتقر إلى خاصية HttpOnly مما يسهل سرقة الجلسة عبر XSS."
+                    if is_ar else
+                    "Session cookie (Set-Cookie) lacks the HttpOnly flag, exposing session tokens to theft via XSS."
+                ),
                 "remediation": "Set-Cookie: session=...; HttpOnly; Secure; SameSite=Strict",
             })
 
-        # الفحص العميق للنماذج وحقول الإدخال (Deep Form & Input Surface Discovery)
         forms_matches = re.finditer(r"<form\b([^>]*)>(.*?)</form>", html_body, flags=re.IGNORECASE | re.DOTALL)
         for idx, match in enumerate(forms_matches, start=1):
             attrs = match.group(1) or ""
@@ -286,7 +335,11 @@ def scan_live_url(target_url: str) -> dict:
                 vulnerabilities.append({
                     "severity": "Medium",
                     "category": f"Missing Anti-CSRF Token (Form #{idx})",
-                    "finding": f"النموذج #{idx} (action='{action}', method='{method}') لا يحتوي على حقل حماية ضد تزوير الطلبات (CSRF).",
+                    "finding": (
+                        f"النموذج #{idx} (action='{action}', method='{method}') لا يحتوي على حقل حماية ضد تزوير الطلبات (CSRF)."
+                        if is_ar else
+                        f"HTML Form #{idx} (action='{action}', method='{method}') lacks a cryptographic Anti-CSRF hidden token."
+                    ),
                     "remediation": "<input type='hidden' name='csrf_token' value='...' />",
                 })
 
@@ -461,9 +514,10 @@ class handler(BaseHTTPRequestHandler):
 
         mode = data.get("mode", "payload")
         target = data.get("target", "/")
+        lang = data.get("lang", "en")
 
         if mode == "url_scan":
-            result = scan_live_url(target)
+            result = scan_live_url(target, lang=lang)
         elif mode == "code_scan":
             result = scan_source_code(target)
         else:
@@ -481,9 +535,10 @@ class handler(BaseHTTPRequestHandler):
         params = urllib.parse.parse_qs(parsed.query)
         target = params.get("target", ["/search?q=test"])[0]
         mode = params.get("mode", ["payload"])[0]
+        lang = params.get("lang", ["en"])[0]
 
         if mode == "url_scan":
-            result = scan_live_url(target)
+            result = scan_live_url(target, lang=lang)
         elif mode == "code_scan":
             result = scan_source_code(target)
         else:
